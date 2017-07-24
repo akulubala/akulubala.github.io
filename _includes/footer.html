@@ -1,0 +1,27 @@
+<footer>
+    <div class="container">
+      <div class="valign-wrapper">
+          <h6>© 2017 @akulubala, INC. All Rights Reserved.</h6>
+      </div>
+    </div>
+</footer>
+<script type="text/javascript">
+	window.store = {
+	    {% for post in site.posts %}
+	      "{{ post.url | slugify }}": {
+	      	"imgSrc": "{{ '/assets/images/upsplash/image_' | append: forloop.index | append: '.jpeg' }}",
+	        "title": "{{ post.title | xml_escape }}",
+	        "author": "{{ post.author | xml_escape }}",
+	        "category": "{{ post.category | xml_escape }}",
+	        "content": {{ post.content | strip_html | strip_newlines | jsonify }},
+	        "url": "{{ post.url | xml_escape }}"
+	      }
+	      {% unless forloop.last %},{% endunless %}
+	    {% endfor %}
+	 };
+</script>
+<script type="text/javascript" src="{{ site.baseurl }}/assets/dist/{{ site.data.manifest.manifest }}"></script>
+<script type="text/javascript" src="{{ site.baseurl }}/assets/dist/{{ site.data.manifest.vendor }}"></script>
+<script type="text/javascript" src="{{ site.baseurl }}/assets/dist/{{ site.data.manifest.app[0] }}"></script>
+</body>
+</html>

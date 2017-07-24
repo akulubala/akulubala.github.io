@@ -1,0 +1,236 @@
+@import 'material_icons.css';
+@import 'prism.css';
+@import '~materialize-css/dist/css/materialize.min.css';
+@import '~responsive-social-buttons/dist/social-buttons.css';
+
+body {
+    font-family: 'Lora', serif;
+    color: #333;
+    font-size: 15px;
+    line-height: 26px;
+    overflow-x: hidden;
+    word-break: break-word;
+    display: flex;
+    display: -webkit-flex; /* Safari */
+	min-height: 100vh;
+	flex-direction: column;
+}
+main {
+	flex: 1 0 auto;
+}
+a {
+	cursor: pointer !important;
+}
+#header nav ul a {
+	color: #000;
+	text-transform: capitalize;
+	font-family: 'Rokkitt', serif;
+	font-size: 16px;
+}
+#header > nav {
+	border-bottom:1px solid #eee;
+	height: 50px;
+	line-height: 50px;
+	box-shadow: inherit;
+}
+#header .row {
+	margin-bottom: 0px;
+}
+#header .header-social {
+	display: flex;
+  	align-items: center;
+  	height: 48px;
+}
+#header .header-social > .rrssb-buttons {
+	height: 30px;
+	display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+#header .header-social > .rrssb-buttons.tiny-format li a .rrssb-icon svg path {
+	fill: #444 !important;
+}
+#header .input-field {
+	margin-top: 0px;
+	display: block;
+	border-left: 1px solid #eee;
+	padding-left: 5px;
+}
+#header .input-field input[type=search] {
+	line-height: 48px;
+	height: 48px;
+	color: black;
+	border-bottom: 0px;
+	margin: 0;
+	font-size: 15px;
+	font-style: italic;
+	padding-right: 3rem;
+	padding-left: inherit;
+	width: calc(100% - 3rem);
+}
+#header .input-field i {
+	line-height: 48px;
+	height: 48px;
+	border-bottom: 0px;
+	margin: 0;
+	top: 0px;
+	color: black;
+	left: auto;
+	right: 0rem !important;
+}
+#header .col {
+	padding: inherit;
+}
+/**
+ * header part finish
+ */
+#motto {
+	height: 100px;
+}
+#motto h4{
+	font:italic medium Georgia, serif;
+	color: #039be5;
+}
+#search-result  div:first-child {
+	border: 1px solid #eee;
+    border-radius: 30px;
+    padding: initial;
+}
+.no-results .card {
+	box-shadow: none;
+}
+.no-results .card-content {
+	padding: 24px 0 !important;
+}
+.no-results .card-title {
+	font-weight: bold;
+}
+.no-results p {
+	font-size: 18px;
+}
+#search-result h5 {
+	border: none;
+    background-color: #f2f2f2;
+    border-radius: 30px;
+    margin: 3px;
+    padding: 8px 20px;
+    font-size: 18px;
+    float: left;
+}
+#search-result .search-key {
+	margin: 0px 10px;
+}
+/**
+ * content start
+ */
+#content .card {
+	box-shadow: inherit;
+}
+#content .card-image img{
+	border-radius: 10px;
+}
+#content .card-content {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+#content .card-content {
+	font-size: 18px;
+}
+#content .card-action {
+	border-top: none;
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-bottom: 30px;
+	display: flex;
+	align-items: center;
+}
+#content .card-action > a:first-child {
+	padding: 6px;
+    border: 1px solid #ffab40;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+#content .card-action .share-action {
+	display: flex;
+	align-items: center;
+	padding: 5px;
+	border-radius: 100%;
+	margin-right: 10px !important;	
+}
+#content .post-tags {
+	margin-bottom: 8px;
+}
+#content .post-tags span:not(:first-child){
+	margin: 5px;
+	color: #666;
+	font-size: 16px;
+	display: inline-block;
+	border-bottom: 1px dotted #ccc;
+}
+/**
+ * slide out
+ */
+.profile img {
+	border-radius: 10px !important;
+}
+.profile .col {
+	padding-left: 22.5px;
+	padding-right: 22.5px;
+}
+.profile .card-image {
+	padding-right: 80px;
+}
+.profile .card {
+	box-shadow: none;
+} 
+.profile .card-content {
+	padding: 24px 0px;
+    line-height: 24px;
+    font-size: 16px;
+}
+.profile .divider-dash {
+	margin-top:48px;
+}
+.profile h5 {
+	font-weight: bold;
+}
+.profile:last-child .collection {
+	border:none;
+}
+.profile:last-child .collection li {
+	border-bottom: 1px dotted #ECECEC
+}
+
+figure {
+	margin: 0px !important;
+}
+
+
+
+footer .valign-wrapper{
+	height: 60px;
+	border-top: 1px dotted #ddd;
+}
+.divider-dash {
+	border-top:1px dotted #ddd; 
+}
+/**
+ * media
+ * @type {[type]}
+ */
+@media only screen and (min-width: 993px) {
+	.container {
+	    width: 55%;
+	}
+}
+.material-icons.md-light { 
+	color: rgba(255, 255, 255, 1); 
+}
+.material-icons.md-18 { 
+	font-size: 36px; 
+}
+.material-icons.md-dark { 
+	color: rgba(0, 0, 0, 0.54); 
+}
+
+

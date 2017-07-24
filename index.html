@@ -1,0 +1,57 @@
+---
+layout: home
+---
+{% for post in paginator.posts %}
+{% assign imgSrc = '/assets/images/upsplash/image_' | append: forloop.index | append: '.jpeg' %}
+<div class="row default-contents">
+	<div class="col s12">
+	  <div class="card">
+	    <div class="card-image">
+	        <img class="responsive-img" src="{{ imgSrc | absolute_url }}">
+	      </div>
+	    <div class="card-content black-text">
+	      <span class="card-title"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></span>
+	      <div class="post-tags">
+	        <span><i class="fa fa-superpowers" aria-hidden="true"></i></span>
+	        <span>tags: {{ post.categories }}</span>
+	        <span>post data: {{ post.date | date: "%B %d, %Y" }}</span>
+	        <span>comments:</span>
+	      </div>
+	      <p>{% if post.description %}{{ post.description  | strip_html | strip_newlines | truncate: 200 }}{% else %}{{ post.content | strip_html | strip_newlines | truncate: 80 }}{% endif %}</p>
+	    </div>
+	    <div class="card-action">
+    		<a href="{{ site.url }}{{ post.url }}">Continue Reading</a>
+    		<a href="#" class="share-action"><i class="material-icons md-dark">share</i></a>
+	        {% include social_shares.html %}
+	    </div>
+	    <div class="divider-dash"></div>
+	  </div>
+	</div>
+</div>
+{% endfor %}
+<ul class="pagination">
+	{% if paginator.previous_page %}
+		<li class="waves-effect"><a href="{{ paginator.previous_page_path }}"><i class="material-icons">chevron_left</i></a></li>
+	{% else %}
+		<li class="disabled"><i class="material-icons">chevron_left</i></li>
+	{% endif %}
+	{% for i in (1..paginator.total_pages) %}
+		{% if paginator.page == i %}
+		<li  class="active" ><a>{{ i }}</a></li>
+		{% else %}
+		<li  class="waves-effect">
+			{% if i == 1 %}
+				<a href="/">{{ i }}</a>
+			{% else %}
+				<a href="{{ site.url }}/{{ site.paginate_path | prepend: site.url | replace: '//', '/' | replace: ':num', i }}">{{ i }}</a>
+			{% endif %}
+		</li>
+		{% endif %}
+	{% endfor %}
+	{% if paginator.next_page %}
+		<li class="waves-effect"><a href="{{ paginator.next_page_path }}" class="next"><i class="material-icons">chevron_right</i></a></li>
+	{% else %}
+		<li class="disabled"><i class="material-icons">chevron_right</i></li>
+	{% endif %}
+</ul>
+

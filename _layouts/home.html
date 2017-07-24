@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="{{ site.url }}/assets/dist/{{ site.data.manifest.app[1] }}"  media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	</head>
+<body>
+<main>
+	{% include header.html %}
+	<div class="container">
+		{% include search_result.html %}
+	    <div id="content">
+			{{ content }}
+		</div>
+		{% include comment.html %}
+	</div>
+</main>
+{% include category_lists.html %}
+{% include right_slider.html %}
+{% include footer.html %}
