@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: post
 title:  "Welcome to Jekyll!"
 date:   2017-04-28 15:47:26 +0800
 categories: php
