@@ -6,6 +6,7 @@
            <p class="date">{{page.date | date: "%b %d, %Y" }}</p>
 			{{ content }}
 		</div>
+		{% include social_shares.html %}
 		{% include comment.html id=page.id url=page.url %}
 	</div>
 </main>
