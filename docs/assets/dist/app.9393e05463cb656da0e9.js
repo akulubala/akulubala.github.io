@@ -244,6 +244,7 @@ Prism.languages.yaml = { scalar: { pattern: /([\-:]\s*(![^\s]+)?[ \t]*[|>])[ \t]
 
 function displaySearchResults(results, store) {
   $('#content').children('.default-contents').addClass('hide');
+  $('.pagination').addClass('hide');
   if (results.length) {
     // Are there any results?
     var contents = [];
@@ -303,6 +304,8 @@ $('#search').keyup(function () {
     displaySearchResults(results, window.store); // We'll write this in the next section
   } else {
     $('#search-result').addClass('hide').next('div').addClass('hide');
+    $('#content').children('.default-contents').removeClass('hide');
+    $('.pagination').removeClass('hide');
   }
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))

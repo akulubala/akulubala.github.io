@@ -4,6 +4,7 @@ import tpl from './template';
 function displaySearchResults(results, store) {
       $('#content').children('.default-contents')
                    .addClass('hide')
+      $('.pagination').addClass('hide')
       if (results.length) { // Are there any results?
         var contents = [];
         for (let i = 0; i < results.length; i++) {  // Iterate over the results
@@ -65,6 +66,10 @@ $('#search').keyup(function() {
       $('#search-result').addClass('hide')
                          .next('div')
                          .addClass('hide')
+      $('#content').children('.default-contents')
+                  .removeClass('hide')
+      $('.pagination').removeClass('hide')
+
     }
 });
 
