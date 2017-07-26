@@ -25,6 +25,20 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
 
+links:
+    - { title: PHP, url: posts/php.html }
+    - { title: Javascript, url: posts/javascript.html }
+    - { title: JQuery, url: posts/jquery.html }
+    - { title: Mysql, url: posts/mysql.html  }
+    - { title: Mongodb, url: posts/mongodb.html  }
+    - { title: 'Zend Framework 2', url: posts/zf2.html  }
+    - { title: laravel, url: posts/laravel.html  }
+    - { title: Git, url: posts/git.html  }
+    - { title: System Skills, url: posts/system.html  }
+    - { title: Redis, url: posts/redis.html  }
+    - { title: Python, url: posts/python.html  }
+    - { title: Vuejs, url: posts/vuejs.html  }
+
 # Build settings
 markdown: kramdown
 gems:

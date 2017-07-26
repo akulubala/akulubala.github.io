@@ -1,34 +1,1479 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2017-07-25T18:28:33+08:00</updated><id>/</id><title type="html">Your awesome title</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">third</title><link href="/php/2017/04/28/third.html" rel="alternate" type="text/html" title="third" /><published>2017-04-28T15:47:26+08:00</published><updated>2017-04-28T15:47:26+08:00</updated><id>/php/2017/04/28/third</id><content type="html" xml:base="/php/2017/04/28/third.html">&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2017-07-26T17:23:32+08:00</updated><id>/</id><title type="html">Your awesome title</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">Python Decorator</title><link href="/python/2014/11/24/python_decorator.html" rel="alternate" type="text/html" title="Python Decorator" /><published>2014-11-24T00:00:00+08:00</published><updated>2014-11-24T00:00:00+08:00</updated><id>/python/2014/11/24/python_decorator</id><content type="html" xml:base="/python/2014/11/24/python_decorator.html">&lt;p&gt;我测试 部署
+这个python decorator 大概是每个pythoner比看到内容吧.对于我这个从PHP 过来的人第一次看，确实也有那么些新鲜难懂。顾名思义：“装饰器”，绝对是把什么什么东西通过另外的东西修饰了一番。&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;####先来看下最基本的显而易见的例子吧：&lt;/p&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">Jekyll also offers powerful support for code snippets:</summary></entry><entry><title type="html">Test to Jekyll!</title><link href="/php/2017/04/28/test.html" rel="alternate" type="text/html" title="Test to Jekyll!" /><published>2017-04-28T15:47:26+08:00</published><updated>2017-04-28T15:47:26+08:00</updated><id>/php/2017/04/28/test</id><content type="html" xml:base="/php/2017/04/28/test.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;def log(func):
+    def wrapper(*args, **kw):
+        print 'call %s():' % func.__name__
+        func(*args, **kw)---
+    return wrapper
 
-&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+@log
+def now():
+    print '2013-12-25'
 
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+now()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;@log就是所谓的语法糖，从上例最终的表现形式就是：将now()函数传给了方法log..最终调用是 调用了内部函数wrapper..&lt;/p&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="/php/2017/04/28/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2017-04-28T15:47:26+08:00</published><updated>2017-04-28T15:47:26+08:00</updated><id>/php/2017/04/28/welcome-to-jekyll</id><content type="html" xml:base="/php/2017/04/28/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+&lt;p&gt;接下来一步步刨析：&lt;br /&gt;
+log函数内部有个wrapper函数，这样就形成了一个闭包wrapper,这个函数对于其他部分是一个独立的模块，但其可以使用log的参数也就是传进来的方法func,func在log内部是相当于warpper是全局变量（log 内部的作用域）经过wrapper的处理后,now函数就不再是单单输出“2013-12-25”了。所以也验证了前面所说的经过某某修饰成为了另外的某某某。相当于&lt;code class=&quot;highlighter-rouge&quot;&gt;now = log(now())&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果前面的例子打印&lt;code class=&quot;highlighter-rouge&quot;&gt;now.__name__&lt;/code&gt;,结果为：wrapper 而不是now&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+&lt;p&gt;为了解决这个问题，需要如下操作：&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from functools import wraps
+def log(func):
+	@wraps(func)
+    def wrapper(*args, **kw):
+        print 'call %s():' % func.__name__
+        func(*args, **kw)---
+    return wrapper **如果now 函数需要传参数的话需要反射来处理，具体可看http://coolshell.cn/articles/11265.html**
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry></feed>
+&lt;p&gt;####以上是一个最基本的decorator 应用，接下来说明在使用decorator时传参&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from functools import wraps
+def log(args1,args2):
+    def real_decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kw):
+            print 'call %s():' % func.__name__
+            func(args1, args1,args)
+        return wrapper
+    return real_decorator
+
+@log(&quot;log pass paramter1 to log&quot;,&quot;log pass paramter2 to log&quot;)
+def now(*args):
+    print args
+    print '2013-12-25'
+
+now(&quot;now pass parameter to wrapper&quot;)
+print now.__name__
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;result :&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;call now():
+(‘log pass paramter1 to log’, ‘log pass paramter1 to log’, (‘now pass parameter to wrapper’,))&lt;br /&gt;
+2013-12-25&lt;br /&gt;
+now&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;说明对于需要使用语法糖 传参的时候需要返回一个函数real_decorator，再在内部定义具体调用的函数wrapper这里相当于：&lt;code class=&quot;highlighter-rouge&quot;&gt;log(&quot;log pass paramter1 to log&quot;,&quot;log pass paramter2 to log&quot;)((now())&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;####使用多个decorator:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from functools import wraps
+def log(args1,args2):
+    def real_decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kw):
+            print 'call %s():' % func.__name__
+            func(args1, args1,args)
+        return wrapper
+    return real_decorator
+
+def another_log(func):
+    def wrapper(pams):
+        print &quot;another wrapper of %s():\n&quot; % func.__name__+pams
+    return wrapper
+
+@another_log
+@log(&quot;log pass paramter1 to log&quot;,&quot;log pass paramter2 to log&quot;)
+def now(*args):
+    print args
+    print '2013-12-25'
+
+now(&quot;now pass parameter to wrapper&quot;)
+print now.__name__
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;results:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;another wrapper of now():&lt;br /&gt;
+now pass parameter to wrapper&lt;br /&gt;
+wrapper&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;说明：结果是 输出了 another_log 的内容，那么它是将log decrator 过后的方法再次 decorator，即如下形式：&lt;code class=&quot;highlighter-rouge&quot;&gt;another_log(log(param1,param2)(now))&lt;/code&gt;,也就是两层包装&lt;/p&gt;
+
+&lt;p&gt;####类式的 Decorator&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class TestDecorator(object):
+
+    def __init__(self,func):
+        self.decorator_fn = func
+    def __call__(self):
+        print self.decorator_fn.__name__
+        self.decorator_fn()
+        print &quot;inside myDecorator.__call__()&quot;
+@TestDecorator        
+def now():
+    print &quot;2014-01-01&quot;
+
+now() 基本的实例如上，在这个类中必须要有__call__方法，而所有关于修饰的内容都应当从__call__方法里面去定义  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;输出：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;now&lt;br /&gt;
+2014-01-01&lt;br /&gt;
+inside class &lt;strong&gt;call&lt;/strong&gt;()&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;一个好的完整例子：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class MyApp():
+    def __init__(self):
+        self.func_map = {}
+
+    def register(self, name):
+        def func_wrapper(func):
+            self.func_map[name] = func
+            return func
+        return func_wrapper
+
+    def call_method(self, name=None):
+        func = self.func_map.get(name, None)
+        if func is None:
+            raise Exception(&quot;No function registered against - &quot; + str(name))
+        return func()
+
+app = MyApp()
+
+@app.register('/')
+def main_page_func():
+    return &quot;This is the main page.&quot;
+
+@app.register('/next_page')
+def next_page_func():
+    return &quot;This is the next page.&quot;
+
+print app.call_method('/')
+print app.call_method('/next_page')
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;1）上面这个示例中，用类的实例来做decorator。&lt;br /&gt;
+2）decorator类中没有__call__()，但是wrapper返回了原函数。所以，原函数没有发生任何变化。&lt;/p&gt;
+
+&lt;p&gt;更多例子：https://wiki.python.org/moin/PythonDecoratorLibrary&lt;/p&gt;</content><author><name></name></author><category term="python" /><summary type="html">我测试 部署 这个python decorator 大概是每个pythoner比看到内容吧.对于我这个从PHP 过来的人第一次看，确实也有那么些新鲜难懂。顾名思义：“装饰器”，绝对是把什么什么东西通过另外的东西修饰了一番。 ####先来看下最基本的显而易见的例子吧： def log(func): def wrapper(*args, **kw): print 'call %s():' % func.__name__ func(*args, **kw)--- return wrapper @log def now(): print '2013-12-25' now() @log就是所谓的语法糖，从上例最终的表现形式就是：将now()函数传给了方法log..最终调用是 调用了内部函数wrapper.. 接下来一步步刨析： log函数内部有个wrapper函数，这样就形成了一个闭包wrapper,这个函数对于其他部分是一个独立的模块，但其可以使用log的参数也就是传进来的方法func,func在log内部是相当于warpper是全局变量（log 内部的作用域）经过wrapper的处理后,now函数就不再是单单输出“2013-12-25”了。所以也验证了前面所说的经过某某修饰成为了另外的某某某。相当于now = log(now()) 如果前面的例子打印now.__name__,结果为：wrapper 而不是now 为了解决这个问题，需要如下操作： from functools import wraps def log(func): @wraps(func) def wrapper(*args, **kw): print 'call %s():' % func.__name__ func(*args, **kw)--- return wrapper **如果now 函数需要传参数的话需要反射来处理，具体可看http://coolshell.cn/articles/11265.html** ####以上是一个最基本的decorator 应用，接下来说明在使用decorator时传参 from functools import wraps def log(args1,args2): def real_decorator(func): @wraps(func) def wrapper(*args, **kw): print 'call %s():' % func.__name__ func(args1, args1,args) return wrapper return real_decorator @log(&quot;log pass paramter1 to log&quot;,&quot;log pass paramter2 to log&quot;) def now(*args): print args print '2013-12-25' now(&quot;now pass parameter to wrapper&quot;) print now.__name__ result : call now(): (‘log pass paramter1 to log’, ‘log pass paramter1 to log’, (‘now pass parameter to wrapper’,)) 2013-12-25 now 说明对于需要使用语法糖 传参的时候需要返回一个函数real_decorator，再在内部定义具体调用的函数wrapper这里相当于：log(&quot;log pass paramter1 to log&quot;,&quot;log pass paramter2 to log&quot;)((now()) ####使用多个decorator: from functools import wraps def log(args1,args2): def real_decorator(func): @wraps(func) def wrapper(*args, **kw): print 'call %s():' % func.__name__ func(args1, args1,args) return wrapper return real_decorator def another_log(func): def wrapper(pams): print &quot;another wrapper of %s():\n&quot; % func.__name__+pams return wrapper @another_log @log(&quot;log pass paramter1 to log&quot;,&quot;log pass paramter2 to log&quot;) def now(*args): print args print '2013-12-25' now(&quot;now pass parameter to wrapper&quot;) print now.__name__ results: another wrapper of now(): now pass parameter to wrapper wrapper 说明：结果是 输出了 another_log 的内容，那么它是将log decrator 过后的方法再次 decorator，即如下形式：another_log(log(param1,param2)(now)),也就是两层包装 ####类式的 Decorator class TestDecorator(object): def __init__(self,func): self.decorator_fn = func def __call__(self): print self.decorator_fn.__name__ self.decorator_fn() print &quot;inside myDecorator.__call__()&quot; @TestDecorator def now(): print &quot;2014-01-01&quot; now() 基本的实例如上，在这个类中必须要有__call__方法，而所有关于修饰的内容都应当从__call__方法里面去定义 输出： now 2014-01-01 inside class call() 一个好的完整例子： class MyApp(): def __init__(self): self.func_map = {} def register(self, name): def func_wrapper(func): self.func_map[name] = func return func return func_wrapper def call_method(self, name=None): func = self.func_map.get(name, None) if func is None: raise Exception(&quot;No function registered against - &quot; + str(name)) return func() app = MyApp() @app.register('/') def main_page_func(): return &quot;This is the main page.&quot; @app.register('/next_page') def next_page_func(): return &quot;This is the next page.&quot; print app.call_method('/') print app.call_method('/next_page') 1）上面这个示例中，用类的实例来做decorator。 2）decorator类中没有__call__()，但是wrapper返回了原函数。所以，原函数没有发生任何变化。 更多例子：https://wiki.python.org/moin/PythonDecoratorLibrary</summary></entry><entry><title type="html">redis数据库设计</title><link href="/redis/2014/11/14/redis_design_database.html" rel="alternate" type="text/html" title="redis数据库设计" /><published>2014-11-14T00:00:00+08:00</published><updated>2014-11-14T00:00:00+08:00</updated><id>/redis/2014/11/14/redis_design_database</id><content type="html" xml:base="/redis/2014/11/14/redis_design_database.html">&lt;p&gt;公司要用redis 做数据存储，主要业务是做图片处理，有这么几个成员：&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;reference&lt;/p&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;这张表记录产品(image)&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;steps&lt;/p&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;step记录图片和reference处理到哪一步&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;history&lt;/p&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;history记录step变化详细&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;company&lt;/p&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;company记录reference属于那个company&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;member&lt;/p&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;member是公司员工&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;group&lt;/p&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;员工所属的组&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;work_limit&lt;/p&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;员工可以进行的工作&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;首先设计reference表&lt;/p&gt;
+
+    &lt;p&gt;reference 有detail,及多个image，存储reference以reference_id来唯一区别，detail有多个属性及值所以需要hash类型存储:&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; hset pp_reference:example_reference_id_1:detail saas_reference_code code_example_1 	reference_source source1 dist dist1 curr_step step1
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;对于搜索的时候需要按时间排序，另外也有可能需要做分页搜索，时间搜索，因此我需要一个zset（可以做range操作）的集合来存储reference的插入时间，并且时间为score，且int型的timestemp，value为reference_id    &lt;br /&gt;
+     zadd pp_reference:created_at 12354678(timestemp_example) example_reference_id&lt;/p&gt;
+
+    &lt;p&gt;对于reference对应的图片，因为是一对多的关系而且图片也有图片细节，所以每一个reference都将有一个set集合来存储图片的ID（图片详情也存hash并且先于reference存储）：&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; sadd pp_reference:example_reference_id:image_id 1 2 12 3
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;与reference的history也是一对多的关系，因此也需要存一个像上面图片一样的集合，集合里面存reference_history_id&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; sadd pp_reference:example_reference_id:reference_history_id 1 2 12 3
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;reference在查询的时候，不会按照id去查询所以需要有一个reference_code与ID的对应(&lt;em&gt;另外因为本身我这里的reference_id是从mysql取得的自增id所以这里不需要设置自增i&lt;/em&gt;d)&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; set pp_reference:reference_code_example_abc 123
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;&lt;em&gt;reference 的结构基本就以以上这么一个方式存储&lt;/em&gt;&lt;/p&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;-与reference相关的子集表:pp_images&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; `hmset pp_image:image_id_1:detail name abc.jpg size 1024k curr_step step2`	
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;由于image需要一个自增id所以还需要：&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; `setnx pp_image:image_auto_id 0`	
+ `INCR pp_image:image_auto_id`	
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;这样每次存储前先执行这么一个语句取得该ID作为自增ID
+-与reference相关子集表:pp_histtory&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; `hmset pp_history:pp_history_id_1:detail step_from step_1 step_to step_2  time 2014-06-06 10:10:10`	
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;同样的也需要一个自增id&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; `setnx pp_history:history_auto_id 0`
+ `INCR pp_history:history_auto_id`	
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;查询日志set建立&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; `zadd pp_history:created_at 12354678(timestemp_example)  example_history_id	`	
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;使用redis desk manager结构图：
+     &lt;img src=&quot;http://akulubala.github.io/public/images/2014/redis_design_1.png&quot; alt=&quot;redis_1&quot; /&gt;&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;steps表&lt;/p&gt;
+
+    &lt;p&gt;和reference一样存储多种数据，需要hash类型&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; hmset pp_step:step_1:step_detail name setp_1 isactive 1 description		 xxxxxx
+ setnx pp_step:step_id 0
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;step 是单纯记录各个step意义，实际存放reference 所在step应该有以下设计&lt;/p&gt;
+    &lt;/blockquote&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sadd step_1:image image_id_1 image_id_2&lt;/code&gt;
+ &lt;code class=&quot;highlighter-rouge&quot;&gt;sadd step_1:reference reference_1 reference_2&lt;/code&gt;&lt;/p&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;这样当image或者reference的step变化的时候就直接从一个集合拿id到另一个集合，或者说删除一个/添加一个&lt;/p&gt;
+      &lt;blockquote&gt;
+        &lt;p&gt;结构图&lt;img src=&quot;http://akulubala.github.io/public/images/2014/redis_design_2.png&quot; alt=&quot;redis_2&quot; /&gt;&lt;/p&gt;
+      &lt;/blockquote&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;通过上面两个表的建立基本了解了如果建立redis数据库，其主要是需要了解redis各个数据结构的原理及使用范围。通过对应关系可以找出相关的数据这样就可以了。&lt;/p&gt;</content><author><name></name></author><category term="redis" /><summary type="html">公司要用redis 做数据存储，主要业务是做图片处理，有这么几个成员： reference 这张表记录产品(image) steps step记录图片和reference处理到哪一步 history history记录step变化详细 company company记录reference属于那个company member member是公司员工 group 员工所属的组 work_limit 员工可以进行的工作 首先设计reference表 reference 有detail,及多个image，存储reference以reference_id来唯一区别，detail有多个属性及值所以需要hash类型存储: hset pp_reference:example_reference_id_1:detail saas_reference_code code_example_1 reference_source source1 dist dist1 curr_step step1 对于搜索的时候需要按时间排序，另外也有可能需要做分页搜索，时间搜索，因此我需要一个zset（可以做range操作）的集合来存储reference的插入时间，并且时间为score，且int型的timestemp，value为reference_id zadd pp_reference:created_at 12354678(timestemp_example) example_reference_id 对于reference对应的图片，因为是一对多的关系而且图片也有图片细节，所以每一个reference都将有一个set集合来存储图片的ID（图片详情也存hash并且先于reference存储）： sadd pp_reference:example_reference_id:image_id 1 2 12 3 与reference的history也是一对多的关系，因此也需要存一个像上面图片一样的集合，集合里面存reference_history_id sadd pp_reference:example_reference_id:reference_history_id 1 2 12 3 reference在查询的时候，不会按照id去查询所以需要有一个reference_code与ID的对应(另外因为本身我这里的reference_id是从mysql取得的自增id所以这里不需要设置自增id) set pp_reference:reference_code_example_abc 123 reference 的结构基本就以以上这么一个方式存储 -与reference相关的子集表:pp_images `hmset pp_image:image_id_1:detail name abc.jpg size 1024k curr_step step2` 由于image需要一个自增id所以还需要： `setnx pp_image:image_auto_id 0` `INCR pp_image:image_auto_id` 这样每次存储前先执行这么一个语句取得该ID作为自增ID -与reference相关子集表:pp_histtory `hmset pp_history:pp_history_id_1:detail step_from step_1 step_to step_2 time 2014-06-06 10:10:10` 同样的也需要一个自增id `setnx pp_history:history_auto_id 0` `INCR pp_history:history_auto_id` 查询日志set建立 `zadd pp_history:created_at 12354678(timestemp_example) example_history_id ` 使用redis desk manager结构图： steps表 和reference一样存储多种数据，需要hash类型 hmset pp_step:step_1:step_detail name setp_1 isactive 1 description xxxxxx setnx pp_step:step_id 0 step 是单纯记录各个step意义，实际存放reference 所在step应该有以下设计 sadd step_1:image image_id_1 image_id_2 sadd step_1:reference reference_1 reference_2 这样当image或者reference的step变化的时候就直接从一个集合拿id到另一个集合，或者说删除一个/添加一个 结构图 通过上面两个表的建立基本了解了如果建立redis数据库，其主要是需要了解redis各个数据结构的原理及使用范围。通过对应关系可以找出相关的数据这样就可以了。</summary></entry><entry><title type="html">十位用户唯一ID生成策略</title><link href="/php/2014/07/07/decade-user_id-strategy.html" rel="alternate" type="text/html" title="十位用户唯一ID生成策略" /><published>2014-07-07T00:00:00+08:00</published><updated>2014-07-07T00:00:00+08:00</updated><id>/php/2014/07/07/decade-user_id-strategy</id><content type="html" xml:base="/php/2014/07/07/decade-user_id-strategy.html">&lt;p&gt;新浪微博和twitter 等系统都有一窜数字ID来标示一个唯一的用户,这篇文章就是记录如何实现这种唯一数字ID&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;原理：使用MYSQL 自增ID 拼接任意字符..然后使用进制转换打乱规则
+一般来说实现唯一性可以使用uniqid 或者time之类的方式生成，
+但是考虑到多台系统，也就是分布式系统。这种方式就不准确了。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;实现：&lt;/p&gt;
+
+&lt;p&gt;新建一个数据库：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;    CREATE TABLE `user_number_id` (
+      `id` bigint(20) unsigned NOT NULL auto_increment,
+      `stub` char(1) NOT NULL default '',
+      PRIMARY KEY  (`id`),
+      UNIQUE KEY `stub` (`stub`)
+    ) ENGINE=MyISAM&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;使用replace into 来取得生成的ID&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;    REPLACE INTO Tickets64 (stub) VALUES ('a');
+    SELECT LAST_INSERT_ID() as number_id;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;取得number_id后生成十位数字ID&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;    function auID($autoID)
+    {
+        $autoID = $autoID;
+        $autoCharacter = array(&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,&quot;5&quot;,&quot;6&quot;,&quot;7&quot;,&quot;8&quot;,&quot;9&quot;,&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,&quot;E&quot;);
+        $len = 7-((int)log10($autoID) + 1);
+        $i=1;
+        $numberID = mt_rand(1, 2).mt_rand(1, 4);
+        for($i;$i&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;=$len-1;$i++)
+        {
+            $numberID .= $autoCharacter[mt_rand(1, 13)];
+        }
+    
+        return base_convert($numberID.&quot;E&quot;.$autoID, 16, 10);---&amp;gt;这里因为autoid永远不可能为E所以使用E来分割保证不会重复
+    }&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;base_convert 转换16进制到10进制，只要16进制不同那么10进制就一定不同，因为10位十进制最大可取范围：9999999999转换成16进制是2540BE3FF所以前两位可取值是固定的mt_rand(1, 2).mt_rand(1, 4)&lt;/p&gt;
+
+&lt;p&gt;以下是测试用例表明没有重复(内存问题只测到55万)：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;        static $array=array();
+        for($j=1;$j&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;=550000;$j++)
+        {
+            $array[] = auID($j);
+        }
+        
+        
+        print_r(count(array_unique($array)));
+        
+        function array_repeat($arr) 
+        { 
+           if(!is_array($arr)) return $arr; 
+              
+           $arr1 = array_unique($arr); 
+              
+           $arr3 = array_diff_key($arr,$arr1);  
+           
+           return array_unique($arr3); 
+        }
+        
+        print_r(array_repeat($array));&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;考虑到可能会有主从需求,id生成应该去取同一个数据表的数据，或者设置好自增id，如主服务器1357，从服务器2468&lt;/p&gt;
+
+&lt;p&gt;参考：&lt;a href=&quot;http://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/&quot;&gt;http://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="php" /><summary type="html">新浪微博和twitter 等系统都有一窜数字ID来标示一个唯一的用户,这篇文章就是记录如何实现这种唯一数字ID 原理：使用MYSQL 自增ID 拼接任意字符..然后使用进制转换打乱规则 一般来说实现唯一性可以使用uniqid 或者time之类的方式生成， 但是考虑到多台系统，也就是分布式系统。这种方式就不准确了。</summary></entry><entry><title type="html">Ubunto Deploy Jekyll</title><link href="/system/2014/06/27/Ubunto_Deploy_Jekyll.html" rel="alternate" type="text/html" title="Ubunto Deploy Jekyll" /><published>2014-06-27T00:00:00+08:00</published><updated>2014-06-27T00:00:00+08:00</updated><id>/system/2014/06/27/Ubunto_Deploy_Jekyll</id><content type="html" xml:base="/system/2014/06/27/Ubunto_Deploy_Jekyll.html">&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Download and install ruby&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo mkdir Downloads
+curl -O http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz 
+tar -zxvf ruby-2.1.2.tar.gz -C ../
+cd ..
+sudo chown -R ray ruby-2.1.2
+sudo chgrp -R ray ruby-2.1.2
+cd ruby-2.1.2
+
+./configure  ----&amp;gt;error no gcc installed
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;Install gcc&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install gcc
+gcc -v ----&amp;gt;gcc version 4.8.2
+sudo apt-get install build-essential --&amp;gt;this is needed for gcc to find software infomation 
+    
+./configure
+sudo make&amp;amp;make install
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;Install rubygem&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;culr -O http://production.cf.rubygems.org/rubygems/rubygems-2.3.0.tgz
+tar -zxvf rubygems-2.3.0.tgz -C ../
+sudo chown -R ray rubygems-2.3.0
+sudo chgrp -R ray rubygems-2.3.0
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install jekyll&lt;/p&gt;
+
+    &lt;p&gt;OK…stupid things came out:&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;first error said i need zlib..&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;p&gt;then install zlib&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install zlib1g-dev
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;and rebuild ruby ,rubygems&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;Second error said i need openssl&lt;/strong&gt;
+ because i do not have openssl installed..&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install libssl0.9.8
+sudo apt-get install libssl-dev
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;then rebuild ruby,ruby gems..&lt;/p&gt;
+
+    &lt;p&gt;Third error said need javascript runtime..
+here have some illustration &lt;a href=&quot;https://github.com/jekyll/jekyll/issues/2327&quot;&gt;https://github.com/jekyll/jekyll/issues/2327&lt;/a&gt;
+but i think it’s jekyll problem ,it’s ask us use coffescript&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gem install execjs
+sudo apt-get install nodejs
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;Finally,finished..&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jekyll -v ---&amp;gt;ok
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Deploy my blog&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install git
+git clone git@github.com:akulubala/akulubala.github.io.git
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;some error because i don’t have some plug-in defined in my Gemfile&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;just gem install xx
+then ./deploy
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;see my blog ok…&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;SSH and Sftp&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install openssh-server
+cd /etc/ssh/
+sudo cp sshd_config sshd_config.defaults_bak---&amp;gt;backup file
+sudo vim sshd_config
+unmake PasswordAuthentication 
+sudo restart ssh
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;then open terminal :
+login system or filezila login&lt;/p&gt;
+
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name></name></author><category term="system" /><summary type="html">Download and install ruby sudo mkdir Downloads curl -O http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz tar -zxvf ruby-2.1.2.tar.gz -C ../ cd .. sudo chown -R ray ruby-2.1.2 sudo chgrp -R ray ruby-2.1.2 cd ruby-2.1.2</summary></entry><entry><title type="html">Mysql 存储过程举例</title><link href="/mysql/2014/05/12/MYsql_procedure.html" rel="alternate" type="text/html" title="Mysql 存储过程举例" /><published>2014-05-12T00:00:00+08:00</published><updated>2014-05-12T00:00:00+08:00</updated><id>/mysql/2014/05/12/MYsql_procedure</id><content type="html" xml:base="/mysql/2014/05/12/MYsql_procedure.html">&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;创建过程：&lt;/p&gt;
+
+    &lt;p&gt;必须具有CREATE ROUTINE权限，并且ALTER ROUTINE和EXECUTE权限被自动授予它的创建者。
+两种方式，及参数语法说明：&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; CREATE PROCEDURE sp_name ([proc_parameter[,...]])
+     [characteristic ...] routine_body
+     
+ CREATE FUNCTION sp_name ([func_parameter[,...]])
+     RETURNS type
+     [characteristic ...] routine_body
+        
+     proc_parameter:
+     [ IN | OUT | INOUT ] param_name type-&amp;gt;IN 传入参数，OUT 传出参数,INOUT 即可传入又可传出
+        
+     func_parameter:
+     param_name type
+     
+ type:
+     Any valid MySQL data type
+     
+ characteristic:
+     LANGUAGE SQL
+   | [NOT] DETERMINISTIC
+   | { CONTAINS SQL | NO SQL | READS SQL DATA | MODIFIES SQL DATA }
+   | SQL SECURITY { DEFINER | INVOKER }
+   | COMMENT 'string'
+     
+ routine_body:
+     Valid SQL procedure statement or statements
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;查看及删除&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 查看：
+ SHOW CREATE PROCEDURE `procedure name`
+ SHOW CREATE FUNCTION  `function name`
+ 删除：
+ DROP PROCEDURE/FUNCTION [if exists]  procedure/function_name   
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;变量&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 1) 用户变量：
+    
+ set @var 若没有指定GLOBAL 或SESSION ，那么默认将会定义用户变量，
+ 如 set @a =3,@a:=5；set @f := select f from table 
+ 用户变量跟mysql客户端是绑定的，设置的变量，只对当前用户使用的客户端生效
+    
+ 2) 全局变量：
+    
+ 定义时，以如下两种形式出现，set GLOBAL 变量名  或者  set @@global.变量名 
+ 对所有客户端生效。只有具有super权限才可以设置全局变量
+    
+ 3) 局部变量：作用范围在begin到end语句块之间。在该语句块里设置的变量
+    
+ declare语句专门用于定义局部变量。set语句是设置不同类型的变量，包括会话变量和全局变量
+    
+ 4) 会话变量：
+
+ 只对连接的客户端有效。set session varname = value; shwo session variable 来查看
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;例一：&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; DELIMITER $$ #定义结束标志
+ DROP PROCEDURE IF EXISTS `pr_add`;$$
+ #创建存储过程
+ CREATE PROCEDURE `pr_add`()
+      BEGIN
+               
+           declare n int default 0;   
+              declare bb int;
+           DECLARE cur_1 CURSOR FOR SELECT action_id FROM useraction where uid=xxx;//取得游标，相当于数字的key
+           DECLARE CONTINUE HANDLER FOR NOT FOUND SET n = 1;//如果记录取完，游标设置为1；
+     
+           OPEN cur_1;
+           FETCH cur_1 INTO bb;
+           while n&amp;lt;&amp;gt;1 do           
+                   replace into useraction set action_id=bb,uid=xxx;
+                   FETCH cur_1 INTO bb; /*取下一条记录，游标每取一次会自动向后进一*/
+               end while;
+               close cur_1;
+      END$$
+ DELIMITER ;
+ #调用存储过程
+ CALL pr_add();
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;例二&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; DELIMITER $$ #定义结束标志
+    
+ DROP PROCEDURE IF EXISTS `curdemo`;$$
+    
+ #创建存储过程
+ CREATE PROCEDURE curdemo()
+ BEGIN
+   DECLARE done INT DEFAULT 0;--&amp;gt;declare这个语句被用来声明局部变量。要给变量提供一个默认值，请包含一个DEFAULT子句
+   DECLARE a CHAR(16);
+   DECLARE b,c INT;
+   DECLARE cur1 CURSOR FOR SELECT id,data FROM test.t1;--&amp;gt;申明光标cur1
+   DECLARE cur2 CURSOR FOR SELECT i FROM test.t2;
+   DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET done = 1;
+     
+   OPEN cur1;
+   OPEN cur2;
+   REPEAT--&amp;gt;REPEAT语句内的语句或语句群被重复，直至search_condition 为真
+     FETCH cur1 INTO a, b;--&amp;gt;这个语句用指定的打开光标读取下一行（如果有下一行的话），并且前进光标指针。
+     FETCH cur2 INTO c;
+     IF NOT done THEN
+        IF b &amp;lt; c THEN
+           INSERT INTO test.t3 VALUES (a,b);
+        ELSE
+           INSERT INTO test.t3 VALUES (a,c);
+        END IF;
+     END IF;
+   UNTIL done END REPEAT;
+   CLOSE cur1;
+   CLOSE cur2;
+ END
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;例三&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; delimiter $$
+    
+ DROP PROCEDURE IF EXISTS `fs2_first_active_lottery`;$$
+    
+ CREATE PROCEDURE fs2_first_active_lottery (IN curr_l_time datetime,IN u_id varchar(45),OUT a_type tinyint(3) unsigned,OUT out_time datetime)
+    
+ BEGIN
+ DECLARE curr_id INT;
+    
+ DECLARE counts_awards tinyint(3) unsigned  default 0;
+    
+ select sum(award_type) into counts_awards from fs2_first_active_lottery_records where user_id=u_id and award_type!=0 group by user_id for update;
+    
+ if counts_awards =0 then //还没有中过奖
+    
+ SELECT id,date_distribute,awards_type into curr_id,out_time,a_type FROM db_freestyle_event.fs2_first_active_awards_infos
+ where date_distribute&amp;lt;curr_l_time and status='Y'  limit 1 for update;
+ elseif counts_awards=1 then
+ set a_type =2;
+    
+ SELECT id,date_distribute,awards_type into curr_id,out_time,a_type FROM db_freestyle_event.fs2_first_active_awards_infos         where date_distribute&amp;lt;curr_l_time and status='Y' and awards_type=a_type  limit 1 for update;
+ elseif counts_awards=2 then
+ set a_type =2;
+    
+ SELECT id,date_distribute,awards_type into curr_id,out_time,a_type FROM db_freestyle_event.fs2_first_active_awards_infos         where date_distribute&amp;lt;curr_l_time and status='Y' and awards_type=a_type  limit 1 for update;
+ end if;
+    
+ update db_freestyle_event.fs2_first_active_awards_infos set status='N' where id=curr_id;
+ END$$
+    
+ $call_procedure = sprintf(&quot;call fs2_first_active_lottery('%s','%s',@m1,@m2);&quot;,  $currDate,$this-&amp;gt;uid);
+    
+  $sql = sprintf(&quot;select @m1 as award_type,@m2 as distribute_date&quot;);
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;官方文档：&lt;a href=&quot;http://dev.mysql.com/doc/refman/5.1/zh/stored-procedures.html&quot;&gt;http://dev.mysql.com/doc/refman/5.1/zh/stored-procedures.html&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="mysql" /><summary type="html">创建过程： 必须具有CREATE ROUTINE权限，并且ALTER ROUTINE和EXECUTE权限被自动授予它的创建者。 两种方式，及参数语法说明：</summary></entry><entry><title type="html">php 添加mogodb扩展+PHP点击图片上传并实现预览效果</title><link href="/php/2014/05/06/click_image_upload_&_php_mongodb_extension.html" rel="alternate" type="text/html" title="php 添加mogodb扩展+PHP点击图片上传并实现预览效果" /><published>2014-05-06T00:00:00+08:00</published><updated>2014-05-06T00:00:00+08:00</updated><id>/php/2014/05/06/click_image_upload_&amp;_php_mongodb_extension</id><content type="html" xml:base="/php/2014/05/06/click_image_upload_&amp;_php_mongodb_extension.html">&lt;p&gt;####PHP添加扩展MongoDB
+PHP添加扩展的方式大致都是一致的，这里记录下今天安的这个，免得改天又忘了。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	tar zxvf mongo-1.5.1.tgz -C ../
+	cd mongo-1.5.1/
+	phpize
+	./configure --with-php-config=/usr/local/php/bin/php-config
+	make clean-&amp;gt;这里有时候会报错所以需要这步，看情况来吧
+	make
+	make install
+	extension=mongo.so
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;####PHP点击图片上传并实现预览效果（主要记录这个）&lt;/p&gt;
+
+&lt;p&gt;客户端代码：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;http-equiv=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;content-type&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/html; charset=UTF-8&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;click image upload&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;  
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'text/javascript'&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'http://code.jquery.com/jquery-1.6.3.js'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;  
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;style &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'text/css'&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nf&quot;&gt;#picture&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nl&quot;&gt;opacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;nl&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;opacity&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;220px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;220px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;/**
+        上面这段CSS的目的是将file input 按钮覆盖在图片上面以便让人觉的点击的是图片，其实关键也就是这里
+        **/&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/style&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;form&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fileform&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;./progress.php&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;method=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;POST&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;enctype=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;multipart/form-data&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;target=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;xxx&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;file&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;file&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;onchange=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;upload();&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;picture&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;filename&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;  
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;images&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;./test.jpg&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;alt=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;img&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;iframe&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;xxx&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;xxx&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/iframe&amp;gt;&lt;/span&gt;
+      --&amp;gt;如果想要实现无刷新上传，直接写Iframe IE下会报错，所以还是建议用jquery插件来实现
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;upload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#fileform&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;submit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt; 
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;服务端代码：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &amp;lt;?php
+    $fp = fopen($_FILES['file']['tmp_name'], 'rb', 0);
+    $image = base64_encode(fread($fp,filesize($_FILES['file']['tmp_name'])));
+    fclose($fp);
+    $src = &quot;data:image/png;base64,&quot;.$image;
+    --&amp;gt;注意ie8以下不支持data:image/png;base64这样的数据，所以如果需要IE8以下浏览器，请直接使用图片地址
+    echo '&amp;lt;script&amp;gt;window.top.document.getElementById(&quot;images&quot;).src=&quot;'.$src.'&quot;;&amp;lt;/script&amp;gt;';
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="php" /><summary type="html">####PHP添加扩展MongoDB PHP添加扩展的方式大致都是一致的，这里记录下今天安的这个，免得改天又忘了。</summary></entry><entry><title type="html">Mongodb 安装过程</title><link href="/mongodb/2014/04/22/Mongodb_Install.html" rel="alternate" type="text/html" title="Mongodb 安装过程" /><published>2014-04-22T00:00:00+08:00</published><updated>2014-04-22T00:00:00+08:00</updated><id>/mongodb/2014/04/22/Mongodb_Install</id><content type="html" xml:base="/mongodb/2014/04/22/Mongodb_Install.html">&lt;p&gt;官方文档在这里：http://docs.mongodb.org/manual/tutorial/install-mongodb-on-linux/&lt;/p&gt;
+
+&lt;p&gt;首先需要知道,mongod是服务进程,mongo是客户端进程&lt;/p&gt;
+
+&lt;p&gt;1.下载解压（可以自由发挥）&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl -O http://downloads.mongodb.org/linux/mongodb-linux-x86_64-2.6.0.tgz
+tar -zxvf mongodb-linux-x86_64-2.6.0.tgz -C /usr/local/
+mv mongodb-linux-x86_64-2.6.0.tgz mongodb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;2.建立配置文件及数据存放目录：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/usr/local/mongodb/bin/mongodb.conf-&amp;gt;配置文件
+/usr/local/mongodb/db-&amp;gt;数据存放目录
+/usr/local/mongodb/log/mongodb.log-&amp;gt;log 文件
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;3.配置文件内容：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dbpath=/usr/local/mongodb/db
+logpath=/usr/local/mongodb/log/mongodb.log
+logappend=true
+fork=true-&amp;gt;后台demon运行
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;4.启动..&lt;/p&gt;
+
+&lt;p&gt;需要配置环境变量
+以何种身份运行mongod，root的话切换到root 编辑~/.bashrc
+export PATH=$PATH:/usr/local/mongod/bin&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mongod-&amp;gt;启动命令
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;5.测试安装状况:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mongo
+db.version();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="mongodb" /><summary type="html">官方文档在这里：http://docs.mongodb.org/manual/tutorial/install-mongodb-on-linux/</summary></entry><entry><title type="html">Laravel 框架开发配置概述</title><link href="/php/2014/04/21/Laravel_details.html" rel="alternate" type="text/html" title="Laravel 框架开发配置概述" /><published>2014-04-21T00:00:00+08:00</published><updated>2014-04-21T00:00:00+08:00</updated><id>/php/2014/04/21/Laravel_details</id><content type="html" xml:base="/php/2014/04/21/Laravel_details.html">&lt;p&gt;使用框架的好处简直太多了，便于管理，加速开发，使用新理念新技术。Laravel 4基于PHP 5.3以上开始的。&lt;/p&gt;
+
+&lt;p&gt;###1.命名空间:namespace&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &amp;lt;?php
+    namespace Stark;
+    class Test{
+    }
+    
+    其他文件（首先需要加载进来）：
+    use Stark\Test;
+    $eddard = new Test();
+    
+    或者不引入直接(全局引用方式):
+    $eddard = new Stark\Test();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;文件目录结构，如：library/Stark
+一般都会有自动加载将library下面的所有文件加载&lt;/p&gt;
+
+&lt;p&gt;###2.Closures
+    $x = “a”;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$y = &quot;b&quot;;
+
+$z = &quot;c&quot;;
+
+ $greet = function($params) use($x,$y,$z)
+ {
+     echo  $params;
+     return $x.$y.$z;
+     
+ };
+ 
+$greet(&quot;abc&quot;);
+
+function x($a){
+    var_dump($a);
+}
+function y($x)
+{
+	$w = $x(&quot;xyz&quot;);
+	var_dump($w);
+}
+x($greet);
+y($greet);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;匿名函数第一个括号是调用时传的参，第二个是创建是传的参，运行上面的小例子，结果：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;abc
+
+object(Closure)[1]
+
+xyz
+
+string 'abc' (length=3)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;###3.composer 使用&lt;/p&gt;
+
+&lt;p&gt;安装过程就不说了，直接看官方文档.https://getcomposer.org/book.pdf
+ composer配置文件是基于json的，例如我要安装一个monolog(手册上例子)：
+ 在根目录monolog-demo下面建立一个composer.josn文件，内容：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;require&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+		&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;monolog/monolog&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1.2.*&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;然后使用命令：composer&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;install，就可以完成下载及安装了&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;下载完成后会多了一个vendor目录，里面有个monolog 目录了。
+ composer的配置项有很多，但最重要的就是 这个require和autoload配置了。
+ composer的自动加载机制基于 PSR-0/4 也就是说在&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot;autoload&quot;: {
+	&quot;classmap&quot;: [
+	],
+    &quot;psr-4&quot;: {
+            &quot;&quot;: [&quot;app/module/&quot;,&quot;app/library&quot;]
+     },
+    &quot;psr-0&quot;: {
+    },
+    &quot;psr-1&quot;:{
+    },
+    &quot;psr-2&quot;:{
+    },
+    &quot;psr-3&quot;:{
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;关于psr具体介绍看这里：http://www.php-fig.org/faq/
+ 注：我自己添加了psr-4将app/module/ 和app/library加入了自动加载中。psr-0的namespace和目录是对应的,psr-4不需要对应namaspace
+ 例如：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &quot; Monolog \\&quot;: &quot;src /&quot;,//psr-0对应的目录是src/Monolog,psr-4对应src
+    &quot; Vendor \\ Namespace \\&quot;: &quot;src /&quot;,//psr-0对应的目录是src/Vendor/namespace,psr-4对应src
+    &quot; Vendor_Namespace_ &quot;: &quot;src /&quot;//psr-0对应的目录是src/Vendor_Namespace_,psr-4对应src   classmap是机制会自动搜索.inc和.php文件或者搜索特定文件：
+  
+      &quot; classmap &quot;: [&quot; src /&quot;, &quot;lib /&quot;, &quot; Something .php &quot;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;###4.安装Laravel（其实现在大多数框架的安装方式都是类似的）&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    composer create-project laravel/laravel laravel-demo-name//这一步仅仅是下载了laravel应用程序包
+    composer install//这一步是根据composer 下载依赖包
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;上面两部完成之后就有了个vendor目录这个就是composer 包管理的所有文件。还有两个命令&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;composer self-update //更新依赖包
+composer dump-autoload //更改过composer.json 配置文件后需要执行这个,重新生成autolod文件
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;接下来配置 rewrite（下面是个标准的nginx配置，框架自带的有apache配置）：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;server {
+
+# Port that the web server will listen on.
+listen 80
+
+# Host that will serve this project.
+server_name app.dev
+
+# Useful logs for debug.
+access_log /path/to/access.log;
+error_log /path/to/error.log;
+rewrite_log on;
+
+# The location of our projects public directory.
+root /path/to/our/public;
+
+# Point index to the Laravel front controller.
+index index.php;
+
+location / {
+# URLs to attempt, including pretty ones.
+#按顺序检查文件是否存在，返回第一个找到的文件
+#结尾的斜线表示为文件夹-$uri/。如果所有的文件都找不到，会进行一个内部重定向到最后一个参数
+
+#例如try_files /app/cache/ $uri @fallback;
+
+#它将检测$document_root/app/cache/index.php,$document_root/app/cache/index.html
+#和$document_root$uri是否存在，如果不存在着内部重定向到 @fallback
+        
+    try_files $uri $uri/ /index.php?$query_string;
+
+}
+
+# Remove trailing slash to please routing system.
+if (!-d $request_filename) {
+ rewrite ^/(.+)/$ /$1 permanent;
+}
+
+# PHP FPM configuration.
+location ~* \.php$ {
+fastcgi_pass unix:/var/run/php5-fpm.sock;
+fastcgi_index index.php;
+fastcgi_split_path_info ^(.+\.php)(.*)$;
+include /etc/nginx/fastcgi_params;Getting Started 46
+fastcgi_param SCRIPT_FILENAME $document_root$\
+fastcgi_script_name;
+}
+
+# We don't need .ht files with nginx.
+location ~ /\.ht {
+deny all;
+}
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;###5.框架分析与配置&lt;/p&gt;
+
+&lt;p&gt;框架结构目录：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    • app/--&amp;gt;所有代码自己的代码都是在这里面的
+        • commands/--&amp;gt;自己创建Artisan 命令文件目录
+        • config/--&amp;gt;以数组形式存放的一系列配置信息，包括db，router等等
+        • controllers/--&amp;gt;controller文件夹
+        • database/--&amp;gt;如果使用命令行操作方式，关于数据库建库过程，表关系 等等文件，以备将来使用或者迁库
+        • lang/--&amp;gt;国际化配置文件夹，翻译用的
+        • models/--&amp;gt;数据模型
+        • start/--&amp;gt;应用程序启动配置，区别于bootstap
+        • storage/--&amp;gt;本地化存储，包括sesion，view,cache等等
+        • tests/--&amp;gt;所有写的基于phpunit的测试文件
+        • views/--&amp;gt;模板目录
+        • filters.php--&amp;gt;路由过滤控制方法
+        • routes.php--&amp;gt;非常重要的,所有框架路由都在这一个文件中
+    • bootstrap/--&amp;gt;框架启动的配置都在这个目录里面
+    • vendor/--&amp;gt;框架的依赖包以及第三方包
+    • public/--&amp;gt;静态文件目录
+    • artisan--&amp;gt;可执行的文件，包括一些列laravel框架快捷操作方式
+    • composer.json--&amp;gt;composer 配置文件
+    • composer.lock
+    • phpunit.xml--&amp;gt;phpunit test 的配置文件
+    • server.php--&amp;gt;开发中的未来需要的
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;框架启动，路由(写在routes.php)里,我这里写过几个，过多的还是 去看手册：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Route::get('/games/csol', 'Csol\Fight\Controller\IndexController@showWelcome');
+Route::get('/cp', 'Cp\CallBack\Controller\IndexController@showWelcome');
+
+Route::Group(array(&quot;namespace&quot;=&amp;gt;&quot;Test\Eloquent\Controller&quot;,'prefix' =&amp;gt; 'test'),function(){
+    Route::resource('curd', &quot;IndexController&quot;);
+});
+Route::Group(array(&quot;namespace&quot;=&amp;gt;&quot;Test\Wechart\Controller&quot;,&quot;prefix&quot;=&amp;gt;&quot;wechart&quot;),function(){
+    Route::get('/curl',function(){
+        $ch = curl_init();
+
+        // 设置URL和相应的选项
+        curl_setopt($ch, CURLOPT_URL, &quot;http://laravel/wechart/recieve?ss=fdsdf&quot;);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        // 抓取URL并把它传递给浏览器
+        curl_exec($ch);
+
+        // 关闭cURL资源，并且释放系统资源
+        curl_close($ch);
+    });
+    Route::get(&quot;/recieve&quot;,function(){
+        $response = Response::make();
+        $response-&amp;gt;setContent(&quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&amp;lt;body&amp;gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Hello world a!&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&quot;);
+        $response-&amp;gt;setStatusCode($response::HTTP_OK);
+        $response-&amp;gt;headers-&amp;gt;set('Content-Type', 'text/html');
+        return $response;
+    });
+});
+--&amp;gt;上面是个例子，curl 会请求recieve route,recieve 返回一个自定义相应
+Route::Group(array(&quot;prefix&quot;=&amp;gt;&quot;games/portal&quot;),function(){
+    Route::Group(array(&quot;namespace&quot;=&amp;gt;&quot;Portal\StewardPoint\Controller&quot;),function(){
+        Route::get(&quot;/steward_point&quot;,&quot;IndexController@index&quot;);
+        Route::get(&quot;/steward_point_get&quot;,&quot;IndexController@getPoint&quot;);
+    });
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;目前我的项目路径，分层分结构如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://192.168.56.101:4000/images/2014/laravel_tutorial_1.jpg&quot; alt=&quot;enter image description here&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;结构比较清晰，代码部分一般都在module和library Tiancity下面。&lt;br /&gt;
+Library下面有个CustomFacade ，说到这个就引出一个Laravel非常重要的东东了。Facade..&lt;/p&gt;
+
+&lt;p&gt;###6.核心理念Facade和IOC&lt;/p&gt;
+
+&lt;p&gt;Laravel 里面许多东西都是以Facede形式存在的(外观模式),从Routers.php文件看到rouget::method方式调用方法，如果深入去找这个方法，是找不到具体方法的，最终会找到这个目录：vendor/laravel/framework/src/Illuminate/support/facades/&lt;/p&gt;
+
+&lt;p&gt;在这个文件夹下所有的文件都是一个假的类用来做外观的。这也是laravel的 所有可以使用facade的类。&lt;/p&gt;
+
+&lt;p&gt;知道了Facade这个东西，现在来说说如何使用Facade。&lt;/p&gt;
+
+&lt;p&gt;首先需要另一个概念：IOC容器，直接把它理解为一个管理类的容器就可以了，现在一个比较好的设计是依赖注入，使用个例子来说明IOC：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Foo{
+    private $string = &quot;i'm foo&quot;;
+    protected $bar;
+
+    public function __construct(Bar $bar) {
+        $this-&amp;gt;bar = $bar;
+    }
+}  
+
+class Bar{
+    private $porperty = &quot;i'm bar'&quot;;
+
+}
+
+class Ioc{
+    
+    private static $register = array();
+    
+    public static function bind($name,  callable $resover)
+    {
+        static::$register[$name] = $resover;
+    }
+    
+    public function make($name)
+    {
+        if(isset(static::$register[$name]))
+        {
+            $resolver = static::$register[$name];
+            return $resolver();
+        }
+        throw new Exception(&quot;No class found!&quot;);
+    }
+}
+
+Ioc::bind(&quot;foo&quot;, function(){
+    return new Foo(new Bar());    
+});
+
+$foo = Ioc::make(&quot;foo&quot;);
+echo &quot;&amp;lt;pre&amp;gt;&quot;;
+var_dump($foo);
+echo &quot;&amp;lt;/pre&amp;gt;&quot;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;上面这个例子说明了一个基本的IOC绑定及使用原理，Laravel使用比这个复杂多的容器，可以去阅读Illuminate\Container\Container类&lt;/p&gt;
+
+&lt;p&gt;我们在Laravel里使用的时候首先需要注册服务组件里面&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;namespace TianCity\CustomFacade;
+use Illuminate\Support\ServiceProvider;
+use TianCity\Tools;
+use TianCity\Common;//注意这里，这个文件就是我们可以任意写方法的类，如Common::test(),就会调用该类的方法
+class TiancityServiceProvider extends ServiceProvider {
+    //put your code here
+        /**
+     * Register the binding
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $app = $this-&amp;gt;app;
+        $app-&amp;gt;bind(&quot;Common&quot;,function(){
+            return new Common();
+        });
+        $app-&amp;gt;bind(&quot;Tools&quot;,function(){
+            return new Tools();
+        });
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;还需要到config/app.php里面providers数组里面加入：’TianCity\CustomFacade\TiancityServiceProvider’  &lt;br /&gt;
+服务组件是框架引导的时候自动加入的，也就是说 框架加载的时候会有个bind动作，不然你需要手动bind&lt;/p&gt;
+
+&lt;p&gt;然后像前面提到的Facade一样：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;namespace TianCity\CustomFacade;
+use Illuminate\Support\Facades\Facade;
+use App;
+class Common extends Facade{
+    //put your code here
+     protected static function getFacadeAccessor() { 
+            return App::make('Common'); 
+    }
+}
+OK...Facade 搞定
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;###7.Filter&lt;/p&gt;
+
+&lt;p&gt;加一个Controller 里使用Filter检查是否开放外服 IP的方法：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Route::filter(&quot;open_ip&quot;,function(){
+    $args = func_get_args();
+    $openIP = array_pop($args);    
+    
+    $ip = sprintf(&quot;%u&quot;, ip2long(htmlspecialchars($_SERVER['REMOTE_ADDR'])));
+    $net_c = sprintf(&quot;%u&quot;, ip2long(&quot;192.168.255.255&quot;)) &amp;gt;&amp;gt; 16;
+    $local = sprintf(&quot;%u&quot;, ip2long(&quot;127.0.0.1&quot;)) &amp;gt;&amp;gt; 16;
+    $intern = false;
+    if(($ip &amp;gt;&amp;gt; 16 === $net_c) || ($ip &amp;gt;&amp;gt; 16 === $local))
+    {
+        $intern = true;
+    }
+    if(intval($openIP) === 0 &lt;span class=&quot;err&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; !$intern)
+    {
+        $response = Response::make();
+        $response-&amp;gt;setContent(&quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&amp;lt;body&amp;gt;&amp;lt;h1&amp;gt;&lt;/span&gt;对外IP尚未开放！&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&quot;);
+        $response-&amp;gt;setStatusCode($response::HTTP_OK);
+        $response-&amp;gt;headers-&amp;gt;set('Content-Type', 'text/html');
+        return $response;
+    }
+});
+
+    调用方式：
+    //根据传入的$open_ip来决定是否对外开放
+    
+    $this-&amp;gt;beforeFilter(&quot;open_ip:$open_ip&quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;就先这些吧…后面空了 再写Model和View..Eloquent active Record 好东东啊…&lt;/p&gt;</content><author><name></name></author><category term="php" /><summary type="html">使用框架的好处简直太多了，便于管理，加速开发，使用新理念新技术。Laravel 4基于PHP 5.3以上开始的。</summary></entry><entry><title type="html">PHP上传shell注入(一)</title><link href="/php/2014/04/19/PHP-image-way-web-shell_1.html" rel="alternate" type="text/html" title="PHP上传shell注入(一)" /><published>2014-04-19T00:00:00+08:00</published><updated>2014-04-19T00:00:00+08:00</updated><id>/php/2014/04/19/PHP-image-way-web-shell_1</id><content type="html" xml:base="/php/2014/04/19/PHP-image-way-web-shell_1.html">&lt;ol&gt;
+  &lt;li&gt;首先准备上传文件phpinfo.php&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;phpinfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;上传文件脚本fileup.php&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;        &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;                                                                
+         &lt;span class=&quot;nv&quot;&gt;$valid_types&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'image/jpeg'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'image/jpg'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'image/gif'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'image/png'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;isset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_FILES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'filedata'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt;
+         &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+           &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;is_uploaded_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_FILES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'filedata'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tmp_name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;in_array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_FILES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'filedata'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'type'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$valid_types&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+           &lt;span class=&quot;nv&quot;&gt;$new_filename&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/var/www/test/f_image_&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_FILES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'filedata'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+          &lt;span class=&quot;nv&quot;&gt;$uploaded&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;move_uploaded_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_FILES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'filedata'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tmp_name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$new_filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+                  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$uploaded&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                          &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$image&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;getimagesize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$new_filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+                          &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                                  &lt;span class=&quot;nb&quot;&gt;print_r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+                          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+                          &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+                          &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                                  &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Bad image resource&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+                 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+                &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                          &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;not uploaded!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;CURL命令行上传（方便操作）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;        curl \ 
+        --form 'any_post_data=value' \ 
+        --form 'filedata=@phpinfo.php;filename=phpinfo.php; type=image/gif' 
+        'http://localhost/test/fileup.php' &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl 模拟一个post请求，具体看man curl
+
+经过上面的准备工作，及第三步请求，我们得到一个反馈：
+
+![enter image description here](http://akulubala.github.io/public/images/2014/web_shell_1.png)
+
+说上传的文件不是image
+
+
+
+接下来关键点来了.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;修改phpinfo.php 让它变成image&lt;/p&gt;
+
+    &lt;p&gt;首先需要一个可以查看2进制(16进制)文件的工具。linux 下面 vim可以直接使用系统的xxd(
+也可以下载hexedit来查看)：&lt;/p&gt;
+
+    &lt;p&gt;首先使用file phpinfo.php  得到结果&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;        ray@ubuntu:/var/www/test$ file phpinfo.php 
+        phpinfo.php: PHP script, ASCII text-&amp;gt;这里是命令行结果,太小不截图了&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;使用vim 查看一个gif文件：
+
+    vim -b filename.gif //-b选项不加查看的时候会自动加上0x0a回城符
+    :%!xxd
+    //查看完了需要使用%！xxd -r 是还原二进制文件到文本模式
+
+执行完上面两步后：
+
+![enter image description here](http://akulubala.github.io/public/images/2014/web_shell_2.png)
+
+看到最后一栏有GIF89a的字样，这个就是gif标识文件格式的地方。  
+打开phpinfo.php
+再第一行加入GIF89a几个字符(也可以编辑头六个字节：47 49 46
+38 39 61，建议使用GHex)，注意这里使用编辑器编辑最好是替换，因为二进制文件排列是紧密的块形式    
+然后再使用file phpinfo.php命令查看得到： 
+
+    ray@ubuntu:/var/www/test$ file phpinfo.php 
+    phpinfo.php: GIF image data, version 89a, 15370 x 28735
+
+看来文件已经变成了GIF了但是文件大小却不对，从&amp;lt;a href=&quot;http://en.wikipedia.org/wiki/Graphics_Interchange_Format&quot;&amp;gt;gif wiki&amp;lt;/a&amp;gt;
+上看到头六个字节表示GIF89a，第7,8（000006-000007），9,10(000008,000009)个字节表示图片大小
+
+    6:     03 00        3            - logical screen width in pixels
+    8:     05 00        5            - logical screen height in pixels
+
+更改想要的大小如0001,0001，再使用file 查看文件大小就变成了&quot;1\*1&quot;了
+
+更改完成再次进行第三步中的curl操作，可以发现已经可以正常上传这个假的图片文件了。
+
+更改PNG文件类似，但是PNG的头信息和gif不同：  
+
+    文件头：由八个字节组成，0x89504e470d0a1a0a
+    数据块：每个数据块由四部分构成，他们的描述依次如下：
+    Length ：占四字节，表示数据块data域占多少个字节。（注意这里不包括length自身）
+    Type ：占四字节，表示当前块的类型。一般是英文大小写字母的ASCII码（65～9&amp;gt;0或者97～122）
+    Data：数据区。大小可以是0字节
+    CRC：占四个字节，整个chunk的CRC校验码（Length+Type+Data） 
+
+![enter image description here](http://akulubala.github.io/public/images/2014/web_shell_3.png)
+
+除去头文件信息是第一行前八个字节外，其他信息依次4个字节表示
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;上传真正的shell脚本&lt;/p&gt;
+
+    &lt;p&gt;出名的shell脚本从这里可以找到：&lt;br /&gt;
+http://www.r57shell.net/&lt;br /&gt;
+里面有个C999的源码翻译过来的&lt;br /&gt;
+http://mikeybeck.com/hacking/viewC999.php&lt;/p&gt;
+
+    &lt;p&gt;今天就到这里吧…好困了。。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name></name></author><category term="php" /><summary type="html">首先准备上传文件phpinfo.php</summary></entry><entry><title type="html">如何设置SSH的公钥授权</title><link href="/linux/2014/04/11/How-To-Set-Up-SSH-Publick-Key-Authentication.html" rel="alternate" type="text/html" title="如何设置SSH的公钥授权" /><published>2014-04-11T00:00:00+08:00</published><updated>2014-04-11T00:00:00+08:00</updated><id>/linux/2014/04/11/How-To-Set-Up-SSH-Publick-Key-Authentication</id><content type="html" xml:base="/linux/2014/04/11/How-To-Set-Up-SSH-Publick-Key-Authentication.html">&lt;p&gt;其实这个问题已经用过好几次了，但是基本上都是用的 时候再去查的，没有一个整体的概念，今天看到篇文章就翻译下来，顺带好好整理下思路：&lt;/p&gt;
+
+&lt;p&gt;熟悉并能使用SSH的命令行操作对于web开发者来说是件很好的事情，这篇文章就是理解使用SSH命令行的一个进阶。讲解的内容有：&lt;/p&gt;
+
+&lt;table class=&quot;table table-bordered table-hover&quot;&gt;
+    &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;理解公钥和私钥密码学术语&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;隐式的SSH公钥认证和普通密码认证&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;创建SSH公钥私钥&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;设置好SSH公钥私钥&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;不同的方式复制你的公钥到远程服务器&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;创建SSH快捷方式&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;####什么是密码学的公钥？&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;注意：这是个相当简单容易理解的，但是你还是需要明白它具体的细节&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;SSH是Secure Shell 的缩写，在Linux系统里面最常用的是OpenSSH,幸运的是，只要你不是从逻辑安装linux，否则OpenSSH通常都是预先安装在你的电脑上的，如果没有的话简单的Google一下安装上就可以了。&lt;/p&gt;
+
+&lt;p&gt;Open SSH是个非常好的东西，因为它允许公钥与私钥配对。公、私钥配对可以应用在各种各样的事务上面，通常的例子有：普通加密，服务器认证，已经Git 认证。&lt;/p&gt;
+
+&lt;p&gt;公、私钥对从名称来看就知道分公钥和私钥，私钥是不被公开共享的，只有电脑主机拥有。公钥是可以放置在任何一台电脑上，拿来与公钥匹配的。这里有个例子：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://akulubala.github.io/public/images/2014/ssh_public_key_authentication.jpg&quot; alt=&quot;enter image description here&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;通过查看上面的例子，可以看到你自己的公钥出现在了DigitalOcean，Linode和GitHub上面，这意味着你的笔记本电脑有和这些电脑通讯，它的私钥将要与与之通讯的这些电脑的私钥做匹配验证，只有验证通过后你的笔记本电脑才可以与他们通讯。&lt;/p&gt;
+
+&lt;p&gt;这种认证方式只能是但方向的，意味着你的电脑可以访问 Digital Ocean, Linode, 和Github，但是他们却不可以通过匹配公钥访问你的电脑。&lt;/p&gt;
+
+&lt;p&gt;最后你应该也看到了Linode和Github也有做公私钥匹配，Linode也可以访问Github。&lt;/p&gt;
+
+&lt;p&gt;这是一个简短的介绍，我很建议有兴趣的同学去阅读以下这些比我这个非专业人士解释的更好的资料（PS.原博主比较谦虚和厚道）：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Wikipedia: &lt;a href=&quot;http://en.wikipedia.org/wiki/Public-key_cryptography&quot;&gt;Public-key cryptography&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Ubuntu  Docs: &lt;a href=&quot;https://help.ubuntu.com/community/SSH/OpenSSH/Keys&quot;&gt;Ubuntu  Docs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;####公钥认证VS普通密码认证&lt;/p&gt;
+
+&lt;p&gt;从安全层面来讲，这两个有被激烈讨论过。他们两都是保证数据安全的策略，但是哪个更好常常是争论的焦点，最终答案得看你对用户信任度有多高。&lt;/p&gt;
+
+&lt;p&gt;很多人认为，使用密码认证的时候，用户通常记不住或者不能够被信任，他们认为公、私钥认证的方式比密码认证更安全。但是有些系统管理员却希望禁用公、私钥认证，因为如果用户丢失电脑，那么他们就丢掉了所有在其他电脑上的公钥，除非重新设置公钥。(下面原文有一段比喻。太长了做个简短概况：SSH的公钥认证就类似于你自家的门安装的使用钥匙开门的锁，密码认证就相当于安装了密码锁，使用钥匙开门的锁一旦丢掉了钥匙，很有可能门就不安全了，这时候你得换锁，然后从新给你家人新的钥匙。而密码锁你可以定期的重置密码，做这个比喻的人喜欢密码锁)&lt;/p&gt;
+
+&lt;p&gt;####创建SSH 公钥、私钥&lt;/p&gt;
+
+&lt;p&gt;#####首先检查是否有设置过公、私钥&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ls -al ~/.ssh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;如果有看见id_rsa 和 id_rsa.pub，说明你的电脑已经有过公、私钥了，如果没有则执行：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh-keygen -t rsa -C &quot;your-email-here&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;具体细节见GitHub：https://help.github.com/articles/generating-ssh-keys&lt;/p&gt;
+
+&lt;p&gt;生成好公钥私钥后在~/.ssh目录下面就有了id_rsa 和 id_rsa.pub文件，第一个文件就是私钥,
+你永远都没有必要操作它。第二个就是你的公钥了，你可以将它放到其他任何一台电脑上&lt;/p&gt;
+
+&lt;p&gt;####确保远程服务器准备好接受公钥&lt;/p&gt;
+
+&lt;p&gt;现在我们已经准备好了自己电脑的公钥和私钥，我们需要把公钥复制到远程服务器上用以做匹配，但是首先我们得确保远程服务器上所有东西都准备好了。同样在远程服务器上执行命令：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ls -al ~/.ssh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;如果远程服务器没有.ssh文件夹，你可以按照上面讲的步骤来创建它。当创建完毕后你需要创建一个authorized_keys 文件。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd ~/.ssh
+touch authorized_keys
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;接下来确保文件权限设置正确&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;OK。完成之后远程服务器就可以接受你的公钥public key了。在authorized_keys文件中每一行就是一个public key&lt;/p&gt;
+
+&lt;p&gt;####复制公钥到远程服务器&lt;/p&gt;
+
+&lt;p&gt;通常来说复制公钥到远程服务器并没有看起来那么简单，这里有些例子讲如何操作它：&lt;/p&gt;
+
+&lt;p&gt;#####老式的复制方式：&lt;/p&gt;
+
+&lt;p&gt;如果你有远程服务器权限，你可以直接打开authorized_keys文件然后粘贴你的公钥进去，或者如果你using iTerm on a Mac，你可以通过VIM，vi或者Nano Cli editors 复制粘贴。&lt;/p&gt;
+
+&lt;p&gt;如果你在Mac电脑上你可以使用以下命令来复制你的公钥到剪切板：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pbcopy &amp;lt; ~/.ssh/id_rsa.pub
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;#####精妙的命令行操作方式：&lt;/p&gt;
+
+&lt;p&gt;如果你想很快的完成这项操作，仅仅使用UNIX的CAT 命令就可以了。在MAC上可以直接操作，但是如果是在window上可以使用&lt;a href=&quot;http://scotch.io/bar-talk/get-a-functional-and-sleek-console-in-windows&quot;&gt;这里的方式&lt;/a&gt;(又是一篇博文讲如何操作shell 在window上的),只需要更改user@host就可以了：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cat ~/.ssh/id_rsa.pub | ssh user@host 'cat &amp;gt;&amp;gt; .ssh/authorized_keys'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;你应该会被提示输入访问远程服务器的密码，输入后就完成了，相当简单灵活的方式完成了。现在远程服务器你打开authorized_keys，你会发现你的公钥在这个文件里面了。然后当你通过ssh链接到远程服务器的时候就不需要再输入密码了。你已经成功的设置了SSH公钥认证。&lt;/p&gt;
+
+&lt;p&gt;####创建SSH快捷方式&lt;/p&gt;
+
+&lt;p&gt;到这里，我们已经对公钥私钥认证有了一个基本的理解，我们通过SSH登录远程电脑不需要密码了，最后一件事件我想分享给你的是如何设置SSH快捷方式&lt;/p&gt;
+
+&lt;p&gt;如果你管理着许多在不同服务器上的网站，将会很困难记住所有这些用户名、密码和、IP地址 和主机名。然后呢，这里有种方式可以创建快捷方式对你所有的网站。例如你可以创建一个快捷方式：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh scotch
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;设置这个是相当简单的，在你本地电脑上创建一个config文件到你的~/.ssh文件夹。然后配置如下config：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Host scotch
+	HostName scotch.io
+	User nick
+
+Host example2
+	HostName example.com
+	User root
+
+Host myclient
+	HostName 64.233.160.0
+	User user2ab1
+	
+
+Host myotherclient
+	HostName 64.233.160.0
+	User userxyz123
+	Port 56000
+
+Host amazon
+	HostName ec2.amazon.com
+	User ec2-user123
+	Port 12345
+	IdentityFile /path/to/special/privatekey/amazon.pem
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;现在如果我们输入以下这些命令就可以登录到对应的服务器了：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh scotch
+ssh example2
+ssh myclient
+ssh myotherclient
+ssh amazon
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;####总结：&lt;/p&gt;
+
+&lt;p&gt;以上就是全部拉！我相信你们很多人已经有过这些经验了。但是如果是第一次做的话上面的内容还是很有用处的。不是所有人都会对服务器有很深的掌握。这篇文章的目的仅仅是带你入门，所有我鼓励你们去学习更多，不要仅仅局限于这篇文章，并且要乐于学习哦！&lt;/p&gt;
+
+&lt;p&gt;原文链接：http://scotch.io/tutorials/how-to-setup-ssh-public-key-authentication&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">其实这个问题已经用过好几次了，但是基本上都是用的 时候再去查的，没有一个整体的概念，今天看到篇文章就翻译下来，顺带好好整理下思路：</summary></entry></feed>

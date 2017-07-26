@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <link type="text/css" rel="stylesheet" href="{{ site.url }}/assets/dist/{{ site.data.manifest.app[1] }}"  media="screen,projection"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	</head>
-<body>
-<main>
 	{% include header.html %}
 	<div class="container">
 		{% include search_result.html %}
 	    <div id="content">
+           <h5 id="page_title">{{page.title}}</h5>
+           <p class="date">{{page.date | date: "%b %d, %Y" }}</p>
 			{{ content }}
 		</div>
-		
 		{% include comment.html id=page.id url=page.url %}
 	</div>
 </main>

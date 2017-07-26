@@ -1,9 +1,5 @@
 <ul id='category-lists' class='dropdown-content'>
-    <li><a>Linux</a></li>
-    <li><a>Mac</a></li>
-    <li><a>PHP</a></li>
-    <li><a>Laravel</a></li>
-    <li><a>Mysql</a></li>
-    <li><a>Docker</a></li>
-    <li><a>Webpack</a></li>
+{% for link in site.links %}
+	<li><a href="/{{ link.url }}">{{ link.title }}</a></li>
+{% endfor %}
 </ul>

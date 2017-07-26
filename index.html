@@ -24,7 +24,7 @@ layout: home
 				<script type="text/javascript" src="https://www.intensedebate.com/js/genericLinkWrapperV2.js"></script>
 	        </span>
 	      </div>
-	      <p>{% if post.description %}{{ post.description  | strip_html | strip_newlines | truncate: 200 }}{% else %}{{ post.content | strip_html | strip_newlines | truncate: 80 }}{% endif %}</p>
+	      <p>{% if post.description %}{{ post.description  | strip_html | strip_newlines | truncate: 200 }}{% else %}{{ post.content | strip_html | strip_newlines | truncate: 200 }}{% endif %}</p>
 	    </div>
 	    <div class="card-action">
     		<a href="{{ site.url }}{{ post.url }}">Continue Reading</a>
