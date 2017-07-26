@@ -167,6 +167,18 @@ a {
 	display: inline-block;
 	border-bottom: 1px dotted #ccc;
 }
+.post-share {
+	display: flex;
+    align-items: center;
+    padding: 5px;
+}
+.post-share > a {
+	display: flex;
+    padding: 5px;
+    border: 1px solid #ffab40;
+    border-radius: 50%;
+    margin: 0px 5px;
+}
 /**
  * slide out
  */
