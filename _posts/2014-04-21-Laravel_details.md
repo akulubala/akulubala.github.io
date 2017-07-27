@@ -7,7 +7,8 @@ category : php
 
 ###1.命名空间:namespace
 
-        <?php
+{% highlight php %}
+
         namespace Stark;
         class Test{
         }
@@ -18,11 +19,14 @@ category : php
         
         或者不引入直接(全局引用方式):
         $eddard = new Stark\Test();
-    
+{% endhighlight %}
+
 文件目录结构，如：library/Stark
 一般都会有自动加载将library下面的所有文件加载  
 
 ###2.Closures
+{% highlight php %}
+
     $x = "a";
     
     $y = "b";
@@ -49,8 +53,11 @@ category : php
     x($greet);
 	y($greet);
 
+{% endhighlight %}
+
 匿名函数第一个括号是调用时传的参，第二个是创建是传的参，运行上面的小例子，结果：
 
+{% highlight php %}
 	abc
 
 	object(Closure)[1]
@@ -58,26 +65,25 @@ category : php
 	xyz
 
 	string 'abc' (length=3)
-
-	
-
+{% endhighlight %}
 ###3.composer 使用
  
  安装过程就不说了，直接看官方文档.https://getcomposer.org/book.pdf
  composer配置文件是基于json的，例如我要安装一个monolog(手册上例子)：
  在根目录monolog-demo下面建立一个composer.josn文件，内容：
- 
+ {% highlight php %}
      {
     	"require" : {
     		"monolog/monolog": "1.2.*"
     	}
     }
+{% endhighlight %}
     然后使用命令：composer install，就可以完成下载及安装了
 
  下载完成后会多了一个vendor目录，里面有个monolog 目录了。
  composer的配置项有很多，但最重要的就是 这个require和autoload配置了。
  composer的自动加载机制基于 PSR-0/4 也就是说在
- 
+  {% highlight php %}
     "autoload": {
 		"classmap": [
 		],
@@ -93,7 +99,7 @@ category : php
         "psr-3":{
         }
     }
-
+ {% endhighlight %}
  关于psr具体介绍看这里：http://www.php-fig.org/faq/
  注：我自己添加了psr-4将app/module/ 和app/library加入了自动加载中。psr-0的namespace和目录是对应的,psr-4不需要对应namaspace
  例如：
@@ -117,7 +123,7 @@ category : php
     composer dump-autoload //更改过composer.json 配置文件后需要执行这个,重新生成autolod文件
         
  接下来配置 rewrite（下面是个标准的nginx配置，框架自带的有apache配置）：
- 
+ {% highlight php %}
     server {
     
     # Port that the web server will listen on.
@@ -172,7 +178,7 @@ category : php
     }
     
     }
- 
+ {% endhighlight %}
 
 ###5.框架分析与配置
 
@@ -255,7 +261,7 @@ Laravel 里面许多东西都是以Facede形式存在的(外观模式),从Router
 知道了Facade这个东西，现在来说说如何使用Facade。
     
 首先需要另一个概念：IOC容器，直接把它理解为一个管理类的容器就可以了，现在一个比较好的设计是依赖注入，使用个例子来说明IOC：
-    
+   {% highlight php %} 
     class Foo{
         private $string = "i'm foo";
         protected $bar;
@@ -298,11 +304,11 @@ Laravel 里面许多东西都是以Facede形式存在的(外观模式),从Router
     echo "<pre>";
     var_dump($foo);
     echo "</pre>";
-    
+{% endhighlight %}
 上面这个例子说明了一个基本的IOC绑定及使用原理，Laravel使用比这个复杂多的容器，可以去阅读Illuminate\Container\Container类
     
 我们在Laravel里使用的时候首先需要注册服务组件里面
-    
+    {% highlight php %}
     namespace TianCity\CustomFacade;
     use Illuminate\Support\ServiceProvider;
     use TianCity\Tools;
@@ -325,12 +331,12 @@ Laravel 里面许多东西都是以Facede形式存在的(外观模式),从Router
             });
         }
     }
-
+    {% endhighlight %}
 还需要到config/app.php里面providers数组里面加入：'TianCity\CustomFacade\TiancityServiceProvider'    
 服务组件是框架引导的时候自动加入的，也就是说 框架加载的时候会有个bind动作，不然你需要手动bind  
 
 然后像前面提到的Facade一样：
-    
+    {% highlight php %}
     namespace TianCity\CustomFacade;
     use Illuminate\Support\Facades\Facade;
     use App;
@@ -341,11 +347,11 @@ Laravel 里面许多东西都是以Facede形式存在的(外观模式),从Router
         }
     }
     OK...Facade 搞定
-    
+    {% endhighlight %}
 ###7.Filter
  
  加一个Controller 里使用Filter检查是否开放外服 IP的方法： 
- 
+    {% highlight php %}
      Route::filter("open_ip",function(){
         $args = func_get_args();
         $openIP = array_pop($args);    
@@ -367,12 +373,12 @@ Laravel 里面许多东西都是以Facede形式存在的(外观模式),从Router
             return $response;
         }
     });
-
+    {% endhighlight %}
         调用方式：
         //根据传入的$open_ip来决定是否对外开放
-        
+    {% highlight php %}
         $this->beforeFilter("open_ip:$open_ip");
-        
+    {% endhighlight %}
 就先这些吧...后面空了 再写Model和View..Eloquent active Record 好东东啊...
 
   [1]: http://192.168.56.101:4000/images/2014/laravel_tutorial_1.jpg

@@ -92,63 +92,57 @@
 
 <p>###1.命名空间:namespace</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    &lt;?php
-    namespace Stark;
-    class Test{
-    }
-    
-    其他文件（首先需要加载进来）：
-    use Stark\Test;
-    $eddard = new Test();
-    
-    或者不引入直接(全局引用方式):
-    $eddard = new Stark\Test();
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-php" data-lang="php">        namespace Stark;
+        class Test{
+        }
+        
+        其他文件（首先需要加载进来）：
+        use Stark\Test;
+        $eddard = new Test();
+        
+        或者不引入直接(全局引用方式):
+        $eddard = new Stark\Test();</code></pre></figure>
 
 <p>文件目录结构，如：library/Stark
 一般都会有自动加载将library下面的所有文件加载</p>
 
-<p>###2.Closures
-    $x = “a”;</p>
+<p>###2.Closures</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$y = "b";
-
-$z = "c";
-
- $greet = function($params) use($x,$y,$z)
- {
-     echo  $params;
-     return $x.$y.$z;
+<figure class="highlight"><pre><code class="language-php" data-lang="php">    $x = "a";
+    
+    $y = "b";
+    
+    $z = "c";
+    
+     $greet = function($params) use($x,$y,$z)
+     {
+         echo  $params;
+         return $x.$y.$z;
+         
+     };
      
- };
- 
-$greet("abc");
-
-function x($a){
-    var_dump($a);
-}
-function y($x)
-{
-	$w = $x("xyz");
-	var_dump($w);
-}
-x($greet);
-y($greet);
-</code></pre>
-</div>
+    $greet("abc");
+    
+    function x($a){
+        var_dump($a);
+    }
+	function y($x)
+	{
+		$w = $x("xyz");
+		var_dump($w);
+	}
+    x($greet);
+	y($greet);</code></pre></figure>
 
 <p>匿名函数第一个括号是调用时传的参，第二个是创建是传的参，运行上面的小例子，结果：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>abc
+<figure class="highlight"><pre><code class="language-php" data-lang="php">	abc
 
-object(Closure)[1]
+	object(Closure)[1]
 
-xyz
+	xyz
 
-string 'abc' (length=3)
-</code></pre>
-</div>
+	string 'abc' (length=3)</code></pre></figure>
 
 <p>###3.composer 使用</p>
 
@@ -156,36 +150,36 @@ string 'abc' (length=3)
  composer配置文件是基于json的，例如我要安装一个monolog(手册上例子)：
  在根目录monolog-demo下面建立一个composer.josn文件，内容：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="w">
-	</span><span class="nt">"require"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-		</span><span class="nt">"monolog/monolog"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.2.*"</span><span class="w">
-	</span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="err">然后使用命令：composer</span><span class="w"> </span><span class="err">install，就可以完成下载及安装了</span><span class="w">
-</span></code></pre>
+<figure class="highlight"><pre><code class="language-php" data-lang="php">     {
+    	"require" : {
+    		"monolog/monolog": "1.2.*"
+    	}
+    }</code></pre></figure>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>然后使用命令：composer install，就可以完成下载及安装了
+</code></pre>
 </div>
 
 <p>下载完成后会多了一个vendor目录，里面有个monolog 目录了。
  composer的配置项有很多，但最重要的就是 这个require和autoload配置了。
  composer的自动加载机制基于 PSR-0/4 也就是说在</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>"autoload": {
-	"classmap": [
-	],
-    "psr-4": {
-            "": ["app/module/","app/library"]
-     },
-    "psr-0": {
-    },
-    "psr-1":{
-    },
-    "psr-2":{
-    },
-    "psr-3":{
+<figure class="highlight"><pre><code class="language-php" data-lang="php">    "autoload": {
+		"classmap": [
+		],
+        "psr-4": {
+                "": ["app/module/","app/library"]
+         },
+        "psr-0": {
+        },
+        "psr-1":{
+        },
+        "psr-2":{
+        },
+        "psr-3":{
+        }
     }
-}
-</code></pre>
-</div>
+ </code></pre></figure>
 
 <p>关于psr具体介绍看这里：http://www.php-fig.org/faq/
  注：我自己添加了psr-4将app/module/ 和app/library加入了自动加载中。psr-0的namespace和目录是对应的,psr-4不需要对应namaspace
@@ -215,62 +209,61 @@ composer dump-autoload //更改过composer.json 配置文件后需要执行这�
 
 <p>接下来配置 rewrite（下面是个标准的nginx配置，框架自带的有apache配置）：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>server {
+<figure class="highlight"><pre><code class="language-php" data-lang="php">    server {
+    
+    # Port that the web server will listen on.
+    listen 80
+    
+    # Host that will serve this project.
+    server_name app.dev
+    
+    # Useful logs for debug.
+    access_log /path/to/access.log;
+    error_log /path/to/error.log;
+    rewrite_log on;
+    
+    # The location of our projects public directory.
+    root /path/to/our/public;
+    
+    # Point index to the Laravel front controller.
+    index index.php;
+    
+    location / {
+    # URLs to attempt, including pretty ones.
+    #按顺序检查文件是否存在，返回第一个找到的文件
+    #结尾的斜线表示为文件夹-$uri/。如果所有的文件都找不到，会进行一个内部重定向到最后一个参数
+    
+    #例如try_files /app/cache/ $uri @fallback;
+    
+    #它将检测$document_root/app/cache/index.php,$document_root/app/cache/index.html
+    #和$document_root$uri是否存在，如果不存在着内部重定向到 @fallback
+            
+        try_files $uri $uri/ /index.php?$query_string;
 
-# Port that the web server will listen on.
-listen 80
-
-# Host that will serve this project.
-server_name app.dev
-
-# Useful logs for debug.
-access_log /path/to/access.log;
-error_log /path/to/error.log;
-rewrite_log on;
-
-# The location of our projects public directory.
-root /path/to/our/public;
-
-# Point index to the Laravel front controller.
-index index.php;
-
-location / {
-# URLs to attempt, including pretty ones.
-#按顺序检查文件是否存在，返回第一个找到的文件
-#结尾的斜线表示为文件夹-$uri/。如果所有的文件都找不到，会进行一个内部重定向到最后一个参数
-
-#例如try_files /app/cache/ $uri @fallback;
-
-#它将检测$document_root/app/cache/index.php,$document_root/app/cache/index.html
-#和$document_root$uri是否存在，如果不存在着内部重定向到 @fallback
-        
-    try_files $uri $uri/ /index.php?$query_string;
-
-}
-
-# Remove trailing slash to please routing system.
-if (!-d $request_filename) {
- rewrite ^/(.+)/$ /$1 permanent;
-}
-
-# PHP FPM configuration.
-location ~* \.php$ {
-fastcgi_pass unix:/var/run/php5-fpm.sock;
-fastcgi_index index.php;
-fastcgi_split_path_info ^(.+\.php)(.*)$;
-include /etc/nginx/fastcgi_params;Getting Started 46
-fastcgi_param SCRIPT_FILENAME $document_root$\
-fastcgi_script_name;
-}
-
-# We don't need .ht files with nginx.
-location ~ /\.ht {
-deny all;
-}
-
-}
-</code></pre>
-</div>
+    }
+    
+    # Remove trailing slash to please routing system.
+    if (!-d $request_filename) {
+     rewrite ^/(.+)/$ /$1 permanent;
+    }
+    
+    # PHP FPM configuration.
+    location ~* \.php$ {
+    fastcgi_pass unix:/var/run/php5-fpm.sock;
+    fastcgi_index index.php;
+    fastcgi_split_path_info ^(.+\.php)(.*)$;
+    include /etc/nginx/fastcgi_params;Getting Started 46
+    fastcgi_param SCRIPT_FILENAME $document_root$\
+    fastcgi_script_name;
+    }
+    
+    # We don't need .ht files with nginx.
+    location ~ /\.ht {
+    deny all;
+    }
+    
+    }
+ </code></pre></figure>
 
 <p>###5.框架分析与配置</p>
 
@@ -356,130 +349,129 @@ Library下面有个CustomFacade ，说到这个就引出一个Laravel非常重�
 
 <p>首先需要另一个概念：IOC容器，直接把它理解为一个管理类的容器就可以了，现在一个比较好的设计是依赖注入，使用个例子来说明IOC：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class Foo{
-    private $string = "i'm foo";
-    protected $bar;
-
-    public function __construct(Bar $bar) {
-        $this-&gt;bar = $bar;
-    }
-}  
-
-class Bar{
-    private $porperty = "i'm bar'";
-
-}
-
-class Ioc{
+<figure class="highlight"><pre><code class="language-php" data-lang="php"> 
+    class Foo{
+        private $string = "i'm foo";
+        protected $bar;
     
-    private static $register = array();
-    
-    public static function bind($name,  callable $resover)
-    {
-        static::$register[$name] = $resover;
-    }
-    
-    public function make($name)
-    {
-        if(isset(static::$register[$name]))
-        {
-            $resolver = static::$register[$name];
-            return $resolver();
+        public function __construct(Bar $bar) {
+            $this-&gt;bar = $bar;
         }
-        throw new Exception("No class found!");
+    }  
+    
+    class Bar{
+        private $porperty = "i'm bar'";
+    
     }
-}
-
-Ioc::bind("foo", function(){
-    return new Foo(new Bar());    
-});
-
-$foo = Ioc::make("foo");
-echo "&lt;pre&gt;";
-var_dump($foo);
-echo "&lt;/pre&gt;";
-</code></pre>
-</div>
+    
+    class Ioc{
+        
+        private static $register = array();
+        
+        public static function bind($name,  callable $resover)
+        {
+            static::$register[$name] = $resover;
+        }
+        
+        public function make($name)
+        {
+            if(isset(static::$register[$name]))
+            {
+                $resolver = static::$register[$name];
+                return $resolver();
+            }
+            throw new Exception("No class found!");
+        }
+    }
+    
+    Ioc::bind("foo", function(){
+        return new Foo(new Bar());    
+    });
+    
+    $foo = Ioc::make("foo");
+    echo "<span class="nt">&lt;pre&gt;</span>";
+    var_dump($foo);
+    echo "<span class="nt">&lt;/pre&gt;</span>";</code></pre></figure>
 
 <p>上面这个例子说明了一个基本的IOC绑定及使用原理，Laravel使用比这个复杂多的容器，可以去阅读Illuminate\Container\Container类</p>
 
 <p>我们在Laravel里使用的时候首先需要注册服务组件里面</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>namespace TianCity\CustomFacade;
-use Illuminate\Support\ServiceProvider;
-use TianCity\Tools;
-use TianCity\Common;//注意这里，这个文件就是我们可以任意写方法的类，如Common::test(),就会调用该类的方法
-class TiancityServiceProvider extends ServiceProvider {
-    //put your code here
-        /**
-     * Register the binding
-     *
-     * @return void
-     */
-    public function register()
-    {
-        $app = $this-&gt;app;
-        $app-&gt;bind("Common",function(){
-            return new Common();
-        });
-        $app-&gt;bind("Tools",function(){
-            return new Tools();
-        });
+<figure class="highlight"><pre><code class="language-php" data-lang="php">    namespace TianCity\CustomFacade;
+    use Illuminate\Support\ServiceProvider;
+    use TianCity\Tools;
+    use TianCity\Common;//注意这里，这个文件就是我们可以任意写方法的类，如Common::test(),就会调用该类的方法
+    class TiancityServiceProvider extends ServiceProvider {
+        //put your code here
+            /**
+         * Register the binding
+         *
+         * @return void
+         */
+        public function register()
+        {
+            $app = $this-&gt;app;
+            $app-&gt;bind("Common",function(){
+                return new Common();
+            });
+            $app-&gt;bind("Tools",function(){
+                return new Tools();
+            });
+        }
     }
-}
-</code></pre>
-</div>
+    </code></pre></figure>
 
 <p>还需要到config/app.php里面providers数组里面加入：’TianCity\CustomFacade\TiancityServiceProvider’  <br />
 服务组件是框架引导的时候自动加入的，也就是说 框架加载的时候会有个bind动作，不然你需要手动bind</p>
 
 <p>然后像前面提到的Facade一样：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>namespace TianCity\CustomFacade;
-use Illuminate\Support\Facades\Facade;
-use App;
-class Common extends Facade{
-    //put your code here
-     protected static function getFacadeAccessor() { 
-            return App::make('Common'); 
+<figure class="highlight"><pre><code class="language-php" data-lang="php">    namespace TianCity\CustomFacade;
+    use Illuminate\Support\Facades\Facade;
+    use App;
+    class Common extends Facade{
+        //put your code here
+         protected static function getFacadeAccessor() { 
+                return App::make('Common'); 
+        }
     }
-}
-OK...Facade 搞定
-</code></pre>
-</div>
+    OK...Facade 搞定
+    </code></pre></figure>
 
 <p>###7.Filter</p>
 
 <p>加一个Controller 里使用Filter检查是否开放外服 IP的方法：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> Route::filter("open_ip",function(){
-    $args = func_get_args();
-    $openIP = array_pop($args);    
-    
-    $ip = sprintf("%u", ip2long(htmlspecialchars($_SERVER['REMOTE_ADDR'])));
-    $net_c = sprintf("%u", ip2long("192.168.255.255")) &gt;&gt; 16;
-    $local = sprintf("%u", ip2long("127.0.0.1")) &gt;&gt; 16;
-    $intern = false;
-    if(($ip &gt;&gt; 16 === $net_c) || ($ip &gt;&gt; 16 === $local))
-    {
-        $intern = true;
-    }
-    if(intval($openIP) === 0 <span class="err">&amp;&amp;</span> !$intern)
-    {
-        $response = Response::make();
-        $response-&gt;setContent("<span class="nt">&lt;html&gt;&lt;body&gt;&lt;h1&gt;</span>对外IP尚未开放！<span class="nt">&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;</span>");
-        $response-&gt;setStatusCode($response::HTTP_OK);
-        $response-&gt;headers-&gt;set('Content-Type', 'text/html');
-        return $response;
-    }
-});
+<figure class="highlight"><pre><code class="language-php" data-lang="php">     Route::filter("open_ip",function(){
+        $args = func_get_args();
+        $openIP = array_pop($args);    
+        
+        $ip = sprintf("%u", ip2long(htmlspecialchars($_SERVER['REMOTE_ADDR'])));
+        $net_c = sprintf("%u", ip2long("192.168.255.255")) &gt;&gt; 16;
+        $local = sprintf("%u", ip2long("127.0.0.1")) &gt;&gt; 16;
+        $intern = false;
+        if(($ip &gt;&gt; 16 === $net_c) || ($ip &gt;&gt; 16 === $local))
+        {
+            $intern = true;
+        }
+        if(intval($openIP) === 0 <span class="err">&amp;&amp;</span> !$intern)
+        {
+            $response = Response::make();
+            $response-&gt;setContent("<span class="nt">&lt;html&gt;&lt;body&gt;&lt;h1&gt;</span>对外IP尚未开放！<span class="nt">&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;</span>");
+            $response-&gt;setStatusCode($response::HTTP_OK);
+            $response-&gt;headers-&gt;set('Content-Type', 'text/html');
+            return $response;
+        }
+    });
+    </code></pre></figure>
 
-    调用方式：
+<div class="highlighter-rouge"><pre class="highlight"><code>    调用方式：
     //根据传入的$open_ip来决定是否对外开放
-    
-    $this-&gt;beforeFilter("open_ip:$open_ip");
 </code></pre>
 </div>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php">        $this-&gt;beforeFilter("open_ip:$open_ip");
+    </code></pre></figure>
 
 <p>就先这些吧…后面空了 再写Model和View..Eloquent active Record 好东东啊…</p>
 
@@ -497,7 +489,7 @@ OK...Facade 搞定
     </a>
   </li>
   <li class="rrssb-weibo">
-    <a class="popup" href="http://service.weibo.com/share/share.php?text=使用框架的好处简直太多了，便于管理，加速开发，使用新理念新技术。Laravel 4基于PHP 5.3以上开始的。###1.命名空间:namespace    &lt;?php    namespace Stark;    class Test{    }        其他文件（首先需要加载进来）：    use Stark\Test;    $eddard = new Test();   ...&title=Laravel 框架开发配置概述&url=https://akulubala.github.io//php/2014/04/21/Laravel_details.html">
+    <a class="popup" href="http://service.weibo.com/share/share.php?text=使用框架的好处简直太多了，便于管理，加速开发，使用新理念新技术。Laravel 4基于PHP 5.3以上开始的。###1.命名空间:namespace        namespace Stark;        class Test{        }                其他文件（首先需要加载进来）：        use Stark\Test;        $eddard ...&title=Laravel 框架开发配置概述&url=https://akulubala.github.io//php/2014/04/21/Laravel_details.html">
       <span class="rrssb-icon">
         <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="37" height="30" viewBox="0 0 37 30"><defs><style>.cls-1{fill:#000;fill-rule:evenodd}</style></defs><path d="M36.539 12.806v.006a1.418 1.418 0 0 1-2.698-.875h-.001a6.974 6.974 0 0 0-1.456-6.82 6.965 6.965 0 0 0-6.631-2.147 1.418 1.418 0 0 1-.592-2.775h.001a9.791 9.791 0 0 1 9.327 3.022 9.803 9.803 0 0 1 2.05 9.589zm-9.818-5.3v-.001a1.22 1.22 0 1 1-.509-2.386 4.772 4.772 0 0 1 5.54 6.141 1.222 1.222 0 0 1-1.536.787 1.222 1.222 0 0 1-.785-1.538h-.002a2.332 2.332 0 0 0-2.708-3.003zm.489 2.284c.641.916.579 2.2-.012 3.688-.273.685.085.791.606.948 2.123.658 4.487 2.252 4.487 5.059 0 4.647-6.697 10.5-16.765 10.5-7.679 0-15.529-3.724-15.529-9.85 0-3.202 2.028-6.905 5.519-10.399 4.663-4.664 10.1-6.789 12.145-4.742.902.902.989 2.464.409 4.329-.302.939.881.419.881.421 3.769-1.579 7.057-1.672 8.259.046zm-1.287 9.611c-.397-4.024-5.687-6.796-11.816-6.19-6.127.607-10.774 4.361-10.376 8.386.398 4.026 5.688 6.797 11.816 6.192 6.129-.606 10.773-4.361 10.376-8.388zM11.584 26.06c-2.946-.952-4.193-3.862-2.903-6.484 1.267-2.571 4.562-4.025 7.478-3.266 3.018.78 4.558 3.629 3.325 6.395-1.251 2.831-4.848 4.34-7.9 3.355zm1.664-5.511c-.949-.398-2.175.011-2.761.93-.593.923-.314 2.022.628 2.451.956.437 2.225.022 2.818-.924.582-.956.275-2.048-.685-2.457zm2.339-.97c-.364-.145-.819.03-1.033.389-.207.36-.093.77.272.92.371.153.845-.023 1.059-.39.205-.369.072-.784-.298-.919z" class="cls-1"/></svg>
       </span>
@@ -505,7 +497,7 @@ OK...Facade 搞定
     </a>
   </li>
   <li class="rrssb-douban">
-      <a class="popup" href="http://shuo.douban.com/!service/share?href=https://akulubala.github.io//php/2014/04/21/Laravel_details.html&name=Laravel 框架开发配置概述&text=使用框架的好处简直太多了，便于管理，加速开发，使用新理念新技术。Laravel 4基于PHP 5.3以上开始的。###1.命名空间:namespace    &lt;?php    namespace Stark;    class Test{    }        其他文件（首先需要加载进来）：    use Stark\Test;    $eddard = new Test();   ...&starid=0&aid=0&style=11">
+      <a class="popup" href="http://shuo.douban.com/!service/share?href=https://akulubala.github.io//php/2014/04/21/Laravel_details.html&name=Laravel 框架开发配置概述&text=使用框架的好处简直太多了，便于管理，加速开发，使用新理念新技术。Laravel 4基于PHP 5.3以上开始的。###1.命名空间:namespace        namespace Stark;        class Test{        }                其他文件（首先需要加载进来）：        use Stark\Test;        $eddard ...&starid=0&aid=0&style=11">
         <span class="rrssb-icon">
           <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="32" height="28" viewBox="0 0 32 28"><defs><style>.cls-1{fill:#000;fill-rule:evenodd}</style></defs><path d="M9.731 18.328c1.303 1.777 2.478 4.013 3.507 6.521h6.323c1.23-1.935 2.18-4.173 3.108-6.521l3.568 1.199c-.933 1.98-2.068 3.817-3.135 5.322h8.853L32 28H0v-3l9.697-.151a41.574 41.574 0 0 0-3.248-5.322l3.282-1.199zM1 0h30v3H1V0zm3.132 5.882L28 6v12H4l.132-12.118zM25 15l.126-6.162L7 9v6h18z" class="cls-1"/></svg>
         </span>
@@ -633,23 +625,13 @@ var idcomments_post_url = "/php/2014/04/21/Laravel_details.html";
 	        "title": "Python Decorator",
 	        "author": "",
 	        "category": "python",
-	        "content": "python decorator 大概是每个pythoner比看到内容吧.对于我这个从PHP 过来的人第一次看，确实也有那么些新鲜难懂。顾名思义：“装饰器”，绝对是把什么什么东西通过另外的东西修饰了一番。####先来看下最基本的显而易见的例子吧：    def log(func):        def wrapper(*args, **kw):            print 'call %s():' % func.__name__            func(*args, **kw)---        return wrapper    @log    def now():        print '2013-12-25'    now()    @log就是所谓的语法糖，从上例最终的表现形式就是：将now()函数传给了方法log..最终调用是 调用了内部函数wrapper..接下来一步步刨析：  log函数内部有个wrapper函数，这样就形成了一个闭包wrapper,这个函数对于其他部分是一个独立的模块，但其可以使用log的参数也就是传进来的方法func,func在log内部是相当于warpper是全局变量（log 内部的作用域）经过wrapper的处理后,now函数就不再是单单输出“2013-12-25”了。所以也验证了前面所说的经过某某修饰成为了另外的某某某。相当于`now = log(now())`**如果前面的例子打印`now.__name__`,结果为：wrapper 而不是now**为了解决这个问题，需要如下操作：    from functools import wraps    def log(func):    \t@wraps(func)        def wrapper(*args, **kw):            print 'call %s():' % func.__name__            func(*args, **kw)---        return wrapper**如果now 函数需要传参数的话需要反射来处理，具体可看http://coolshell.cn/articles/11265.html**####以上是一个最基本的decorator 应用，接下来说明在使用decorator时传参        from functools import wraps    def log(args1,args2):        def real_decorator(func):            @wraps(func)            def wrapper(*args, **kw):                print 'call %s():' % func.__name__                func(args1, args1,args)            return wrapper        return real_decorator    @log(\"log pass paramter1 to log\",\"log pass paramter2 to log\")    def now(*args):        print args        print '2013-12-25'    now(\"now pass parameter to wrapper\")    print now.__name__    result :>call now():>('log pass paramter1 to log', 'log pass paramter1 to log', ('now pass parameter to wrapper',))  >2013-12-25  >now说明对于需要使用语法糖 传参的时候需要返回一个函数real_decorator，再在内部定义具体调用的函数wrapper这里相当于：`log(\"log pass paramter1 to log\",\"log pass paramter2 to log\")((now())`####使用多个decorator:      from functools import wraps    def log(args1,args2):        def real_decorator(func):            @wraps(func)            def wrapper(*args, **kw):                print 'call %s():' % func.__name__                func(args1, args1,args)            return wrapper        return real_decorator    def another_log(func):        def wrapper(pams):            print \"another wrapper of %s():\\n\" % func.__name__+pams        return wrapper        @another_log    @log(\"log pass paramter1 to log\",\"log pass paramter2 to log\")    def now(*args):        print args        print '2013-12-25'    now(\"now pass parameter to wrapper\")    print now.__name__    results:  >another wrapper of now():  >now pass parameter to wrapper  >wrapper说明：结果是 输出了 another_log 的内容，那么它是将log decrator 过后的方法再次 decorator，即如下形式：`another_log(log(param1,param2)(now))`,也就是两层包装  ####类式的 Decorator    class TestDecorator(object):        def __init__(self,func):            self.decorator_fn = func        def __call__(self):            print self.decorator_fn.__name__            self.decorator_fn()            print \"inside myDecorator.__call__()\"    @TestDecorator            def now():        print \"2014-01-01\"    now()基本的实例如上，在这个类中必须要有__call__方法，而所有关于修饰的内容都应当从__call__方法里面去定义  输出：  >now  >2014-01-01  >inside class __call__()  一个好的完整例子：      class MyApp():        def __init__(self):            self.func_map = {}        def register(self, name):            def func_wrapper(func):                self.func_map[name] = func                return func            return func_wrapper        def call_method(self, name=None):            func = self.func_map.get(name, None)            if func is None:                raise Exception(\"No function registered against - \" + str(name))            return func()    app = MyApp()    @app.register('/')    def main_page_func():        return \"This is the main page.\"    @app.register('/next_page')    def next_page_func():        return \"This is the next page.\"    print app.call_method('/')    print app.call_method('/next_page')    1）上面这个示例中，用类的实例来做decorator。  2）decorator类中没有__call__()，但是wrapper返回了原函数。所以，原函数没有发生任何变化。更多例子：https://wiki.python.org/moin/PythonDecoratorLibrary",
+	        "content": "python decorator 大概是每个pythoner比看到内容吧.顾名思义：“装饰器”，绝对是把什么什么东西通过另外的东西修饰了一番。####先来看下最基本的显而易见的例子吧：{% highlight python %}        def log(func):            def wrapper(*args, **kw):                print 'call %s():' % func.__name__                func(*args, **kw)---            return wrapper        @log        def now():            print '2013-12-25'        now(){% endhighlight %}    @log就是所谓的语法糖，从上例最终的表现形式就是：将now()函数传给了方法log..最终调用是 调用了内部函数wrapper..接下来一步步刨析：  log函数内部有个wrapper函数，这样就形成了一个闭包wrapper,这个函数对于其他部分是一个独立的模块，但其可以使用log的参数也就是传进来的方法func,func在log内部是相当于warpper是全局变量（log 内部的作用域）经过wrapper的处理后,now函数就不再是单单输出“2013-12-25”了。所以也验证了前面所说的经过某某修饰成为了另外的某某某。相当于`now = log(now())`**如果前面的例子打印`now.__name__`,结果为：wrapper 而不是now**为了解决这个问题，需要如下操作：{% highlight python %}    from functools import wraps    def log(func):    \t@wraps(func)        def wrapper(*args, **kw):            print 'call %s():' % func.__name__            func(*args, **kw)---        return wrapper{% endhighlight %}**如果now 函数需要传参数的话需要反射来处理，具体可看http://coolshell.cn/articles/11265.html**####以上是一个最基本的decorator 应用，接下来说明在使用decorator时传参    {% highlight python %}    from functools import wraps    def log(args1,args2):        def real_decorator(func):            @wraps(func)            def wrapper(*args, **kw):                print 'call %s():' % func.__name__                func(args1, args1,args)            return wrapper        return real_decorator    @log(\"log pass paramter1 to log\",\"log pass paramter2 to log\")    def now(*args):        print args        print '2013-12-25'    now(\"now pass parameter to wrapper\")    print now.__name__    result :>call now():>('log pass paramter1 to log', 'log pass paramter1 to log', ('now pass parameter to wrapper',))  >2013-12-25  >now{% endhighlight %}说明对于需要使用语法糖 传参的时候需要返回一个函数real_decorator，再在内部定义具体调用的函数wrapper这里相当于：`log(\"log pass paramter1 to log\",\"log pass paramter2 to log\")((now())`####使用多个decorator:  {% highlight python %}    from functools import wraps    def log(args1,args2):        def real_decorator(func):            @wraps(func)            def wrapper(*args, **kw):                print 'call %s():' % func.__name__                func(args1, args1,args)            return wrapper        return real_decorator    def another_log(func):        def wrapper(pams):            print \"another wrapper of %s():\\n\" % func.__name__+pams        return wrapper        @another_log    @log(\"log pass paramter1 to log\",\"log pass paramter2 to log\")    def now(*args):        print args        print '2013-12-25'    now(\"now pass parameter to wrapper\")    print now.__name__    results:  >another wrapper of now():  >now pass parameter to wrapper  >wrapper{% endhighlight %}说明：结果是 输出了 another_log 的内容，那么它是将log decrator 过后的方法再次 decorator，即如下形式：`another_log(log(param1,param2)(now))`,也就是两层包装  ####类式的 Decorator{% highlight python %}    class TestDecorator(object):        def __init__(self,func):            self.decorator_fn = func        def __call__(self):            print self.decorator_fn.__name__            self.decorator_fn()            print \"inside myDecorator.__call__()\"    @TestDecorator            def now():        print \"2014-01-01\"    now(){% endhighlight %}基本的实例如上，在这个类中必须要有__call__方法，而所有关于修饰的内容都应当从__call__方法里面去定义  输出：  >now  >2014-01-01  >inside class __call__()  一个好的完整例子：  {% highlight python %}    class MyApp():        def __init__(self):            self.func_map = {}        def register(self, name):            def func_wrapper(func):                self.func_map[name] = func                return func            return func_wrapper        def call_method(self, name=None):            func = self.func_map.get(name, None)            if func is None:                raise Exception(\"No function registered against - \" + str(name))            return func()    app = MyApp()    @app.register('/')    def main_page_func():        return \"This is the main page.\"    @app.register('/next_page')    def next_page_func():        return \"This is the next page.\"    print app.call_method('/')    print app.call_method('/next_page'){% endhighlight %}1）上面这个示例中，用类的实例来做decorator。  2）decorator类中没有__call__()，但是wrapper返回了原函数。所以，原函数没有发生任何变化。更多例子：https://wiki.python.org/moin/PythonDecoratorLibrary",
 	        "url": "/python/2014/11/24/python_decorator.html"
 	      }
 	      ,
 	    
-	      "redis-2014-11-14-redis-design-database-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_2.jpeg",
-	        "title": "redis数据库设计",
-	        "author": "",
-	        "category": "redis",
-	        "content": "公司要用redis 做数据存储，主要业务是做图片处理，有这么几个成员：>reference>>这张表记录产品(image)\t>steps\t>>step记录图片和reference处理到哪一步>history>>history记录step变化详细>company>>company记录reference属于那个company>member>>member是公司员工>group>>员工所属的组>work_limit>>员工可以进行的工作_ _ _1. 首先设计reference表 \treference 有detail,及多个image，存储reference以reference_id来唯一区别，detail有多个属性及值所以需要hash类型存储:\t        hset pp_reference:example_reference_id_1:detail saas_reference_code code_example_1 \treference_source source1 dist dist1 curr_step step1    对于搜索的时候需要按时间排序，另外也有可能需要做分页搜索，时间搜索，因此我需要一个zset（可以做range操作）的集合来存储reference的插入时间，并且时间为score，且int型的timestemp，value为reference_id              zadd pp_reference:created_at 12354678(timestemp_example) example_reference_id    对于reference对应的图片，因为是一对多的关系而且图片也有图片细节，所以每一个reference都将有一个set集合来存储图片的ID（图片详情也存hash并且先于reference存储）：        sadd pp_reference:example_reference_id:image_id 1 2 12 3    与reference的history也是一对多的关系，因此也需要存一个像上面图片一样的集合，集合里面存reference_history_id        sadd pp_reference:example_reference_id:reference_history_id 1 2 12 3    reference在查询的时候，不会按照id去查询所以需要有一个reference_code与ID的对应(*另外因为本身我这里的reference_id是从mysql取得的自增id所以这里不需要设置自增i*d)            set pp_reference:reference_code_example_abc 123        *reference 的结构基本就以以上这么一个方式存储*    >-与reference相关的子集表:pp_images      \t\t`hmset pp_image:image_id_1:detail name abc.jpg size 1024k curr_step step2`\t        \t>由于image需要一个自增id所以还需要：\t            `setnx pp_image:image_auto_id 0`\t        `INCR pp_image:image_auto_id`\t            >这样每次存储前先执行这么一个语句取得该ID作为自增ID    >-与reference相关子集表:pp_histtory\t            `hmset pp_history:pp_history_id_1:detail step_from step_1 step_to step_2  time 2014-06-06 10:10:10`\t            >同样的也需要一个自增id\t            `setnx pp_history:history_auto_id 0`        `INCR pp_history:history_auto_id`\t            >查询日志set建立\t    \t\t`zadd pp_history:created_at 12354678(timestemp_example)  example_history_id\t`\t            >使用redis desk manager结构图：        ![redis_1](http://akulubala.github.io/public/images/2014/redis_design_1.png)2. steps表\t    和reference一样存储多种数据，需要hash类型\t    \t\thmset pp_step:step_1:step_detail name setp_1 isactive 1 description\t\t xxxxxx        setnx pp_step:step_id 0       > step 是单纯记录各个step意义，实际存放reference 所在step应该有以下设计\t        `sadd step_1:image image_id_1 image_id_2`    `sadd step_1:reference reference_1 reference_2`\t        >这样当image或者reference的step变化的时候就直接从一个集合拿id到另一个集合，或者说删除一个/添加一个>>结构图![redis_2](http://akulubala.github.io/public/images/2014/redis_design_2.png)通过上面两个表的建立基本了解了如果建立redis数据库，其主要是需要了解redis各个数据结构的原理及使用范围。通过对应关系可以找出相关的数据这样就可以了。\t",
-	        "url": "/redis/2014/11/14/redis_design_database.html"
-	      }
-	      ,
-	    
 	      "php-2014-07-07-decade-user-id-strategy-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_3.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_2.jpeg",
 	        "title": "十位用户唯一ID生成策略",
 	        "author": "",
 	        "category": "php",
@@ -659,7 +641,7 @@ var idcomments_post_url = "/php/2014/04/21/Laravel_details.html";
 	      ,
 	    
 	      "system-2014-06-27-ubunto-deploy-jekyll-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_4.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_3.jpeg",
 	        "title": "Ubunto Deploy Jekyll",
 	        "author": "",
 	        "category": "system",
@@ -669,7 +651,7 @@ var idcomments_post_url = "/php/2014/04/21/Laravel_details.html";
 	      ,
 	    
 	      "mysql-2014-05-12-mysql-procedure-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_5.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_4.jpeg",
 	        "title": "Mysql 存储过程举例",
 	        "author": "",
 	        "category": "mysql",
@@ -679,7 +661,7 @@ var idcomments_post_url = "/php/2014/04/21/Laravel_details.html";
 	      ,
 	    
 	      "php-2014-05-06-click-image-upload-php-mongodb-extension-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_6.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_5.jpeg",
 	        "title": "php 添加mogodb扩展+PHP点击图片上传并实现预览效果",
 	        "author": "",
 	        "category": "php",
@@ -689,7 +671,7 @@ var idcomments_post_url = "/php/2014/04/21/Laravel_details.html";
 	      ,
 	    
 	      "mongodb-2014-04-22-mongodb-install-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_7.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_6.jpeg",
 	        "title": "Mongodb 安装过程",
 	        "author": "",
 	        "category": "mongodb",
@@ -699,17 +681,17 @@ var idcomments_post_url = "/php/2014/04/21/Laravel_details.html";
 	      ,
 	    
 	      "php-2014-04-21-laravel-details-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_8.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_7.jpeg",
 	        "title": "Laravel 框架开发配置概述",
 	        "author": "",
 	        "category": "php",
-	        "content": "使用框架的好处简直太多了，便于管理，加速开发，使用新理念新技术。Laravel 4基于PHP 5.3以上开始的。###1.命名空间:namespace    &lt;?php    namespace Stark;    class Test{    }        其他文件（首先需要加载进来）：    use Stark\\Test;    $eddard = new Test();        或者不引入直接(全局引用方式):    $eddard = new Stark\\Test();文件目录结构，如：library/Stark一般都会有自动加载将library下面的所有文件加载###2.Closures    $x = “a”;$y = \"b\";$z = \"c\"; $greet = function($params) use($x,$y,$z) {     echo  $params;     return $x.$y.$z;      }; $greet(\"abc\");function x($a){    var_dump($a);}function y($x){\t$w = $x(\"xyz\");\tvar_dump($w);}x($greet);y($greet);匿名函数第一个括号是调用时传的参，第二个是创建是传的参，运行上面的小例子，结果：abcobject(Closure)[1]xyzstring 'abc' (length=3)###3.composer 使用安装过程就不说了，直接看官方文档.https://getcomposer.org/book.pdf composer配置文件是基于json的，例如我要安装一个monolog(手册上例子)： 在根目录monolog-demo下面建立一个composer.josn文件，内容： {\t\"require\" : {\t\t\"monolog/monolog\": \"1.2.*\"\t}}然后使用命令：composer install，就可以完成下载及安装了下载完成后会多了一个vendor目录，里面有个monolog 目录了。 composer的配置项有很多，但最重要的就是 这个require和autoload配置了。 composer的自动加载机制基于 PSR-0/4 也就是说在\"autoload\": {\t\"classmap\": [\t],    \"psr-4\": {            \"\": [\"app/module/\",\"app/library\"]     },    \"psr-0\": {    },    \"psr-1\":{    },    \"psr-2\":{    },    \"psr-3\":{    }}关于psr具体介绍看这里：http://www.php-fig.org/faq/ 注：我自己添加了psr-4将app/module/ 和app/library加入了自动加载中。psr-0的namespace和目录是对应的,psr-4不需要对应namaspace 例如：    \" Monolog \\\\\": \"src /\",//psr-0对应的目录是src/Monolog,psr-4对应src    \" Vendor \\\\ Namespace \\\\\": \"src /\",//psr-0对应的目录是src/Vendor/namespace,psr-4对应src    \" Vendor_Namespace_ \": \"src /\"//psr-0对应的目录是src/Vendor_Namespace_,psr-4对应src   classmap是机制会自动搜索.inc和.php文件或者搜索特定文件：        \" classmap \": [\" src /\", \"lib /\", \" Something .php \"]###4.安装Laravel（其实现在大多数框架的安装方式都是类似的）    composer create-project laravel/laravel laravel-demo-name//这一步仅仅是下载了laravel应用程序包    composer install//这一步是根据composer 下载依赖包上面两部完成之后就有了个vendor目录这个就是composer 包管理的所有文件。还有两个命令composer self-update //更新依赖包composer dump-autoload //更改过composer.json 配置文件后需要执行这个,重新生成autolod文件接下来配置 rewrite（下面是个标准的nginx配置，框架自带的有apache配置）：server {# Port that the web server will listen on.listen 80# Host that will serve this project.server_name app.dev# Useful logs for debug.access_log /path/to/access.log;error_log /path/to/error.log;rewrite_log on;# The location of our projects public directory.root /path/to/our/public;# Point index to the Laravel front controller.index index.php;location / {# URLs to attempt, including pretty ones.#按顺序检查文件是否存在，返回第一个找到的文件#结尾的斜线表示为文件夹-$uri/。如果所有的文件都找不到，会进行一个内部重定向到最后一个参数#例如try_files /app/cache/ $uri @fallback;#它将检测$document_root/app/cache/index.php,$document_root/app/cache/index.html#和$document_root$uri是否存在，如果不存在着内部重定向到 @fallback            try_files $uri $uri/ /index.php?$query_string;}# Remove trailing slash to please routing system.if (!-d $request_filename) { rewrite ^/(.+)/$ /$1 permanent;}# PHP FPM configuration.location ~* \\.php$ {fastcgi_pass unix:/var/run/php5-fpm.sock;fastcgi_index index.php;fastcgi_split_path_info ^(.+\\.php)(.*)$;include /etc/nginx/fastcgi_params;Getting Started 46fastcgi_param SCRIPT_FILENAME $document_root$\\fastcgi_script_name;}# We don't need .ht files with nginx.location ~ /\\.ht {deny all;}}###5.框架分析与配置框架结构目录：    • app/--&gt;所有代码自己的代码都是在这里面的        • commands/--&gt;自己创建Artisan 命令文件目录        • config/--&gt;以数组形式存放的一系列配置信息，包括db，router等等        • controllers/--&gt;controller文件夹        • database/--&gt;如果使用命令行操作方式，关于数据库建库过程，表关系 等等文件，以备将来使用或者迁库        • lang/--&gt;国际化配置文件夹，翻译用的        • models/--&gt;数据模型        • start/--&gt;应用程序启动配置，区别于bootstap        • storage/--&gt;本地化存储，包括sesion，view,cache等等        • tests/--&gt;所有写的基于phpunit的测试文件        • views/--&gt;模板目录        • filters.php--&gt;路由过滤控制方法        • routes.php--&gt;非常重要的,所有框架路由都在这一个文件中    • bootstrap/--&gt;框架启动的配置都在这个目录里面    • vendor/--&gt;框架的依赖包以及第三方包    • public/--&gt;静态文件目录    • artisan--&gt;可执行的文件，包括一些列laravel框架快捷操作方式    • composer.json--&gt;composer 配置文件    • composer.lock    • phpunit.xml--&gt;phpunit test 的配置文件    • server.php--&gt;开发中的未来需要的框架启动，路由(写在routes.php)里,我这里写过几个，过多的还是 去看手册：Route::get('/games/csol', 'Csol\\Fight\\Controller\\IndexController@showWelcome');Route::get('/cp', 'Cp\\CallBack\\Controller\\IndexController@showWelcome');Route::Group(array(\"namespace\"=&gt;\"Test\\Eloquent\\Controller\",'prefix' =&gt; 'test'),function(){    Route::resource('curd', \"IndexController\");});Route::Group(array(\"namespace\"=&gt;\"Test\\Wechart\\Controller\",\"prefix\"=&gt;\"wechart\"),function(){    Route::get('/curl',function(){        $ch = curl_init();        // 设置URL和相应的选项        curl_setopt($ch, CURLOPT_URL, \"http://laravel/wechart/recieve?ss=fdsdf\");        curl_setopt($ch, CURLOPT_HEADER, 0);        // 抓取URL并把它传递给浏览器        curl_exec($ch);        // 关闭cURL资源，并且释放系统资源        curl_close($ch);    });    Route::get(\"/recieve\",function(){        $response = Response::make();        $response-&gt;setContent(\"&lt;html&gt;&lt;body&gt;&lt;h1&gt;Hello world a!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;\");        $response-&gt;setStatusCode($response::HTTP_OK);        $response-&gt;headers-&gt;set('Content-Type', 'text/html');        return $response;    });});--&gt;上面是个例子，curl 会请求recieve route,recieve 返回一个自定义相应Route::Group(array(\"prefix\"=&gt;\"games/portal\"),function(){    Route::Group(array(\"namespace\"=&gt;\"Portal\\StewardPoint\\Controller\"),function(){        Route::get(\"/steward_point\",\"IndexController@index\");        Route::get(\"/steward_point_get\",\"IndexController@getPoint\");    });});目前我的项目路径，分层分结构如下：结构比较清晰，代码部分一般都在module和library Tiancity下面。Library下面有个CustomFacade ，说到这个就引出一个Laravel非常重要的东东了。Facade..###6.核心理念Facade和IOCLaravel 里面许多东西都是以Facede形式存在的(外观模式),从Routers.php文件看到rouget::method方式调用方法，如果深入去找这个方法，是找不到具体方法的，最终会找到这个目录：vendor/laravel/framework/src/Illuminate/support/facades/在这个文件夹下所有的文件都是一个假的类用来做外观的。这也是laravel的 所有可以使用facade的类。知道了Facade这个东西，现在来说说如何使用Facade。首先需要另一个概念：IOC容器，直接把它理解为一个管理类的容器就可以了，现在一个比较好的设计是依赖注入，使用个例子来说明IOC：class Foo{    private $string = \"i'm foo\";    protected $bar;    public function __construct(Bar $bar) {        $this-&gt;bar = $bar;    }}  class Bar{    private $porperty = \"i'm bar'\";}class Ioc{        private static $register = array();        public static function bind($name,  callable $resover)    {        static::$register[$name] = $resover;    }        public function make($name)    {        if(isset(static::$register[$name]))        {            $resolver = static::$register[$name];            return $resolver();        }        throw new Exception(\"No class found!\");    }}Ioc::bind(\"foo\", function(){    return new Foo(new Bar());    });$foo = Ioc::make(\"foo\");echo \"&lt;pre&gt;\";var_dump($foo);echo \"&lt;/pre&gt;\";上面这个例子说明了一个基本的IOC绑定及使用原理，Laravel使用比这个复杂多的容器，可以去阅读Illuminate\\Container\\Container类我们在Laravel里使用的时候首先需要注册服务组件里面namespace TianCity\\CustomFacade;use Illuminate\\Support\\ServiceProvider;use TianCity\\Tools;use TianCity\\Common;//注意这里，这个文件就是我们可以任意写方法的类，如Common::test(),就会调用该类的方法class TiancityServiceProvider extends ServiceProvider {    //put your code here        /**     * Register the binding     *     * @return void     */    public function register()    {        $app = $this-&gt;app;        $app-&gt;bind(\"Common\",function(){            return new Common();        });        $app-&gt;bind(\"Tools\",function(){            return new Tools();        });    }}还需要到config/app.php里面providers数组里面加入：’TianCity\\CustomFacade\\TiancityServiceProvider’  服务组件是框架引导的时候自动加入的，也就是说 框架加载的时候会有个bind动作，不然你需要手动bind然后像前面提到的Facade一样：namespace TianCity\\CustomFacade;use Illuminate\\Support\\Facades\\Facade;use App;class Common extends Facade{    //put your code here     protected static function getFacadeAccessor() {             return App::make('Common');     }}OK...Facade 搞定###7.Filter加一个Controller 里使用Filter检查是否开放外服 IP的方法： Route::filter(\"open_ip\",function(){    $args = func_get_args();    $openIP = array_pop($args);            $ip = sprintf(\"%u\", ip2long(htmlspecialchars($_SERVER['REMOTE_ADDR'])));    $net_c = sprintf(\"%u\", ip2long(\"192.168.255.255\")) &gt;&gt; 16;    $local = sprintf(\"%u\", ip2long(\"127.0.0.1\")) &gt;&gt; 16;    $intern = false;    if(($ip &gt;&gt; 16 === $net_c) || ($ip &gt;&gt; 16 === $local))    {        $intern = true;    }    if(intval($openIP) === 0 &amp;&amp; !$intern)    {        $response = Response::make();        $response-&gt;setContent(\"&lt;html&gt;&lt;body&gt;&lt;h1&gt;对外IP尚未开放！&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;\");        $response-&gt;setStatusCode($response::HTTP_OK);        $response-&gt;headers-&gt;set('Content-Type', 'text/html');        return $response;    }});    调用方式：    //根据传入的$open_ip来决定是否对外开放        $this-&gt;beforeFilter(\"open_ip:$open_ip\");就先这些吧…后面空了 再写Model和View..Eloquent active Record 好东东啊…",
+	        "content": "使用框架的好处简直太多了，便于管理，加速开发，使用新理念新技术。Laravel 4基于PHP 5.3以上开始的。###1.命名空间:namespace        namespace Stark;        class Test{        }                其他文件（首先需要加载进来）：        use Stark\\Test;        $eddard = new Test();                或者不引入直接(全局引用方式):        $eddard = new Stark\\Test();文件目录结构，如：library/Stark一般都会有自动加载将library下面的所有文件加载###2.Closures    $x = \"a\";        $y = \"b\";        $z = \"c\";         $greet = function($params) use($x,$y,$z)     {         echo  $params;         return $x.$y.$z;              };         $greet(\"abc\");        function x($a){        var_dump($a);    }\tfunction y($x)\t{\t\t$w = $x(\"xyz\");\t\tvar_dump($w);\t}    x($greet);\ty($greet);匿名函数第一个括号是调用时传的参，第二个是创建是传的参，运行上面的小例子，结果：\tabc\tobject(Closure)[1]\txyz\tstring 'abc' (length=3)###3.composer 使用安装过程就不说了，直接看官方文档.https://getcomposer.org/book.pdf composer配置文件是基于json的，例如我要安装一个monolog(手册上例子)： 在根目录monolog-demo下面建立一个composer.josn文件，内容：     {    \t\"require\" : {    \t\t\"monolog/monolog\": \"1.2.*\"    \t}    }然后使用命令：composer install，就可以完成下载及安装了下载完成后会多了一个vendor目录，里面有个monolog 目录了。 composer的配置项有很多，但最重要的就是 这个require和autoload配置了。 composer的自动加载机制基于 PSR-0/4 也就是说在    \"autoload\": {\t\t\"classmap\": [\t\t],        \"psr-4\": {                \"\": [\"app/module/\",\"app/library\"]         },        \"psr-0\": {        },        \"psr-1\":{        },        \"psr-2\":{        },        \"psr-3\":{        }    } 关于psr具体介绍看这里：http://www.php-fig.org/faq/ 注：我自己添加了psr-4将app/module/ 和app/library加入了自动加载中。psr-0的namespace和目录是对应的,psr-4不需要对应namaspace 例如：    \" Monolog \\\\\": \"src /\",//psr-0对应的目录是src/Monolog,psr-4对应src    \" Vendor \\\\ Namespace \\\\\": \"src /\",//psr-0对应的目录是src/Vendor/namespace,psr-4对应src    \" Vendor_Namespace_ \": \"src /\"//psr-0对应的目录是src/Vendor_Namespace_,psr-4对应src   classmap是机制会自动搜索.inc和.php文件或者搜索特定文件：        \" classmap \": [\" src /\", \"lib /\", \" Something .php \"]###4.安装Laravel（其实现在大多数框架的安装方式都是类似的）    composer create-project laravel/laravel laravel-demo-name//这一步仅仅是下载了laravel应用程序包    composer install//这一步是根据composer 下载依赖包上面两部完成之后就有了个vendor目录这个就是composer 包管理的所有文件。还有两个命令composer self-update //更新依赖包composer dump-autoload //更改过composer.json 配置文件后需要执行这个,重新生成autolod文件接下来配置 rewrite（下面是个标准的nginx配置，框架自带的有apache配置）：    server {        # Port that the web server will listen on.    listen 80        # Host that will serve this project.    server_name app.dev        # Useful logs for debug.    access_log /path/to/access.log;    error_log /path/to/error.log;    rewrite_log on;        # The location of our projects public directory.    root /path/to/our/public;        # Point index to the Laravel front controller.    index index.php;        location / {    # URLs to attempt, including pretty ones.    #按顺序检查文件是否存在，返回第一个找到的文件    #结尾的斜线表示为文件夹-$uri/。如果所有的文件都找不到，会进行一个内部重定向到最后一个参数        #例如try_files /app/cache/ $uri @fallback;        #它将检测$document_root/app/cache/index.php,$document_root/app/cache/index.html    #和$document_root$uri是否存在，如果不存在着内部重定向到 @fallback                    try_files $uri $uri/ /index.php?$query_string;    }        # Remove trailing slash to please routing system.    if (!-d $request_filename) {     rewrite ^/(.+)/$ /$1 permanent;    }        # PHP FPM configuration.    location ~* \\.php$ {    fastcgi_pass unix:/var/run/php5-fpm.sock;    fastcgi_index index.php;    fastcgi_split_path_info ^(.+\\.php)(.*)$;    include /etc/nginx/fastcgi_params;Getting Started 46    fastcgi_param SCRIPT_FILENAME $document_root$\\    fastcgi_script_name;    }        # We don't need .ht files with nginx.    location ~ /\\.ht {    deny all;    }        } ###5.框架分析与配置框架结构目录：    • app/--&gt;所有代码自己的代码都是在这里面的        • commands/--&gt;自己创建Artisan 命令文件目录        • config/--&gt;以数组形式存放的一系列配置信息，包括db，router等等        • controllers/--&gt;controller文件夹        • database/--&gt;如果使用命令行操作方式，关于数据库建库过程，表关系 等等文件，以备将来使用或者迁库        • lang/--&gt;国际化配置文件夹，翻译用的        • models/--&gt;数据模型        • start/--&gt;应用程序启动配置，区别于bootstap        • storage/--&gt;本地化存储，包括sesion，view,cache等等        • tests/--&gt;所有写的基于phpunit的测试文件        • views/--&gt;模板目录        • filters.php--&gt;路由过滤控制方法        • routes.php--&gt;非常重要的,所有框架路由都在这一个文件中    • bootstrap/--&gt;框架启动的配置都在这个目录里面    • vendor/--&gt;框架的依赖包以及第三方包    • public/--&gt;静态文件目录    • artisan--&gt;可执行的文件，包括一些列laravel框架快捷操作方式    • composer.json--&gt;composer 配置文件    • composer.lock    • phpunit.xml--&gt;phpunit test 的配置文件    • server.php--&gt;开发中的未来需要的框架启动，路由(写在routes.php)里,我这里写过几个，过多的还是 去看手册：Route::get('/games/csol', 'Csol\\Fight\\Controller\\IndexController@showWelcome');Route::get('/cp', 'Cp\\CallBack\\Controller\\IndexController@showWelcome');Route::Group(array(\"namespace\"=&gt;\"Test\\Eloquent\\Controller\",'prefix' =&gt; 'test'),function(){    Route::resource('curd', \"IndexController\");});Route::Group(array(\"namespace\"=&gt;\"Test\\Wechart\\Controller\",\"prefix\"=&gt;\"wechart\"),function(){    Route::get('/curl',function(){        $ch = curl_init();        // 设置URL和相应的选项        curl_setopt($ch, CURLOPT_URL, \"http://laravel/wechart/recieve?ss=fdsdf\");        curl_setopt($ch, CURLOPT_HEADER, 0);        // 抓取URL并把它传递给浏览器        curl_exec($ch);        // 关闭cURL资源，并且释放系统资源        curl_close($ch);    });    Route::get(\"/recieve\",function(){        $response = Response::make();        $response-&gt;setContent(\"&lt;html&gt;&lt;body&gt;&lt;h1&gt;Hello world a!&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;\");        $response-&gt;setStatusCode($response::HTTP_OK);        $response-&gt;headers-&gt;set('Content-Type', 'text/html');        return $response;    });});--&gt;上面是个例子，curl 会请求recieve route,recieve 返回一个自定义相应Route::Group(array(\"prefix\"=&gt;\"games/portal\"),function(){    Route::Group(array(\"namespace\"=&gt;\"Portal\\StewardPoint\\Controller\"),function(){        Route::get(\"/steward_point\",\"IndexController@index\");        Route::get(\"/steward_point_get\",\"IndexController@getPoint\");    });});目前我的项目路径，分层分结构如下：结构比较清晰，代码部分一般都在module和library Tiancity下面。Library下面有个CustomFacade ，说到这个就引出一个Laravel非常重要的东东了。Facade..###6.核心理念Facade和IOCLaravel 里面许多东西都是以Facede形式存在的(外观模式),从Routers.php文件看到rouget::method方式调用方法，如果深入去找这个方法，是找不到具体方法的，最终会找到这个目录：vendor/laravel/framework/src/Illuminate/support/facades/在这个文件夹下所有的文件都是一个假的类用来做外观的。这也是laravel的 所有可以使用facade的类。知道了Facade这个东西，现在来说说如何使用Facade。首先需要另一个概念：IOC容器，直接把它理解为一个管理类的容器就可以了，现在一个比较好的设计是依赖注入，使用个例子来说明IOC：     class Foo{        private $string = \"i'm foo\";        protected $bar;            public function __construct(Bar $bar) {            $this-&gt;bar = $bar;        }    }          class Bar{        private $porperty = \"i'm bar'\";        }        class Ioc{                private static $register = array();                public static function bind($name,  callable $resover)        {            static::$register[$name] = $resover;        }                public function make($name)        {            if(isset(static::$register[$name]))            {                $resolver = static::$register[$name];                return $resolver();            }            throw new Exception(\"No class found!\");        }    }        Ioc::bind(\"foo\", function(){        return new Foo(new Bar());        });        $foo = Ioc::make(\"foo\");    echo \"&lt;pre&gt;\";    var_dump($foo);    echo \"&lt;/pre&gt;\";上面这个例子说明了一个基本的IOC绑定及使用原理，Laravel使用比这个复杂多的容器，可以去阅读Illuminate\\Container\\Container类我们在Laravel里使用的时候首先需要注册服务组件里面    namespace TianCity\\CustomFacade;    use Illuminate\\Support\\ServiceProvider;    use TianCity\\Tools;    use TianCity\\Common;//注意这里，这个文件就是我们可以任意写方法的类，如Common::test(),就会调用该类的方法    class TiancityServiceProvider extends ServiceProvider {        //put your code here            /**         * Register the binding         *         * @return void         */        public function register()        {            $app = $this-&gt;app;            $app-&gt;bind(\"Common\",function(){                return new Common();            });            $app-&gt;bind(\"Tools\",function(){                return new Tools();            });        }    }    还需要到config/app.php里面providers数组里面加入：’TianCity\\CustomFacade\\TiancityServiceProvider’  服务组件是框架引导的时候自动加入的，也就是说 框架加载的时候会有个bind动作，不然你需要手动bind然后像前面提到的Facade一样：    namespace TianCity\\CustomFacade;    use Illuminate\\Support\\Facades\\Facade;    use App;    class Common extends Facade{        //put your code here         protected static function getFacadeAccessor() {                 return App::make('Common');         }    }    OK...Facade 搞定    ###7.Filter加一个Controller 里使用Filter检查是否开放外服 IP的方法：     Route::filter(\"open_ip\",function(){        $args = func_get_args();        $openIP = array_pop($args);                    $ip = sprintf(\"%u\", ip2long(htmlspecialchars($_SERVER['REMOTE_ADDR'])));        $net_c = sprintf(\"%u\", ip2long(\"192.168.255.255\")) &gt;&gt; 16;        $local = sprintf(\"%u\", ip2long(\"127.0.0.1\")) &gt;&gt; 16;        $intern = false;        if(($ip &gt;&gt; 16 === $net_c) || ($ip &gt;&gt; 16 === $local))        {            $intern = true;        }        if(intval($openIP) === 0 &amp;&amp; !$intern)        {            $response = Response::make();            $response-&gt;setContent(\"&lt;html&gt;&lt;body&gt;&lt;h1&gt;对外IP尚未开放！&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;\");            $response-&gt;setStatusCode($response::HTTP_OK);            $response-&gt;headers-&gt;set('Content-Type', 'text/html');            return $response;        }    });        调用方式：    //根据传入的$open_ip来决定是否对外开放        $this-&gt;beforeFilter(\"open_ip:$open_ip\");    就先这些吧…后面空了 再写Model和View..Eloquent active Record 好东东啊…",
 	        "url": "/php/2014/04/21/Laravel_details.html"
 	      }
 	      ,
 	    
 	      "php-2014-04-19-php-image-way-web-shell-1-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_9.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_8.jpeg",
 	        "title": "PHP上传shell注入(一)",
 	        "author": "",
 	        "category": "php",
@@ -719,7 +701,7 @@ var idcomments_post_url = "/php/2014/04/21/Laravel_details.html";
 	      ,
 	    
 	      "linux-2014-04-11-how-to-set-up-ssh-publick-key-authentication-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_10.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_9.jpeg",
 	        "title": "如何设置SSH的公钥授权",
 	        "author": "",
 	        "category": "linux",
@@ -729,7 +711,7 @@ var idcomments_post_url = "/php/2014/04/21/Laravel_details.html";
 	      ,
 	    
 	      "php-2014-03-11-php-oauth2-0-douban-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_11.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_10.jpeg",
 	        "title": "PHP OAuth 2.0 认证流程..",
 	        "author": "",
 	        "category": "php",
@@ -739,17 +721,17 @@ var idcomments_post_url = "/php/2014/04/21/Laravel_details.html";
 	      ,
 	    
 	      "php-2014-03-04-php-upload-progress-bar-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_12.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_11.jpeg",
 	        "title": "PHP 上传进度条..",
 	        "author": "",
 	        "category": "php",
-	        "content": "####准备工作：  PHP5.4以上  php.ini 开启session.upload_progress.enable  更改这两个参数以适应大文件上传：post_max_size,upload_max_filesize####开始代码部分（直接贴了）：      HTML(PHP copy上传文件，就在这里了省的再建个文件):    &lt;?php    function help(){        foreach(func_get_args() as $v)        {            echo \"&lt;pre&gt;\";            var_dump($v);            echo \"&lt;/pre&gt;\";        }        die();}if ($_SERVER[\"REQUEST_METHOD\"] == \"POST\" &amp;&amp; !empty($_FILES[\"userfile\"])) {    move_uploaded_file($_FILES['userfile']['tmp_name'], \"./a\");}?&gt;  &lt;html&gt;&lt;head&gt;&lt;title&gt;File Upload Progress Bar&lt;/title&gt;&lt;style&gt;...add css here&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=\"bar_blank\"&gt;&lt;div id=\"bar_color\"&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id=\"status\"&gt;&lt;/div&gt;&lt;form action=\"\" method=\"POST\"   id=\"myForm\" enctype=\"multipart/form-data\"&gt;&lt;input type=\"hidden\" value=\"myForm\"    name=\"&lt;?php echo ini_get(\"session.upload_progress.name\"); ?&gt;\"&gt;&lt;input type=\"file\" name=\"userfile\"&gt;&lt;br&gt;&lt;input type=\"submit\" value=\"Start Upload\"&gt;&lt;/form&gt;&lt;iframe id=\"hidden_iframe\" name=\"hidden_iframe\" src=\"about:blank\"&gt;&lt;/iframe&gt;&lt;script&gt;...add javascript here&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;        上面这段需要解释一下，1)Form里面有个隐藏域这个是必不可少的，用来带上上传session名称的，2)还有个IFrame     用来做类似无刷新上传的，3)div bar_blank这里是用来显示上传进度的        Javascript:    function toggleBarVisibility() {    var e = document.getElementById(\"bar_blank\");    e.style.display = (e.style.display == \"block\") ? \"none\" : \"block\";}    function createRequestObject() {    var http;    if (navigator.appName == \"Microsoft Internet Explorer\") {    http = new ActiveXObject(\"Microsoft.XMLHTTP\");    }    else {    http = new XMLHttpRequest();    }    return http;}    function sendRequest() {    var http = createRequestObject();    http.open(\"GET\", \"progress.php\");    http.onreadystatechange = function () { handleResponse(http); };    http.send(null);}    function handleResponse(http) {    var response;    if (http.readyState == 4) {    response = http.responseText;    document.getElementById(\"bar_color\").style.width = response + \"%\";    document.getElementById(\"status\").innerHTML = response + \"%\";            if (response &lt; 100) {    setTimeout(\"sendRequest()\", 1000);    }    else {    toggleBarVisibility();    document.getElementById(\"status\").innerHTML = \"Done.\";    }    }}    function startUpload() {    toggleBarVisibility();    setTimeout(\"sendRequest()\", 1000);}    (function () {document.getElementById(\"myForm\").onsubmit = startUpload;})();        以上Javascript主要是做了发送周期性的发送数据到progress.php,这个php返回上传进度然后javascript 更新div样式来反应上传的进度，可以用Jquery来做，理解了原理怎么样都可以        Progress.php:    session_start();$key = ini_get(\"session.upload_progress.prefix\") . \"myForm\";if (!empty($_SESSION[$key])) {        $current = $_SESSION[$key][\"bytes_processed\"];    $total = $_SESSION[$key][\"content_length\"];    echo $current &lt; $total ? ceil($current / $total * 100) : 100;}else {    echo 100;}        这个文件就是简单的计算上传比例然后返回给客户端。  ####脚本跑过没有问题，原文来源：http://www.sitepoint.com/tracking-upload-progress-with-php-and-javascript/",
+	        "content": "####准备工作：  PHP5.4以上  php.ini 开启session.upload_progress.enable  更改这两个参数以适应大文件上传：post_max_size,upload_max_filesize####开始代码部分（直接贴了）：  HTML(PHP copy上传文件，就在这里了省的再建个文件):        &lt;?php                function help()        {                foreach(func_get_args() as $v)                {                    echo \"&lt;pre&gt;\";                    var_dump($v);                    echo \"&lt;/pre&gt;\";                }                    die();        }        if ($_SERVER[\"REQUEST_METHOD\"] == \"POST\" &amp;&amp; !empty($_FILES[\"userfile\"])) {            move_uploaded_file($_FILES['userfile']['tmp_name'], \"./a\");        }        ?&gt;          &lt;html&gt;        &lt;head&gt;        &lt;title&gt;File Upload Progress Bar&lt;/title&gt;        &lt;style&gt;        ...add css here        &lt;/style&gt;        &lt;/head&gt;        &lt;body&gt;        &lt;div id=\"bar_blank\"&gt;        &lt;div id=\"bar_color\"&gt;&lt;/div&gt;        &lt;/div&gt;        &lt;div id=\"status\"&gt;&lt;/div&gt;        &lt;form action=\"\" method=\"POST\"   id=\"myForm\" enctype=\"multipart/form-data\"&gt;        &lt;input type=\"hidden\" value=\"myForm\"    name=\"&lt;?php echo ini_get(\"session.upload_progress.name\"); ?&gt;\"&gt;        &lt;input type=\"file\" name=\"userfile\"&gt;&lt;br&gt;        &lt;input type=\"submit\" value=\"Start Upload\"&gt;        &lt;/form&gt;        &lt;iframe id=\"hidden_iframe\" name=\"hidden_iframe\" src=\"about:blank\"&gt;&lt;/iframe&gt;        &lt;script&gt;        ...add javascript here        &lt;/script&gt;        &lt;/body&gt;        &lt;/html&gt;  上面这段需要解释一下，1)Form里面有个隐藏域这个是必不可少的，用来带上上传session名称的，2)还有个IFrame     用来做类似无刷新上传的，3)div bar_blank这里是用来显示上传进度的  Javascript:        function toggleBarVisibility() {            var e = document.getElementById(\"bar_blank\");            e.style.display = (e.style.display == \"block\") ? \"none\" : \"block\";        }                function createRequestObject() {            var http;            if (navigator.appName == \"Microsoft Internet Explorer\") {            http = new ActiveXObject(\"Microsoft.XMLHTTP\");            }            else {            http = new XMLHttpRequest();            }            return http;        }                function sendRequest() {            var http = createRequestObject();            http.open(\"GET\", \"progress.php\");            http.onreadystatechange = function () { handleResponse(http); };            http.send(null);        }                function handleResponse(http) {            var response;            if (http.readyState == 4) {            response = http.responseText;            document.getElementById(\"bar_color\").style.width = response + \"%\";            document.getElementById(\"status\").innerHTML = response + \"%\";                        if (response &lt; 100) {            setTimeout(\"sendRequest()\", 1000);            }            else {            toggleBarVisibility();            document.getElementById(\"status\").innerHTML = \"Done.\";            }            }        }                function startUpload() {            toggleBarVisibility();            setTimeout(\"sendRequest()\", 1000);        }                (function () {        document.getElementById(\"myForm\").onsubmit = startUpload;        })(); 以上Javascript主要是做了发送周期性的发送数据到progress.php,这个php返回上传进度然后javascript 更新div样式来反应上传的进度，可以用Jquery来做，理解了原理怎么样都可以  Progress.php:        session_start();        $key = ini_get(\"session.upload_progress.prefix\") . \"myForm\";        if (!empty($_SESSION[$key]))         {                $current = $_SESSION[$key][\"bytes_processed\"];            $total = $_SESSION[$key][\"content_length\"];            echo $current &lt; $total ? ceil($current / $total * 100) : 100;        }        else         {            echo 100;        } 这个文件就是简单的计算上传比例然后返回给客户端。####脚本跑过没有问题，原文来源：http://www.sitepoint.com/tracking-upload-progress-with-php-and-javascript/",
 	        "url": "/php/2014/03/04/PHP_Upload_Progress_bar.html"
 	      }
 	      ,
 	    
 	      "php-2014-01-21-php-string-len-count-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_13.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_12.jpeg",
 	        "title": "PHP 获取字符串长度，字节数...",
 	        "author": "",
 	        "category": "php",
@@ -759,7 +741,7 @@ var idcomments_post_url = "/php/2014/04/21/Laravel_details.html";
 	      ,
 	    
 	      "zf2-2013-12-27-zend-framework2-intergrate-mustache-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_14.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_13.jpeg",
 	        "title": "Zend Framework 2 集成mustache",
 	        "author": "",
 	        "category": "zf2",
@@ -769,7 +751,7 @@ var idcomments_post_url = "/php/2014/04/21/Laravel_details.html";
 	      ,
 	    
 	      "zf2-2013-12-20-zf2-install-firephp-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_15.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_14.jpeg",
 	        "title": "Zend Framework 2 安装使用Firephp",
 	        "author": "",
 	        "category": "zf2",
@@ -779,22 +761,12 @@ var idcomments_post_url = "/php/2014/04/21/Laravel_details.html";
 	      ,
 	    
 	      "system-2013-12-08-install-lnmp-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_16.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_15.jpeg",
 	        "title": "LNMP 编译安装",
 	        "author": "",
 	        "category": "system",
 	        "content": "首先安装PCRE 来支持rewrite  下载地址：ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/  解压缩：sudo tar -zxvf pcre-8.30.tar.gz  -C /usr/local/src  建立安装目录：cd /usr/local  &amp;&amp; sudo mkdir pcre  安装：./configure –prefix=/usr/local/pcre make&amp;&amp;sudo make install  安装完成之后测试!!!再安装Zlib—-1.下载地址：http://prdownloads.sourceforge.net/libpng/zlib-1.2.8.tar.gz?download2.cd /usr/local/src然后：ln -s ~/Downloads Downloads 将Downloads目录做个软链接3.tar -zxvf zlib-1.2.8.tar.gz -C /usr/local/src4.安装：./configure –prefix=/usr/local/zlib  make&amp;&amp;sudo make install5.用whereis zlib 检查安装成功（是函数库非可执行文件）安装nginx—1.解压缩这里就不废话了，直接放到src下2.cd /usr/local/sudo mkdir lnmpsudo chown ray lnmpsudo chgrp www-data lnmp编译：./configure –prefix=/usr/local/lnmp/nginx –with-pcre=/usr/local/src/pcre-8.30 –with-zlib=/usr/local/src/zlib-1.2.8 –with-http_ssl_module这里注意：pcre和zlib的路径是源文件路径，所以前面我做了两步都是无用功了ngnix自己编译，我遇的到啊～:–with-pcre=path — sets the path to the sources of the PCRE library.3.安装：make&amp;&amp;make install安装Mysql—1.下载地址：http://dev.mysql.com/downloads/file.php?id=4503532.解压到src目录3.建立mysql用户:sudo /usr/sbin/groupadd mysqlsudo /usr/sbin/useradd -g mysql mysql将自己当前帐号加入mysql 组：usermod -a -G mysql ray 4.cd /usr/local/sudo mkdir mysql cd mysqlsudo mkdir mysql_data4.切换到源文件根目录：sudo cmake -DCMAKE_INSTALL_PREFIX=/usr/local/lnmp/mysql -DMYSQL_UNIX_ADDR=/usr/local/lnmp/mysql/mysql.sock -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DWITH_EXTRA_CHARSETS:STRING=utf8,gbk -DWITH_MYISAM_STORAGE_ENGINE=1 -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_READLINE=1 -DENABLED_LOCAL_INFILE=1 -DMYSQL_DATADIR=/usr/local/lnmp/mysqldata详细配置说明地址：http://dev.mysql.com/doc/refman/5.6/en/source-configuration-options.html5.sudo make &amp;&amp; sudo make install6.sudo cp my-default.cnf /usr/local/lnmp/mysqldata/my.cnf  (注意:my-large.cnf适用于1G内存左右的服务器，可以根据自己配置情况选用my-large.cnf 或 my-huge.cnf 等不同配置)sudo cp mysql.server /etc/init.d/mysqld编辑mysqld,basedir=/usr/local/lnmp/mysql;datadir=/usr/local/lnmp/mysqldata  sudo ./mysql_install_db –defaults-file=/usr/local/lnmp/mysqldata/my.cnf –basedir=/usr/local/lnmp/mysql datadir=/usr/local/lnmp/mysqldata –user=mysql  将mysqld加入服务，直接重启也可以：sudo apt-get install sysv-rc-confsudo sysv-rc-conf mysqld on  测试：service mysqld restart10.缺省安装的mysql是没有密码的，所以我们要修改，以防万一。下面采用三种方式来修改root的口令。 cd /usr/local/lnmp/mysql/bin/mysqladmin -uroot password test ·更多安全参考](http://www.cnblogs.com/xh831213/archive/2011/10/13/2210194.html)PHP 安装—1.安装libxml  用于解析xml的：下载完成后解压缩到/usr/local/libxml2.jpeg安装,下载http://www.ijg.org/files/jpegsrc.v9.tar.gz解压缩到/usr/local/src/目录./configure –prefix=/usr/local/jpeg-9-&gt;make&amp;&amp;sudo make install3.安装PNG支持下载:libpng./configure –prefix=/usr/local/libpng-&gt;make&amp;&amp;sudo make install4.Freetype安装，下载,安装:./configure –prefix=/usr/local/freetype-&gt;make&amp;&amp;sudo make install5.libmcrypt安装,下载安装：./configure –prefix=/usr/local/libmcrypt-2.5.8-&gt;make&amp;&amp;sudo make install6.mhash 安装,下载安装：./configure –prefix=/usr/local/libmcrypt-2.5.8-&gt;make&amp;&amp;sudo make install7.mcrypt下载注意第七条依赖于5,6直接编译出错然后执行以下操作：          1.~/.profile 里面加入export      LD_LIBRARY_PATH=/usr/local/libmcrypt-2.5.8/lib:/usr/local/mhash-0.9.9.9/lib 配置前面两个库的lib地址2../configure –prefix=/usr/local/mcrypt-2.6.8 –with-libmcrypt-prefix=/usr/local/libmcrypt-2.5.8      可惜又报另一个错误参考这里export CFLAGS=”-I /usr/local/mhash-0.9.9.9/include/”export LDFLAGS=”-L /usr/local/mhash-0.9.9.9/lib -I /usr/local/mhash-0.9.9.9/include/”再次执行configure 通过,但是make&amp;&amp;sudo make install 却报错结果再参考make file 选项发现上面两条export 是不正确的正确的应该是：  export LDFLAGS=”-L/usr/local/libmcrypt-2.5.8/lib -L/usr/local/mhash-0.9.9.9/lib”;export CFLAGS=”-I/usr/local/libmcrypt-2.5.8/include -I/usr/local/mhash-0.9.9.9/include”注：/etc/ld.so.conf,关于.so动态库的载入参考鸟哥(http://linux.vbird.org/linux_basic/0520source_code_and_tarball.php)最终编译安装mcrypt 成功,以上PHP 依赖库安装完毕####接下来正式PHP 安装1.下载并加压后  export LIBS=”-lm -ltermcap -lresolv”(注：这句我不晓得是什么意思所以没用)export LD_LIBRARY_PATH=”/usr/local/lnmp/mysql/lib:/lib:/usr/lib/:/usr/local/lib/:/usr/local/libmcrypt-2.5.8/lib/:/usr/local/mhash-0.9.9.9/lib/:/lib64/:/usr/lib64/:/usr/local/lib64/” (参考不同操作系统设置:http://blog.chinaunix.net/uid-14504139-id-3867128.html)../configure--prefix=/usr/local/lnmp/php--with-config-file-path=/usr/local/lnmp/php/etc --with-mysql=/usr/local/lnmp/mysql --with-mysqli=/usr/local/lnmp/mysql/bin/mysql_config --with-freetype-dir=/usr/local/freetype --with-jpeg-dir=/usr/local/jpeg-9--with-png-dir=/usr/local/libpng--with-zlib--with-libxml-dir=/usr/local/libxml2 --enable-xml --disable-rpath --enable-bcmath --enable-shmop[消息队列](http://wizardmin.com/2012/08/php-ipc-sysvmsg/) --enable-sysvsem--enable-inline-optimization(使用更多内存加快程序结果)--with-curl--enable-mbregex--enable-fpm--enable-mbstring--with-mcrypt=/usr/local/mcrypt--with-gd--enable-gd-native-ttf--with-openssl--with-mhash --enable-pcntl（打开进程控制支持）--enable-sockets--with-xmlrpc--enable-zip--enable-soap --enable-fpm(开始没有加这个NGINX 就没办法解析PHP 有些作者真是肯跌啊)出错啦：解决方法：sudo apt-get install libcurl4-gnutls-dev 就不编译安装啦再次错错：error: mcrypt.h not found. Please reinstall libmcrypt解决方法：sudo apt-get install libmcrypt-dev很纳闷再次错误：找不到mysql_config 这次是打字错误，更郁闷完整configure： ./configure--prefix=/usr/local/lnmp/php  --with-config-file-path=/usr/local/lnmp/php/etc  --with-mysql=/usr/local/lnmp/mysql  --with-mysqli=/usr/local/lnmp/mysql/bin/mysql_config  --with-pdo-mysql=/usr/local/lnmp/mysql  --with-mysql-sock=/usr/local/lnmp/mysql/mysql.sock  --with-freetype-dir=/usr/local/freetype  --enable-fpm  --with-fpm-user=ray  --with-fpm-group=www-data  --with-jpeg-dir=/usr/local/jpeg-9  --with-png-dir=/usr/local/libpng  --with-zlib  --with-libxml-dir=/usr/local/libxml2  --enable-xml  --enable-bcmath  --enable-shmop  --enable-sysvsem  --enable-inline-optimization  --with-curl  --enable-mbregex  --enable-mbstring  --with-mcrypt=/usr/local/mcrypt  --with-gd  --enable-gd-native-ttf  --with-openssl  --with-mhash  --enable-pcntl  --enable-sockets  --enable-zip  --enable-soapmake&amp;&amp;make test&amp;&amp;make install启动php-fpm,cd /usr/local/lnmp/php/sbin/php-fpm",
 	        "url": "/system/2013/12/08/install-lnmp.html"
-	      }
-	      ,
-	    
-	      "system-2013-11-27-ubuntu-initial-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_17.jpeg",
-	        "title": "ubuntu 环境搭建初始化",
-	        "author": "",
-	        "category": "system",
-	        "content": "##删除IBUSsudo apt-get autoremove ibus##install fcitx    sudo add-apt-repository ppa:fcitx-team/nightly-&gt;add source -&gt;then /etc/apt/source.d/ will come up with one file fcitx-team-stable-saucy.list    after this need:sudo apt-get update    sudo apt-get install fcitx    im-config -s fcitx(13.10 use im-config not im-switch) //use fcitx    sudo apt-get install fcitx-googlepinyin //install googlepinyin    fcitx -r //restart it then can configue##delete useless icon from panel sudo apt-get auremove indicator-keyboard##log out commandgnome-session-quit##安装flash playersudo apt-get install flashplugin-installer##安装chromiumsudo apt-get install chromium-browser##安装goagent安装完成后chromim里面配置switch proxy， ps aux | grep proxy.py 查看进程，然后可以用kill杀死进程或者直接在goagnet命令行界面Ctrl+C退出proxy证书设置：http://blog.netsh.org/posts/goagent-https-ssl-error_1013.netsh.html##安装vim    sudo apt-get install vim    vim .vimrc    mkdir .vim    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle进入vim BundleInstall安装完成##安装jekyll1.安装rvm：ruby版本管理器https://rvm.io/curl -L https://get.rvm.io | bash -s stable检查安装：rvm list known安装ruby：rvm install 2.0.0让gnome-terminal以登录模式使用命令：https://rvm.io/integration/gnome-terminalruby -v 检查版本ruby -e \"print 'hello ruby'\" 运行rubyirb 进入命令行ruby模式2.安装bundler:gem install bundlergem install jekyll //这里遇到问题：Unable to download data from https://rubygems.org/ - no such name (https://rubygems.org/latest_specs.4.8.gz)说是ruby-head什么原因。运行gem update --system 后成功按照jekyll##项目权限及配置ssh权限问题一直很烦，又一直很懒，懒的去看怎么弄的，今天小看了一下就设置了一下在/var/ 下面用root帐号建立了一个www权限，这时候而已看到www目录所有者和组都是rootlinux组在/etc/group里面设置的（http://linux.vbird.org/linux_basic/0410accountmanager.php#passwd_file）里面有个www-data,末尾添加ray,向组里添加用户就直接在这个后面添加就可以了用，分割    sudo chown ray www-&gt;更改所有者    sudo chgrp ray www完了之后www就是属于ray的并且组为www-data，如果有其他用户需要使用 就更改权限即可添加ssh并和git关联https://help.github.com/articles/generating-ssh-keys按照上面的步骤其中有一步我没有做ssh-add id_rsa，这个是将密钥添加到ssh-gen，我目前的理解是ssh-gen是作为ssh的服务的时候使用的，而我目前只是要作为客户端，所以不需要这个##刚刚找到一个很好用vim的命令df$char---&gt;删除当前字符到$char,包括$chardt$char---&gt;删除当前字符到$char,不包括$char同样的 yf 和 yt 也是同样的道理",
-	        "url": "/system/2013/11/27/ubuntu-initial.html"
 	      }
 	      
 	    

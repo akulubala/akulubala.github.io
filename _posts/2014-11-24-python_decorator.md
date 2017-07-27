@@ -3,22 +3,22 @@ title: Python Decorator
 layout: post
 category : python
 ---
-python decorator 大概是每个pythoner比看到内容吧.对于我这个从PHP 过来的人第一次看，确实也有那么些新鲜难懂。顾名思义：“装饰器”，绝对是把什么什么东西通过另外的东西修饰了一番。
+python decorator 大概是每个pythoner比看到内容吧.顾名思义：“装饰器”，绝对是把什么什么东西通过另外的东西修饰了一番。
 
 ####先来看下最基本的显而易见的例子吧：
+{% highlight python %}
+        def log(func):
+            def wrapper(*args, **kw):
+                print 'call %s():' % func.__name__
+                func(*args, **kw)---
+            return wrapper
 
-    def log(func):
-        def wrapper(*args, **kw):
-            print 'call %s():' % func.__name__
-            func(*args, **kw)---
-        return wrapper
+        @log
+        def now():
+            print '2013-12-25'
 
-    @log
-    def now():
-        print '2013-12-25'
-
-    now()
-    
+        now()
+{% endhighlight %}    
 @log就是所谓的语法糖，从上例最终的表现形式就是：将now()函数传给了方法log..最终调用是 调用了内部函数wrapper..
 
 接下来一步步刨析：  
@@ -27,7 +27,7 @@ log函数内部有个wrapper函数，这样就形成了一个闭包wrapper,这�
 **如果前面的例子打印`now.__name__`,结果为：wrapper 而不是now**
 
 为了解决这个问题，需要如下操作：
-
+{% highlight python %}
     from functools import wraps
     def log(func):
     	@wraps(func)
@@ -35,9 +35,11 @@ log函数内部有个wrapper函数，这样就形成了一个闭包wrapper,这�
             print 'call %s():' % func.__name__
             func(*args, **kw)---
         return wrapper
+{% endhighlight %}
 **如果now 函数需要传参数的话需要反射来处理，具体可看http://coolshell.cn/articles/11265.html**
 
 ####以上是一个最基本的decorator 应用，接下来说明在使用decorator时传参    
+{% highlight python %}
 
     from functools import wraps
     def log(args1,args2):
@@ -63,10 +65,12 @@ result :
 >2013-12-25  
 >now
 
+{% endhighlight %}
+
 说明对于需要使用语法糖 传参的时候需要返回一个函数real_decorator，再在内部定义具体调用的函数wrapper这里相当于：`log("log pass paramter1 to log","log pass paramter2 to log")((now())`
 
 ####使用多个decorator:  
-
+{% highlight python %}
     from functools import wraps
     def log(args1,args2):
         def real_decorator(func):
@@ -95,10 +99,11 @@ results:
 >another wrapper of now():  
 >now pass parameter to wrapper  
 >wrapper
-
+{% endhighlight %}
 说明：结果是 输出了 another_log 的内容，那么它是将log decrator 过后的方法再次 decorator，即如下形式：`another_log(log(param1,param2)(now))`,也就是两层包装  
 
 ####类式的 Decorator
+{% highlight python %}
 
     class TestDecorator(object):
 
@@ -113,6 +118,9 @@ results:
         print "2014-01-01"
 
     now()
+
+{% endhighlight %}
+
 基本的实例如上，在这个类中必须要有__call__方法，而所有关于修饰的内容都应当从__call__方法里面去定义  
 
 输出：  
@@ -122,6 +130,7 @@ results:
 >inside class __call__()  
 
 一个好的完整例子：  
+{% highlight python %}
 
     class MyApp():
         def __init__(self):
@@ -151,7 +160,9 @@ results:
 
     print app.call_method('/')
     print app.call_method('/next_page')
-    
+
+{% endhighlight %}
+
 1）上面这个示例中，用类的实例来做decorator。  
 2）decorator类中没有__call__()，但是wrapper返回了原函数。所以，原函数没有发生任何变化。
 

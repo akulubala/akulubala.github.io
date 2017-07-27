@@ -158,4 +158,4 @@ OK。完成之后远程服务器就可以接受你的公钥public key了。在au
 
 
 
-  [1]: http://akulubala.github.io/public/images/2014/ssh_public_key_authentication.jpg
+  [1]: http://akulubala.github.io/assets/images/2017/keychart.png
