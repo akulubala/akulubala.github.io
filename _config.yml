@@ -29,6 +29,8 @@ links:
     - { title: PHP, url: posts/php.html }
     - { title: Javascript, url: posts/javascript.html }
     - { title: JQuery, url: posts/jquery.html }
+    - { title: Vuejs, url: posts/vuejs.html  }
+    - { title: Docker, url: posts/docker.html  }
     - { title: Mysql, url: posts/mysql.html  }
     - { title: Mongodb, url: posts/mongodb.html  }
     - { title: 'Zend Framework 2', url: posts/zf2.html  }
@@ -37,7 +39,6 @@ links:
     - { title: System Skills, url: posts/system.html  }
     - { title: Redis, url: posts/redis.html  }
     - { title: Python, url: posts/python.html  }
-    - { title: Vuejs, url: posts/vuejs.html  }
 
 # Build settings
 markdown: kramdown

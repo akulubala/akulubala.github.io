@@ -4,6 +4,7 @@
   "description": "#### Feature",
   "main": "index.js",
   "dependencies": {
+    "github-markdown-css": "^2.8.0",
     "lodash": "^4.17.4",
     "lunr": "^2.0.4",
     "materialize-css": "^0.98.2"

@@ -14,7 +14,7 @@
                 <ul class="hide-on-med-and-down">
                   <li><a href="/"><strong>Home</strong></a></li>
                   <li><a class='dropdown-button' href='#' data-activates='category-lists'>Posts</a></li>
-                  <li><a href="#test7" class="">About Me</a></li>
+                  <li><a href="/posts/about-me.html" class="">About Me</a></li>
                 </ul>
               </div>
               <div class="col s4 header-social">
@@ -85,7 +85,7 @@
           </div>
       </div>
 </div>
-	    <div id="content">
+	    <div id="content" class="markdown-body">
            <h5 id="page_title">Ubunto Deploy Jekyll</h5>
            <p class="date">Jun 27, 2014</p>
 			<ol>
@@ -274,6 +274,10 @@ var idcomments_post_url = "/system/2014/06/27/Ubunto_Deploy_Jekyll.html";
 
 	<li><a href="/posts/jquery.html">JQuery</a></li>
 
+	<li><a href="/posts/vuejs.html">Vuejs</a></li>
+
+	<li><a href="/posts/docker.html">Docker</a></li>
+
 	<li><a href="/posts/mysql.html">Mysql</a></li>
 
 	<li><a href="/posts/mongodb.html">Mongodb</a></li>
@@ -289,8 +293,6 @@ var idcomments_post_url = "/system/2014/06/27/Ubunto_Deploy_Jekyll.html";
 	<li><a href="/posts/redis.html">Redis</a></li>
 
 	<li><a href="/posts/python.html">Python</a></li>
-
-	<li><a href="/posts/vuejs.html">Vuejs</a></li>
 
 </ul>
 <div class="fixed-action-btn">
@@ -343,8 +345,18 @@ var idcomments_post_url = "/system/2014/06/27/Ubunto_Deploy_Jekyll.html";
 <script type="text/javascript">
 	window.store = {
 	    
-	      "python-2014-11-24-python-decorator-html": {
+	      "docker-2017-07-20-docker-a-lemp-environment-with-ubuntu-html": {
 	      	"imgSrc": "/assets/images/upsplash/image_1.jpeg",
+	        "title": "Docker A LEMP With Laravel In Ubuntu",
+	        "author": "",
+	        "category": "docker",
+	        "content": "### Docker A LEMP With Laravel In Ubuntu---1. #### Set up docker, Documents from official site : [Docker.com](https://store.docker.com/editions/community/docker-ce-server-ubuntu?tab=description \"Docker\").   - ##### Set up the repository     {% highlight php %}     ```       sudo apt-get -y install \\       apt-transport-https \\       ca-certificates \\       curl       curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \\        sudo apt-key add -       sudo add-apt-repository \\       \"deb [arch=amd64] https://download.docker.com/linux/ubuntu \\       $(lsb_release -cs) \\       stable\"       sudo apt-get update     ```          {% endhighlight %}   - ##### Get Docker CE (community edition)     {% highlight php %}     ```     sudo apt-get -y install docker-ce     ```     {% endhighlight %}        - ##### Test your Docker CE installation     {% highlight php %}     ```     sudo docker run hello-world     ```      {% endhighlight %}        - ##### use non root user run docker command (add user ray to group docker)     {% highlight php %}     ```     sudo usermod -aG docker ray     ```     {% endhighlight %}   - ##### check user group (command will list ray to docker group)     {% highlight php %}     ```     id ray     ```     {% endhighlight %}2. #### Set up LEMP(linux,nginx,php,mysql) environment       ***basic we just need nginx, php, mysql run on a linux server***      **get access container:** `docker exec -it  /bin/bash`      - ##### Create folder and files:        - ##### Docker-Compose file: docker-compose.yml      {% highlight php %}      ```      version: \"3\"        services:          nginx:            container_name: docker-nginx            image: nginx:latest            ports:              - \"80:80\"            links:              - php # links let service php can communicate with nginx            volumes:              - ./nginx:/etc/nginx/conf.d  # map nginx server to container server configuration              - ./logs/nginx-error.log:/var/log/nginx/error.log  # map nginx error to local file              - ./logs/nginx-access.log:/var/log/nginx/access.log # map nginx access log to local file              - ./www:/var/www/html          php:            container_name: docker-php            image: php:7.1-fpm            build:              context: ./php ## folder contains dockerfile definations              dockerfile: Dockerfile ## dockerfile define php            ports:              - \"9000:9000\"            links:              - mysql            volumes:                # map www foler to php server /var/www/html. note: because docker php              - ./www:/var/www/html # make this folder as root folder, so this can't be changed              - ./php/custom-php.ini:/usr/local/etc/php/custom-php.ini # use this map to change php.ini configuration          mysql:            container_name: docker-mysql            image: mysql:5.7            ports:              - \"3306:3306\"            environment:              MYSQL_DATABASE: 'databasename'              MYSQL_ROOT_PASSWORD: 'password'            command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci        ```     - ##### Dockfile defination        ```        FROM php:7.1-fpm        RUN apt-get update && apt-get install -y \\                libfreetype6-dev \\                libjpeg62-turbo-dev \\                libmcrypt-dev \\                libpng12-dev \\            && docker-php-ext-install -j$(nproc) iconv mcrypt \\            && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \\            && docker-php-ext-install -j$(nproc) gd \\            && docker-php-ext-install pdo pdo_mysql        ```        {% endhighlight %}        By default, docker image php don't have 'pdo, pdo_mysql', so we define this dockfile        install them by using `docker-php-ext-install pdo pdo_mysql`            - ##### Test Installation            After Create folder and finish docker-compose config,      Just Run `docker-compose up -d`      Then `docker-compose ps`            get service status like this:      3. #### Set up laravel    Set up Laravel don't need much extro operations. just run command     `laravel new laravel-example-site` under foler 'www'        **Notice: composer and npm commands can just run from host machine, only if they are avaliable**                                ",
+	        "url": "/docker/2017/07/20/docker-a-lemp-environment-with-ubuntu.html"
+	      }
+	      ,
+	    
+	      "python-2014-11-24-python-decorator-html": {
+	      	"imgSrc": "/assets/images/upsplash/image_2.jpeg",
 	        "title": "Python Decorator",
 	        "author": "",
 	        "category": "python",
@@ -354,7 +366,7 @@ var idcomments_post_url = "/system/2014/06/27/Ubunto_Deploy_Jekyll.html";
 	      ,
 	    
 	      "php-2014-07-07-decade-user-id-strategy-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_2.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_3.jpeg",
 	        "title": "十位用户唯一ID生成策略",
 	        "author": "",
 	        "category": "php",
@@ -364,7 +376,7 @@ var idcomments_post_url = "/system/2014/06/27/Ubunto_Deploy_Jekyll.html";
 	      ,
 	    
 	      "system-2014-06-27-ubunto-deploy-jekyll-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_3.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_4.jpeg",
 	        "title": "Ubunto Deploy Jekyll",
 	        "author": "",
 	        "category": "system",
@@ -374,7 +386,7 @@ var idcomments_post_url = "/system/2014/06/27/Ubunto_Deploy_Jekyll.html";
 	      ,
 	    
 	      "mysql-2014-05-12-mysql-procedure-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_4.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_5.jpeg",
 	        "title": "Mysql 存储过程举例",
 	        "author": "",
 	        "category": "mysql",
@@ -384,7 +396,7 @@ var idcomments_post_url = "/system/2014/06/27/Ubunto_Deploy_Jekyll.html";
 	      ,
 	    
 	      "php-2014-05-06-click-image-upload-php-mongodb-extension-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_5.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_6.jpeg",
 	        "title": "php 添加mogodb扩展+PHP点击图片上传并实现预览效果",
 	        "author": "",
 	        "category": "php",
@@ -394,7 +406,7 @@ var idcomments_post_url = "/system/2014/06/27/Ubunto_Deploy_Jekyll.html";
 	      ,
 	    
 	      "mongodb-2014-04-22-mongodb-install-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_6.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_7.jpeg",
 	        "title": "Mongodb 安装过程",
 	        "author": "",
 	        "category": "mongodb",
@@ -404,7 +416,7 @@ var idcomments_post_url = "/system/2014/06/27/Ubunto_Deploy_Jekyll.html";
 	      ,
 	    
 	      "php-2014-04-21-laravel-details-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_7.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_8.jpeg",
 	        "title": "Laravel 框架开发配置概述",
 	        "author": "",
 	        "category": "php",
@@ -414,7 +426,7 @@ var idcomments_post_url = "/system/2014/06/27/Ubunto_Deploy_Jekyll.html";
 	      ,
 	    
 	      "php-2014-04-19-php-image-way-web-shell-1-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_8.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_9.jpeg",
 	        "title": "PHP上传shell注入(一)",
 	        "author": "",
 	        "category": "php",
@@ -424,7 +436,7 @@ var idcomments_post_url = "/system/2014/06/27/Ubunto_Deploy_Jekyll.html";
 	      ,
 	    
 	      "linux-2014-04-11-how-to-set-up-ssh-publick-key-authentication-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_9.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_10.jpeg",
 	        "title": "如何设置SSH的公钥授权",
 	        "author": "",
 	        "category": "linux",
@@ -434,7 +446,7 @@ var idcomments_post_url = "/system/2014/06/27/Ubunto_Deploy_Jekyll.html";
 	      ,
 	    
 	      "php-2014-03-11-php-oauth2-0-douban-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_10.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_11.jpeg",
 	        "title": "PHP OAuth 2.0 认证流程..",
 	        "author": "",
 	        "category": "php",
@@ -444,7 +456,7 @@ var idcomments_post_url = "/system/2014/06/27/Ubunto_Deploy_Jekyll.html";
 	      ,
 	    
 	      "php-2014-03-04-php-upload-progress-bar-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_11.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_12.jpeg",
 	        "title": "PHP 上传进度条..",
 	        "author": "",
 	        "category": "php",
@@ -454,7 +466,7 @@ var idcomments_post_url = "/system/2014/06/27/Ubunto_Deploy_Jekyll.html";
 	      ,
 	    
 	      "php-2014-01-21-php-string-len-count-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_12.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_13.jpeg",
 	        "title": "PHP 获取字符串长度，字节数...",
 	        "author": "",
 	        "category": "php",
@@ -464,7 +476,7 @@ var idcomments_post_url = "/system/2014/06/27/Ubunto_Deploy_Jekyll.html";
 	      ,
 	    
 	      "zf2-2013-12-27-zend-framework2-intergrate-mustache-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_13.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_14.jpeg",
 	        "title": "Zend Framework 2 集成mustache",
 	        "author": "",
 	        "category": "zf2",
@@ -474,7 +486,7 @@ var idcomments_post_url = "/system/2014/06/27/Ubunto_Deploy_Jekyll.html";
 	      ,
 	    
 	      "zf2-2013-12-20-zf2-install-firephp-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_14.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_15.jpeg",
 	        "title": "Zend Framework 2 安装使用Firephp",
 	        "author": "",
 	        "category": "zf2",
@@ -484,7 +496,7 @@ var idcomments_post_url = "/system/2014/06/27/Ubunto_Deploy_Jekyll.html";
 	      ,
 	    
 	      "system-2013-12-08-install-lnmp-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_15.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_16.jpeg",
 	        "title": "LNMP 编译安装",
 	        "author": "",
 	        "category": "system",

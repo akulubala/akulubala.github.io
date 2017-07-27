@@ -1,5 +1,174 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2017-07-27T10:47:52+08:00</updated><id>/</id><title type="html">Your awesome title</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">Python Decorator</title><link href="/python/2014/11/24/python_decorator.html" rel="alternate" type="text/html" title="Python Decorator" /><published>2014-11-24T00:00:00+08:00</published><updated>2014-11-24T00:00:00+08:00</updated><id>/python/2014/11/24/python_decorator</id><content type="html" xml:base="/python/2014/11/24/python_decorator.html">&lt;p&gt;python decorator 大概是每个pythoner比看到内容吧.顾名思义：“装饰器”，绝对是把什么什么东西通过另外的东西修饰了一番。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2017-07-27T16:42:32+08:00</updated><id>/</id><title type="html">Your awesome title</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">Docker A LEMP With Laravel In Ubuntu</title><link href="/docker/2017/07/20/docker-a-lemp-environment-with-ubuntu.html" rel="alternate" type="text/html" title="Docker A LEMP With Laravel In Ubuntu" /><published>2017-07-20T00:00:00+08:00</published><updated>2017-07-20T00:00:00+08:00</updated><id>/docker/2017/07/20/docker-a-lemp-environment-with-ubuntu</id><content type="html" xml:base="/docker/2017/07/20/docker-a-lemp-environment-with-ubuntu.html">&lt;h3 id=&quot;docker-a-lemp-with-laravel-in-ubuntu&quot;&gt;Docker A LEMP With Laravel In Ubuntu&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;set-up-docker-documents-from-official-site--dockercom&quot;&gt;Set up docker, Documents from official site : &lt;a href=&quot;https://store.docker.com/editions/community/docker-ce-server-ubuntu?tab=description&quot; title=&quot;Docker&quot;&gt;Docker.com&lt;/a&gt;.&lt;/h4&gt;
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;h5 id=&quot;set-up-the-repository&quot;&gt;Set up the repository&lt;/h5&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;     ```
+       sudo apt-get -y install \
+       apt-transport-https \
+       ca-certificates \
+       curl
+
+       curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \        sudo apt-key add -
+
+       sudo add-apt-repository \
+       &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+       $(lsb_release -cs) \
+       stable&quot;
+
+       sudo apt-get update
+     ```
+     
+     &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h5 id=&quot;get-docker-ce-community-edition&quot;&gt;Get Docker CE (community edition)&lt;/h5&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;     ```
+     sudo apt-get -y install docker-ce
+     ```
+     &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h5 id=&quot;test-your-docker-ce-installation&quot;&gt;Test your Docker CE installation&lt;/h5&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;     ```
+     sudo docker run hello-world
+     ``` 
+     &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h5 id=&quot;use-non-root-user-run-docker-command-add-user-ray-to-group-docker&quot;&gt;use non root user run docker command (add user ray to group docker)&lt;/h5&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;     ```
+     sudo usermod -aG docker ray
+     ```
+     &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;h5 id=&quot;check-user-group-command-will-list-ray-to-docker-group&quot;&gt;check user group (command will list ray to docker group)&lt;/h5&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;     ```
+     id ray
+     ```
+     &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;set-up-lemplinuxnginxphpmysql-environment&quot;&gt;Set up LEMP(linux,nginx,php,mysql) environment&lt;/h4&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;em&gt;basic we just need nginx, php, mysql run on a linux server&lt;/em&gt;&lt;/strong&gt;  &lt;br /&gt;
+  &lt;strong&gt;get access container:&lt;/strong&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;docker exec -it &amp;lt;container-id&amp;gt; /bin/bash&lt;/code&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;h5 id=&quot;create-folder-and-files&quot;&gt;Create folder and files:&lt;/h5&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;h5 id=&quot;docker-compose-file-docker-composeyml&quot;&gt;Docker-Compose file: docker-compose.yml&lt;/h5&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;      ```
+      version: &quot;3&quot;
+        services:
+          nginx:
+            container_name: docker-nginx
+            image: nginx:latest
+            ports:
+              - &quot;80:80&quot;
+            links:
+              - php # links let service php can communicate with nginx
+            volumes:
+              - ./nginx:/etc/nginx/conf.d  # map nginx server to container server configuration
+              - ./logs/nginx-error.log:/var/log/nginx/error.log  # map nginx error to local file
+              - ./logs/nginx-access.log:/var/log/nginx/access.log # map nginx access log to local file
+              - ./www:/var/www/html
+          php:
+            container_name: docker-php
+            image: php:7.1-fpm
+            build:
+              context: ./php ## folder contains dockerfile definations
+              dockerfile: Dockerfile ## dockerfile define php
+            ports:
+              - &quot;9000:9000&quot;
+            links:
+              - mysql
+            volumes:                # map www foler to php server /var/www/html. note: because docker php
+              - ./www:/var/www/html # make this folder as root folder, so this can't be changed
+              - ./php/custom-php.ini:/usr/local/etc/php/custom-php.ini # use this map to change php.ini configuration
+          mysql:
+            container_name: docker-mysql
+            image: mysql:5.7
+            ports:
+              - &quot;3306:3306&quot;
+            environment:
+              MYSQL_DATABASE: 'databasename'
+              MYSQL_ROOT_PASSWORD: 'password'
+            command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+        ```
+     - ##### Dockfile defination
+        ```
+        FROM php:7.1-fpm
+        RUN apt-get update &lt;span class=&quot;err&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt-get install -y \
+                libfreetype6-dev \
+                libjpeg62-turbo-dev \
+                libmcrypt-dev \
+                libpng12-dev \
+            &lt;span class=&quot;err&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; docker-php-ext-install -j$(nproc) iconv mcrypt \
+            &lt;span class=&quot;err&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+            &lt;span class=&quot;err&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; docker-php-ext-install -j$(nproc) gd \
+            &lt;span class=&quot;err&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; docker-php-ext-install pdo pdo_mysql
+        ```
+        &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    By default, docker image php don't have 'pdo, pdo_mysql', so we define this dockfile
+    install them by using `docker-php-ext-install pdo pdo_mysql`
+    
+- ##### Test Installation
+  
+  After Create folder and finish docker-compose config,
+  Just Run `docker-compose up -d`
+  Then `docker-compose ps`
+  
+  get service status like this:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;h4 id=&quot;set-up-laravel&quot;&gt;Set up laravel&lt;/h4&gt;
+
+    &lt;p&gt;Set up Laravel don’t need much extro operations. just run command 
+ &lt;code class=&quot;highlighter-rouge&quot;&gt;laravel new laravel-example-site&lt;/code&gt; under foler ‘www’&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;Notice: composer and npm commands can just run from host machine, only if they are avaliable&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name></name></author><category term="docker" /><summary type="html">Docker A LEMP With Laravel In Ubuntu</summary></entry><entry><title type="html">Python Decorator</title><link href="/python/2014/11/24/python_decorator.html" rel="alternate" type="text/html" title="Python Decorator" /><published>2014-11-24T00:00:00+08:00</published><updated>2014-11-24T00:00:00+08:00</updated><id>/python/2014/11/24/python_decorator</id><content type="html" xml:base="/python/2014/11/24/python_decorator.html">&lt;p&gt;python decorator 大概是每个pythoner比看到内容吧.顾名思义：“装饰器”，绝对是把什么什么东西通过另外的东西修饰了一番。&lt;/p&gt;
 
 &lt;p&gt;####先来看下最基本的显而易见的例子吧：&lt;/p&gt;
 
@@ -1296,67 +1465,4 @@ ssh amazon
 
 &lt;p&gt;以上就是全部拉！我相信你们很多人已经有过这些经验了。但是如果是第一次做的话上面的内容还是很有用处的。不是所有人都会对服务器有很深的掌握。这篇文章的目的仅仅是带你入门，所有我鼓励你们去学习更多，不要仅仅局限于这篇文章，并且要乐于学习哦！&lt;/p&gt;
 
-&lt;p&gt;原文链接：http://scotch.io/tutorials/how-to-setup-ssh-public-key-authentication&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">其实这个问题已经用过好几次了，但是基本上都是用的 时候再去查的，没有一个整体的概念，今天看到篇文章就翻译下来，顺带好好整理下思路：</summary></entry><entry><title type="html">PHP OAuth 2.0 认证流程..</title><link href="/php/2014/03/11/PHP-OAuth2.0(douban).html" rel="alternate" type="text/html" title="PHP OAuth 2.0 认证流程.." /><published>2014-03-11T00:00:00+08:00</published><updated>2014-03-11T00:00:00+08:00</updated><id>/php/2014/03/11/PHP-OAuth2.0(douban)</id><content type="html" xml:base="/php/2014/03/11/PHP-OAuth2.0(douban).html">&lt;p&gt;####oAuth2.0 授权认证&lt;/p&gt;
-
-&lt;p&gt;首先官方文档的一个流程如下图(1.0)：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; +--------+                               +---------------+
- |        |--(A)- Authorization Request -&amp;gt;|   Resource    |
- |        |                               |     Owner     |
- |        |&amp;lt;-(B)-- Authorization Grant ---|               |
- |        |                               +---------------+
- |        |
- |        |                               +---------------+
- |        |--(C)-- Authorization Grant --&amp;gt;| Authorization |
- | Client |                               |     Server    |
- |        |&amp;lt;-(D)----- Access Token -------|               |
- |        |                               +---------------+
- |        |
- |        |                               +---------------+
- |        |--(E)----- Access Token ------&amp;gt;|    Resource   |
- |        |                               |     Server    |
- |        |&amp;lt;-(F)--- Protected Resource ---|               |
- +--------+                               +---------------+
-                    图1.0 我以&amp;lt;a href=&quot;http://developers.douban.com/wiki/?title=connect&quot; target=&quot;_blank&quot;&amp;gt;豆瓣登陆&amp;lt;/a&amp;gt;来说明上面流程,第三方登陆都是基本都是这么个流程：
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;(A)-&amp;gt;(B)流程是获取授权链接，其实就是我们点击&lt;b&gt;豆瓣登陆&lt;/b&gt;按钮然后弹出一个登陆的窗口.这一步作为开发人员如果有做过豆瓣登陆的可以从豆瓣开发者里创建应用获取api key 和secret key,Api Key 是用来获取授权链接的，Secret Key是(C)-&amp;gt;(D)中来获取Access Token的，豆瓣通过GET获取授权链接如下:&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://www.douban.com/service/auth2/auth?
-client_id=0b5405e19c58e4cc21fc11a4d50aae64&amp;amp;
-redirect_uri=https://www.example.com/back&amp;amp;
-response_type=code&amp;amp;
-scope=shuo_basic_r,shuo_basic_w,douban_basic_common
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;获取到授权链接后，就可以直接使用window.open(url)来弹出登陆窗口了&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;(C)-&amp;gt;(D)流程是用来获取访问TOKEN的，得到这个Token后才能去访问用户的资源。在第一步中授权链接有注意到有三个参数，其中第一，二个是非常重要的，redirect url 是我自己网站的一个地址，当我们用账号第一次登陆后，资源方会问我们要不要给予第三方(也就是我们开发者的网站)授权，选择是之后，豆瓣就会根据response_type(上面是code)授权我们scope的权限，其实豆瓣会做一个get请求来调用我网站的redirect url,我们开发者就来获得了这个token（POST 方式）。&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;     https://www.douban.com/service/auth2/token?
-    client_id=0b5405e19c58e4cc21fc11a4d50aae64&amp;amp;
-    client_secret=edfc4e395ef93375&amp;amp;
-    redirect_uri=https://www.example.com/back&amp;amp;
-    grant_type=authorization_code&amp;amp;
-    code=9b73a4248
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;(E)-&amp;gt;(F)流程就是来访问用户数据的了，通过第二步我们在redirect_url 页面上获得了access Token,接下来我们通过这个token 再去请求豆瓣服务资源，同样有一个开放接口，获取的用户信息后就可以do what you want了&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &quot;https://api.douban.com/v2/user/~me&quot;
- -H &quot;Authorization: Bearer a14afef0f66fcffce3e0fcd2e34f6ff4&quot;
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;以上就是OAuth 2.0 客户的一个流程，及客户端的一些基本操作&lt;/p&gt;</content><author><name></name></author><category term="php" /><summary type="html">####oAuth2.0 授权认证</summary></entry></feed>
+&lt;p&gt;原文链接：http://scotch.io/tutorials/how-to-setup-ssh-public-key-authentication&lt;/p&gt;</content><author><name></name></author><category term="linux" /><summary type="html">其实这个问题已经用过好几次了，但是基本上都是用的 时候再去查的，没有一个整体的概念，今天看到篇文章就翻译下来，顺带好好整理下思路：</summary></entry></feed>

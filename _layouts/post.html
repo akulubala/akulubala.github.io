@@ -1,7 +1,7 @@
 	{% include header.html %}
 	<div class="container">
 		{% include search_result.html %}
-	    <div id="content">
+	    <div id="content" class="markdown-body">
            <h5 id="page_title">{{page.title}}</h5>
            <p class="date">{{page.date | date: "%b %d, %Y" }}</p>
 			{{ content }}
