@@ -3,8 +3,7 @@ title: Python Decorator
 layout: post
 category : python
 ---
-我测试 部署
-这个python decorator 大概是每个pythoner比看到内容吧.对于我这个从PHP 过来的人第一次看，确实也有那么些新鲜难懂。顾名思义：“装饰器”，绝对是把什么什么东西通过另外的东西修饰了一番。
+python decorator 大概是每个pythoner比看到内容吧.对于我这个从PHP 过来的人第一次看，确实也有那么些新鲜难懂。顾名思义：“装饰器”，绝对是把什么什么东西通过另外的东西修饰了一番。
 
 ####先来看下最基本的显而易见的例子吧：
 
