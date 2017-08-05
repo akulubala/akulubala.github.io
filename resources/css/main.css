@@ -149,6 +149,10 @@ a {
 #search-result .search-key {
 	margin: 0px 10px;
 }
+.markdown-body img {
+	max-width: 80%;
+    max-height: 400px;
+}
 /**
  * content start
  */

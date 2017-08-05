@@ -8,6 +8,10 @@ When developing a website.Crop image with specific height and width is an common
 Today, I'm gonna show you a vue package for crop image and get base64 datas.
 
 
+## Preview
+
+![crop preview](https://github.com/akulubala/vue-image-upload-croppie/raw/master/preview.png "Preview")
+
 
 This package [Image Croppie](https://github.com/akulubala/vue-image-upload-croppie) is not aim to upload image. It's only get cropped base64 datas of image, after get the datas of an image we can do whatever with the datas.
 
