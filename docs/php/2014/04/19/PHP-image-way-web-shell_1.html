@@ -327,8 +327,18 @@ var idcomments_post_url = "/php/2014/04/19/PHP-image-way-web-shell_1.html";
 <script type="text/javascript">
 	window.store = {
 	    
-	      "docker-2017-07-20-docker-a-lemp-environment-with-ubuntu-html": {
+	      "vuejs-2017-08-05-a-vue-componet-for-cropping-image-html": {
 	      	"imgSrc": "/assets/images/upsplash/image_1.jpeg",
+	        "title": "A Nicely Vue Component For Cropping Image",
+	        "author": "",
+	        "category": "Vuejs",
+	        "content": "When developing a website.Crop image with specific height and width is an common requirement.Today, I'm gonna show you a vue package for crop image and get base64 datas.This package [Image Croppie](https://github.com/akulubala/vue-image-upload-croppie) is not aim to upload image. It's only get cropped base64 datas of image, after get the datas of an image we can do whatever with the datas.Follow the Steps with Readme from github.## Install {% highlight php %}``` npm i vue-image-upload-croppie --save ```{% endhighlight %}## Import{% highlight php %}`import VueImageUploadCroppi from 'vue-image-upload-croppie'` {% endhighlight %}## Usage Example{% highlight php %}```            ```{% endhighlight %}> in function watch. after cropped the image the value will auto updated.> we can put the value somewhere else. for example, if this component is imported> from a form. then set datas to form input. After the form posted to server> save cropped image to server disk## Server code example (laravel):{% highlight php %}```$avatar = $request->get('avatar');if ($avatar) {    $image = Image::make($avatar);    $mime = $image->mime();    $extension = explode('/', $mime)[1];    $path = \"user_avatar/\".$userId ;    if (!is_writable(storage_path('public/'.$path))) {        Storage::makeDirectory('public/'.$path, true);    }    $name = \"avatar_picture_user_\".substr(time(), 5) . \".\" . $extension;    $image->save(storage_path('app/public/'.$path. \"/\" .$name));    $inputs['photo_url'] = $path. \"/\" .$name;}```{% endhighlight %}> props: height, width, circle, trans all optional> default value of them are {% highlight php %}```props: {  'height': {      type: Number,      default: 200  },  'circle': { // crop circle or square image      type: Boolean,      default: false  },  'width': {      type: Number,      default: 200  },  'trans': { // button text translation      type: Object,      default: function() {        return  {           'cropImage': 'Crop Image',           'chooseImage':'Choose Image',           'confirmCutting': 'Confirm Cutting'        }      }  }}```{% endhighlight %}These props can be changed with you needed.Happy cropping!",
+	        "url": "/vuejs/2017/08/05/a-vue-componet-for-cropping-image.html"
+	      }
+	      ,
+	    
+	      "docker-2017-07-20-docker-a-lemp-environment-with-ubuntu-html": {
+	      	"imgSrc": "/assets/images/upsplash/image_2.jpeg",
 	        "title": "Docker A LEMP With Laravel In Ubuntu",
 	        "author": "",
 	        "category": "docker",
@@ -338,7 +348,7 @@ var idcomments_post_url = "/php/2014/04/19/PHP-image-way-web-shell_1.html";
 	      ,
 	    
 	      "python-2014-11-24-python-decorator-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_2.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_3.jpeg",
 	        "title": "Python Decorator",
 	        "author": "",
 	        "category": "python",
@@ -348,7 +358,7 @@ var idcomments_post_url = "/php/2014/04/19/PHP-image-way-web-shell_1.html";
 	      ,
 	    
 	      "php-2014-07-07-decade-user-id-strategy-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_3.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_4.jpeg",
 	        "title": "十位用户唯一ID生成策略",
 	        "author": "",
 	        "category": "php",
@@ -358,7 +368,7 @@ var idcomments_post_url = "/php/2014/04/19/PHP-image-way-web-shell_1.html";
 	      ,
 	    
 	      "system-2014-06-27-ubunto-deploy-jekyll-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_4.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_5.jpeg",
 	        "title": "Ubunto Deploy Jekyll",
 	        "author": "",
 	        "category": "system",
@@ -368,7 +378,7 @@ var idcomments_post_url = "/php/2014/04/19/PHP-image-way-web-shell_1.html";
 	      ,
 	    
 	      "mysql-2014-05-12-mysql-procedure-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_5.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_6.jpeg",
 	        "title": "Mysql 存储过程举例",
 	        "author": "",
 	        "category": "mysql",
@@ -378,7 +388,7 @@ var idcomments_post_url = "/php/2014/04/19/PHP-image-way-web-shell_1.html";
 	      ,
 	    
 	      "php-2014-05-06-click-image-upload-php-mongodb-extension-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_6.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_7.jpeg",
 	        "title": "php 添加mogodb扩展+PHP点击图片上传并实现预览效果",
 	        "author": "",
 	        "category": "php",
@@ -388,7 +398,7 @@ var idcomments_post_url = "/php/2014/04/19/PHP-image-way-web-shell_1.html";
 	      ,
 	    
 	      "mongodb-2014-04-22-mongodb-install-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_7.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_8.jpeg",
 	        "title": "Mongodb 安装过程",
 	        "author": "",
 	        "category": "mongodb",
@@ -398,7 +408,7 @@ var idcomments_post_url = "/php/2014/04/19/PHP-image-way-web-shell_1.html";
 	      ,
 	    
 	      "php-2014-04-21-laravel-details-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_8.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_9.jpeg",
 	        "title": "Laravel 框架开发配置概述",
 	        "author": "",
 	        "category": "php",
@@ -408,7 +418,7 @@ var idcomments_post_url = "/php/2014/04/19/PHP-image-way-web-shell_1.html";
 	      ,
 	    
 	      "php-2014-04-19-php-image-way-web-shell-1-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_9.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_10.jpeg",
 	        "title": "PHP上传shell注入(一)",
 	        "author": "",
 	        "category": "php",
@@ -418,7 +428,7 @@ var idcomments_post_url = "/php/2014/04/19/PHP-image-way-web-shell_1.html";
 	      ,
 	    
 	      "linux-2014-04-11-how-to-set-up-ssh-publick-key-authentication-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_10.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_11.jpeg",
 	        "title": "如何设置SSH的公钥授权",
 	        "author": "",
 	        "category": "linux",
@@ -428,7 +438,7 @@ var idcomments_post_url = "/php/2014/04/19/PHP-image-way-web-shell_1.html";
 	      ,
 	    
 	      "php-2014-03-11-php-oauth2-0-douban-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_11.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_12.jpeg",
 	        "title": "PHP OAuth 2.0 认证流程..",
 	        "author": "",
 	        "category": "php",
@@ -438,7 +448,7 @@ var idcomments_post_url = "/php/2014/04/19/PHP-image-way-web-shell_1.html";
 	      ,
 	    
 	      "php-2014-03-04-php-upload-progress-bar-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_12.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_13.jpeg",
 	        "title": "PHP 上传进度条..",
 	        "author": "",
 	        "category": "php",
@@ -448,7 +458,7 @@ var idcomments_post_url = "/php/2014/04/19/PHP-image-way-web-shell_1.html";
 	      ,
 	    
 	      "php-2014-01-21-php-string-len-count-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_13.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_14.jpeg",
 	        "title": "PHP 获取字符串长度，字节数...",
 	        "author": "",
 	        "category": "php",
@@ -458,7 +468,7 @@ var idcomments_post_url = "/php/2014/04/19/PHP-image-way-web-shell_1.html";
 	      ,
 	    
 	      "zf2-2013-12-27-zend-framework2-intergrate-mustache-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_14.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_15.jpeg",
 	        "title": "Zend Framework 2 集成mustache",
 	        "author": "",
 	        "category": "zf2",
@@ -468,7 +478,7 @@ var idcomments_post_url = "/php/2014/04/19/PHP-image-way-web-shell_1.html";
 	      ,
 	    
 	      "zf2-2013-12-20-zf2-install-firephp-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_15.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_16.jpeg",
 	        "title": "Zend Framework 2 安装使用Firephp",
 	        "author": "",
 	        "category": "zf2",
@@ -478,7 +488,7 @@ var idcomments_post_url = "/php/2014/04/19/PHP-image-way-web-shell_1.html";
 	      ,
 	    
 	      "system-2013-12-08-install-lnmp-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_16.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_17.jpeg",
 	        "title": "LNMP 编译安装",
 	        "author": "",
 	        "category": "system",
