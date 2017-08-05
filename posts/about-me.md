@@ -1,5 +1,5 @@
 ---
-layout : home
+layout : about
 title : About Me
 ---
 ##### I'm a full stack web developer, have been working on various web stacks for 6+ years.Passionate with programs, always eager to solve problems.

@@ -81,6 +81,35 @@ a {
 #header .col {
 	padding: inherit;
 }
+.profile .header, .skills .header {
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+}
+.profile .avatar {
+	padding: 0 5% !important;
+}
+.profile p {
+	font-size: 20px;
+}
+.profile .avatar img {
+	width: 100%;
+}
+.experience {
+	padding: 30px 0;
+}
+.experience .header {
+	border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 30px;
+}
+.ability-title {
+	font-size: 18px;
+	display: inline-block;
+	width: 60%;
+}
+.ability-score {
+	display: inline-block;
+}
 /**
  * header part finish
  */
@@ -183,34 +212,8 @@ a {
  * slide out
  */
 .profile img {
-	border-radius: 10px !important;
-}
-.profile .col {
-	padding-left: 22.5px;
-	padding-right: 22.5px;
-}
-.profile .card-image {
-	padding-right: 80px;
-}
-.profile .card {
-	box-shadow: none;
-} 
-.profile .card-content {
-	padding: 24px 0px;
-    line-height: 24px;
-    font-size: 16px;
-}
-.profile .divider-dash {
-	margin-top:48px;
-}
-.profile h5 {
-	font-weight: bold;
-}
-.profile:last-child .collection {
-	border:none;
-}
-.profile:last-child .collection li {
-	border-bottom: 1px dotted #ECECEC
+	border-radius: 100%;
+	border:10px solid #F3EFE0;
 }
 
 figure {

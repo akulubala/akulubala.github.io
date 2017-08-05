@@ -8,32 +8,26 @@ webpackJsonp([1],[
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery, __webpack_provided_window_dot_$) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__search__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__prism__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__prism___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__prism__);
+/* WEBPACK VAR INJECTION */(function($, __webpack_provided_window_dot_jQuery, __webpack_provided_window_dot_$, _) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__search__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__prism__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__prism___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__prism__);
 
 
 
+__webpack_provided_window_dot_$ = __webpack_provided_window_dot_jQuery = $;
+window._ = _;
 
-
-__webpack_provided_window_dot_$ = __webpack_provided_window_dot_jQuery = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
-window._ = __WEBPACK_IMPORTED_MODULE_1_lodash___default.a;
-
-__WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
+$(document).ready(function () {
 	// $('ul.tabs').tabs();
 
-	__WEBPACK_IMPORTED_MODULE_0_jquery___default()('.button-collapse').sideNav({
+	$('.button-collapse').sideNav({
 		menuWidth: 300, // Default is 300
 		edge: 'right', // Choose the horizontal origin
 		closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
 		draggable: true // Choose whether you can drag to open on touch screens
 	});
 
-	__WEBPACK_IMPORTED_MODULE_0_jquery___default()('.dropdown-button').dropdown({
+	$('.dropdown-button').dropdown({
 		inDuration: 300,
 		outDuration: 225,
 		constrainWidth: false, // Does not change width of dropdown to that of the activator
@@ -43,8 +37,14 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
 		alignment: 'left', // Displays dropdown with edge aligned to the left of button
 		stopPropagation: true // Stops event propagation
 	});
+	$('#fullpage').fullpage({
+		sectionsColor: ['white', '#fff8e1', 'white', '#1BBC9B'],
+		scrollOverflow: true,
+		fitToSection: false,
+		slideSelector: '.slide-section'
+	});
 });
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0), __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0), __webpack_require__(0), __webpack_require__(0), __webpack_require__(2)))
 
 /***/ }),
 /* 5 */
@@ -229,14 +229,14 @@ Prism.languages.yaml = { scalar: { pattern: /([\-:]\s*(![^\s]+)?[ \t]*[|>])[ \t]
     }), window.addEventListener && window.addEventListener("hashchange", i);
   }
 }();
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lunr__ = __webpack_require__(2);
+/* WEBPACK VAR INJECTION */(function($, _) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lunr__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lunr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lunr__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(11);
 
@@ -308,7 +308,7 @@ $('#search').keyup(function () {
     $('.pagination').removeClass('hide');
   }
 });
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0), __webpack_require__(2)))
 
 /***/ }),
 /* 11 */
@@ -403,7 +403,9 @@ let template = `
 /* 12 */,
 /* 13 */,
 /* 14 */,
-/* 15 */
+/* 15 */,
+/* 16 */,
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(4);
@@ -412,4 +414,4 @@ module.exports = __webpack_require__(6);
 
 
 /***/ })
-],[15]);
+],[17]);

@@ -1,5 +1,3 @@
-import $ from 'jquery';
-import _ from 'lodash';
 import './search';
 import './prism';
 
@@ -28,6 +26,12 @@ $(document).ready(function() {
 			stopPropagation: true // Stops event propagation
 		}
 	);
+	$('#fullpage').fullpage({
+		sectionsColor: ['white', '#fff8e1', 'white', '#1BBC9B'],
+		scrollOverflow: true,
+		fitToSection: false,
+		slideSelector: '.slide-section'
+	});
 });
 
        

@@ -4,6 +4,8 @@ let glob = require('glob-all');
 let ExtractTextPlugin = require("extract-text-webpack-plugin");
 let PurifyCSSPlugin = require('purifycss-webpack');
 let CleanWebpackPlugin = require('clean-webpack-plugin');
+let CopyWebpackPlugin = require('copy-webpack-plugin');
+
 
 let inProduction = (process.env.NODE_ENV === 'production');
 
@@ -55,7 +57,17 @@ module.exports = {
 				options: {
 					name: 'images/[name].[hash].[ext]'
 				}
-			}
+			},
+			{
+		          test: require.resolve('jquery'),
+		          use: [{
+		              loader: 'expose-loader',
+		              options: 'jQuery'
+		          },{
+		              loader: 'expose-loader',
+		              options: '$'
+		          }]
+		      }
 		]
 	},
 	plugins: [
@@ -72,7 +84,8 @@ module.exports = {
 		  $: 'jquery',
 		  jQuery: "jquery",
 		  'window.$': 'jquery',
-		  'window.jQuery': 'jquery'
+		  'window.jQuery': 'jquery',
+		  _: 'lodash'
 		}),
 		new webpack.optimize.CommonsChunkPlugin({
                 names: ['vendor', 'manifest'] // 指定公共 bundle 的名字。
@@ -87,6 +100,9 @@ module.exports = {
 			    whitelist: ['*sidenav*', '*sweet*', '*rrssb*'] // css or id should not be purify
 			}
 	    }),
+	    new CopyWebpackPlugin([
+            { from: './node_modules/fullpage.js', to: 'fullpagejs' },
+        ]),
 	    function() {
 	    	this.plugin('done', stats => {
 				require('fs').writeFileSync(
