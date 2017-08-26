@@ -1,5 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2017-08-15T19:22:24+08:00</updated><id>/</id><title type="html">Your awesome title</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">A Nicely Vue Component For Cropping Image</title><link href="/vuejs/2017/08/05/a-vue-componet-for-cropping-image.html" rel="alternate" type="text/html" title="A Nicely Vue Component For Cropping Image" /><published>2017-08-05T00:00:00+08:00</published><updated>2017-08-05T00:00:00+08:00</updated><id>/vuejs/2017/08/05/a-vue-componet-for-cropping-image</id><content type="html" xml:base="/vuejs/2017/08/05/a-vue-componet-for-cropping-image.html">&lt;p&gt;When developing a website.Crop image with specific height and width is an common requirement.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-08-26T11:08:42+08:00</updated><id>http://localhost:4000/</id><title type="html">Your awesome title</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">Laravel Export Html To PDF</title><link href="http://localhost:4000/php/2017/08/26/Laravel-export-html-to-pdf.html" rel="alternate" type="text/html" title="Laravel Export Html To PDF" /><published>2017-08-26T00:00:00+08:00</published><updated>2017-08-26T00:00:00+08:00</updated><id>http://localhost:4000/php/2017/08/26/Laravel-export-html-to-pdf</id><content type="html" xml:base="http://localhost:4000/php/2017/08/26/Laravel-export-html-to-pdf.html">&lt;h3 id=&quot;export-datas-to-pdf&quot;&gt;Export Datas To PDF&lt;/h3&gt;
+
+&lt;p&gt;There have a package &lt;a href=&quot;https://github.com/wkhtmltopdf/wkhtmltopdf&quot;&gt;wkhtmltopdf&lt;/a&gt; using webkit(QTwebkit) convert html to pdf or image from commandline.&lt;/p&gt;
+
+&lt;p&gt;For Laravel: &lt;a href=&quot;https://github.com/barryvdh/laravel-snappy&quot;&gt;laravel-snappy&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Installation is same as all other laravel package (can check git repository docs).&lt;/p&gt;
+
+&lt;p&gt;After installation, We need config the file &lt;code class=&quot;highlighter-rouge&quot;&gt;config/snappy.php&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;My configuration:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;    return array(
+
+
+        'pdf' =&amp;gt; array(
+            'enabled' =&amp;gt; true,
+            'binary'  =&amp;gt; env('WKHTMLTOPDF', storage_path('bin/wkhtmltox/bin/wkhtmltopdf')),
+            'timeout' =&amp;gt; false,
+            'options' =&amp;gt; array(),
+            'env'     =&amp;gt; array(),
+        ),
+        'image' =&amp;gt; array(
+            'enabled' =&amp;gt; true,
+            'binary'  =&amp;gt; env('WKHTMLTOIMAGE',storage_path('bin/wkhtmltox/bin/wkhtmltoimage')),
+            'timeout' =&amp;gt; false,
+            'options' =&amp;gt; array(),
+            'env'     =&amp;gt; array(),
+        ),
+
+      );&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The parameter ‘binary’ is the excutable file which download from  https://wkhtmltopdf.org/downloads.html&lt;/p&gt;
+
+&lt;p&gt;There have three version of linux,mac,windows. for mac os it’s an installation package， we need install it to mac os.After the bin path is &lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local/bin/wkhtmltopdf&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Finally, the laravel code&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;    $pdf = \PDF::loadView('admin.pdf.document', compact('results'));
+    return $pdf-&amp;gt;download(&quot;pdf-&quot;.auth()-&amp;gt;user()-&amp;gt;name.&quot;.pdf&quot;);
+    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Load view file load the laravel view file, and can pass data to the view.
+view file is a html file, we can add &lt;em&gt;any style to the file&lt;/em&gt;, pdf view export as html file.&lt;/p&gt;
+
+&lt;p&gt;Notice PDF won’t have much width. so if the cotent is to large. We need use small font-size, otherwise
+page will not fully show in PDF&lt;/p&gt;</content><author><name></name></author><category term="php" /><summary type="html">Export Datas To PDF</summary></entry><entry><title type="html">A Nicely Vue Component For Cropping Image</title><link href="http://localhost:4000/vuejs/2017/08/05/a-vue-componet-for-cropping-image.html" rel="alternate" type="text/html" title="A Nicely Vue Component For Cropping Image" /><published>2017-08-05T00:00:00+08:00</published><updated>2017-08-05T00:00:00+08:00</updated><id>http://localhost:4000/vuejs/2017/08/05/a-vue-componet-for-cropping-image</id><content type="html" xml:base="http://localhost:4000/vuejs/2017/08/05/a-vue-componet-for-cropping-image.html">&lt;p&gt;When developing a website.Crop image with specific height and width is an common requirement.
 Today, I’m gonna show you a vue package for crop image and get base64 datas.&lt;/p&gt;
 
 &lt;h2 id=&quot;preview&quot;&gt;Preview&lt;/h2&gt;
@@ -114,7 +160,7 @@ props: {
 ```&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;These props can be changed with you needed.
-Happy cropping!&lt;/p&gt;</content><author><name></name></author><category term="Vuejs" /><summary type="html">When developing a website.Crop image with specific height and width is an common requirement. Today, I’m gonna show you a vue package for crop image and get base64 datas.</summary></entry><entry><title type="html">Docker A LEMP With Laravel In Ubuntu</title><link href="/docker/2017/07/20/docker-a-lemp-environment-with-ubuntu.html" rel="alternate" type="text/html" title="Docker A LEMP With Laravel In Ubuntu" /><published>2017-07-20T00:00:00+08:00</published><updated>2017-07-20T00:00:00+08:00</updated><id>/docker/2017/07/20/docker-a-lemp-environment-with-ubuntu</id><content type="html" xml:base="/docker/2017/07/20/docker-a-lemp-environment-with-ubuntu.html">&lt;h3 id=&quot;docker-a-lemp-with-laravel-in-ubuntu&quot;&gt;Docker A LEMP With Laravel In Ubuntu&lt;/h3&gt;
+Happy cropping!&lt;/p&gt;</content><author><name></name></author><category term="Vuejs" /><summary type="html">When developing a website.Crop image with specific height and width is an common requirement. Today, I’m gonna show you a vue package for crop image and get base64 datas.</summary></entry><entry><title type="html">Docker A LEMP With Laravel In Ubuntu</title><link href="http://localhost:4000/docker/2017/07/20/docker-a-lemp-environment-with-ubuntu.html" rel="alternate" type="text/html" title="Docker A LEMP With Laravel In Ubuntu" /><published>2017-07-20T00:00:00+08:00</published><updated>2017-07-20T00:00:00+08:00</updated><id>http://localhost:4000/docker/2017/07/20/docker-a-lemp-environment-with-ubuntu</id><content type="html" xml:base="http://localhost:4000/docker/2017/07/20/docker-a-lemp-environment-with-ubuntu.html">&lt;h3 id=&quot;docker-a-lemp-with-laravel-in-ubuntu&quot;&gt;Docker A LEMP With Laravel In Ubuntu&lt;/h3&gt;
 
 &lt;hr /&gt;
 
@@ -283,7 +329,7 @@ Happy cropping!&lt;/p&gt;</content><author><name></name></author><category term=
 
     &lt;p&gt;&lt;strong&gt;Notice: composer and npm commands can just run from host machine, only if they are avaliable&lt;/strong&gt;&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ol&gt;</content><author><name></name></author><category term="docker" /><summary type="html">Docker A LEMP With Laravel In Ubuntu</summary></entry><entry><title type="html">Python Decorator</title><link href="/python/2014/11/24/python_decorator.html" rel="alternate" type="text/html" title="Python Decorator" /><published>2014-11-24T00:00:00+08:00</published><updated>2014-11-24T00:00:00+08:00</updated><id>/python/2014/11/24/python_decorator</id><content type="html" xml:base="/python/2014/11/24/python_decorator.html">&lt;p&gt;python decorator 大概是每个pythoner比看到内容吧.顾名思义：“装饰器”，绝对是把什么什么东西通过另外的东西修饰了一番。&lt;/p&gt;
+&lt;/ol&gt;</content><author><name></name></author><category term="docker" /><summary type="html">Docker A LEMP With Laravel In Ubuntu</summary></entry><entry><title type="html">Python Decorator</title><link href="http://localhost:4000/python/2014/11/24/python_decorator.html" rel="alternate" type="text/html" title="Python Decorator" /><published>2014-11-24T00:00:00+08:00</published><updated>2014-11-24T00:00:00+08:00</updated><id>http://localhost:4000/python/2014/11/24/python_decorator</id><content type="html" xml:base="http://localhost:4000/python/2014/11/24/python_decorator.html">&lt;p&gt;python decorator 大概是每个pythoner比看到内容吧.顾名思义：“装饰器”，绝对是把什么什么东西通过另外的东西修饰了一番。&lt;/p&gt;
 
 &lt;p&gt;####先来看下最基本的显而易见的例子吧：&lt;/p&gt;
 
@@ -439,7 +485,7 @@ inside class &lt;strong&gt;call&lt;/strong&gt;()&lt;/p&gt;
 &lt;p&gt;1）上面这个示例中，用类的实例来做decorator。&lt;br /&gt;
 2）decorator类中没有__call__()，但是wrapper返回了原函数。所以，原函数没有发生任何变化。&lt;/p&gt;
 
-&lt;p&gt;更多例子：https://wiki.python.org/moin/PythonDecoratorLibrary&lt;/p&gt;</content><author><name></name></author><category term="python" /><summary type="html">python decorator 大概是每个pythoner比看到内容吧.顾名思义：“装饰器”，绝对是把什么什么东西通过另外的东西修饰了一番。 ####先来看下最基本的显而易见的例子吧： def log(func): def wrapper(*args, **kw): print 'call %s():' % func.__name__ func(*args, **kw)--- return wrapper @log def now(): print '2013-12-25' now() @log就是所谓的语法糖，从上例最终的表现形式就是：将now()函数传给了方法log..最终调用是 调用了内部函数wrapper.. 接下来一步步刨析： log函数内部有个wrapper函数，这样就形成了一个闭包wrapper,这个函数对于其他部分是一个独立的模块，但其可以使用log的参数也就是传进来的方法func,func在log内部是相当于warpper是全局变量（log 内部的作用域）经过wrapper的处理后,now函数就不再是单单输出“2013-12-25”了。所以也验证了前面所说的经过某某修饰成为了另外的某某某。相当于now = log(now()) 如果前面的例子打印now.__name__,结果为：wrapper 而不是now 为了解决这个问题，需要如下操作： from functools import wraps def log(func): @wraps(func) def wrapper(*args, **kw): print 'call %s():' % func.__name__ func(*args, **kw)--- return wrapper 如果now 函数需要传参数的话需要反射来处理，具体可看http://coolshell.cn/articles/11265.html ####以上是一个最基本的decorator 应用，接下来说明在使用decorator时传参 from functools import wraps def log(args1,args2): def real_decorator(func): @wraps(func) def wrapper(*args, **kw): print 'call %s():' % func.__name__ func(args1, args1,args) return wrapper return real_decorator @log(&quot;log pass paramter1 to log&quot;,&quot;log pass paramter2 to log&quot;) def now(*args): print args print '2013-12-25' now(&quot;now pass parameter to wrapper&quot;) print now.__name__ result : &amp;gt;call now(): &amp;gt;('log pass paramter1 to log', 'log pass paramter1 to log', ('now pass parameter to wrapper',)) &amp;gt;2013-12-25 &amp;gt;now 说明对于需要使用语法糖 传参的时候需要返回一个函数real_decorator，再在内部定义具体调用的函数wrapper这里相当于：log(&quot;log pass paramter1 to log&quot;,&quot;log pass paramter2 to log&quot;)((now()) ####使用多个decorator: from functools import wraps def log(args1,args2): def real_decorator(func): @wraps(func) def wrapper(*args, **kw): print 'call %s():' % func.__name__ func(args1, args1,args) return wrapper return real_decorator def another_log(func): def wrapper(pams): print &quot;another wrapper of %s():\n&quot; % func.__name__+pams return wrapper @another_log @log(&quot;log pass paramter1 to log&quot;,&quot;log pass paramter2 to log&quot;) def now(*args): print args print '2013-12-25' now(&quot;now pass parameter to wrapper&quot;) print now.__name__ results: &amp;gt;another wrapper of now(): &amp;gt;now pass parameter to wrapper &amp;gt;wrapper 说明：结果是 输出了 another_log 的内容，那么它是将log decrator 过后的方法再次 decorator，即如下形式：another_log(log(param1,param2)(now)),也就是两层包装 ####类式的 Decorator class TestDecorator(object): def __init__(self,func): self.decorator_fn = func def __call__(self): print self.decorator_fn.__name__ self.decorator_fn() print &quot;inside myDecorator.__call__()&quot; @TestDecorator def now(): print &quot;2014-01-01&quot; now() 基本的实例如上，在这个类中必须要有__call__方法，而所有关于修饰的内容都应当从__call__方法里面去定义 输出： now 2014-01-01 inside class call() 一个好的完整例子： class MyApp(): def __init__(self): self.func_map = {} def register(self, name): def func_wrapper(func): self.func_map[name] = func return func return func_wrapper def call_method(self, name=None): func = self.func_map.get(name, None) if func is None: raise Exception(&quot;No function registered against - &quot; + str(name)) return func() app = MyApp() @app.register('/') def main_page_func(): return &quot;This is the main page.&quot; @app.register('/next_page') def next_page_func(): return &quot;This is the next page.&quot; print app.call_method('/') print app.call_method('/next_page') 1）上面这个示例中，用类的实例来做decorator。 2）decorator类中没有__call__()，但是wrapper返回了原函数。所以，原函数没有发生任何变化。 更多例子：https://wiki.python.org/moin/PythonDecoratorLibrary</summary></entry><entry><title type="html">十位用户唯一ID生成策略</title><link href="/php/2014/07/07/decade-user_id-strategy.html" rel="alternate" type="text/html" title="十位用户唯一ID生成策略" /><published>2014-07-07T00:00:00+08:00</published><updated>2014-07-07T00:00:00+08:00</updated><id>/php/2014/07/07/decade-user_id-strategy</id><content type="html" xml:base="/php/2014/07/07/decade-user_id-strategy.html">&lt;p&gt;新浪微博和twitter 等系统都有一窜数字ID来标示一个唯一的用户,这篇文章就是记录如何实现这种唯一数字ID&lt;/p&gt;
+&lt;p&gt;更多例子：https://wiki.python.org/moin/PythonDecoratorLibrary&lt;/p&gt;</content><author><name></name></author><category term="python" /><summary type="html">python decorator 大概是每个pythoner比看到内容吧.顾名思义：“装饰器”，绝对是把什么什么东西通过另外的东西修饰了一番。 ####先来看下最基本的显而易见的例子吧： def log(func): def wrapper(*args, **kw): print 'call %s():' % func.__name__ func(*args, **kw)--- return wrapper @log def now(): print '2013-12-25' now() @log就是所谓的语法糖，从上例最终的表现形式就是：将now()函数传给了方法log..最终调用是 调用了内部函数wrapper.. 接下来一步步刨析： log函数内部有个wrapper函数，这样就形成了一个闭包wrapper,这个函数对于其他部分是一个独立的模块，但其可以使用log的参数也就是传进来的方法func,func在log内部是相当于warpper是全局变量（log 内部的作用域）经过wrapper的处理后,now函数就不再是单单输出“2013-12-25”了。所以也验证了前面所说的经过某某修饰成为了另外的某某某。相当于now = log(now()) 如果前面的例子打印now.__name__,结果为：wrapper 而不是now 为了解决这个问题，需要如下操作： from functools import wraps def log(func): @wraps(func) def wrapper(*args, **kw): print 'call %s():' % func.__name__ func(*args, **kw)--- return wrapper 如果now 函数需要传参数的话需要反射来处理，具体可看http://coolshell.cn/articles/11265.html ####以上是一个最基本的decorator 应用，接下来说明在使用decorator时传参 from functools import wraps def log(args1,args2): def real_decorator(func): @wraps(func) def wrapper(*args, **kw): print 'call %s():' % func.__name__ func(args1, args1,args) return wrapper return real_decorator @log(&quot;log pass paramter1 to log&quot;,&quot;log pass paramter2 to log&quot;) def now(*args): print args print '2013-12-25' now(&quot;now pass parameter to wrapper&quot;) print now.__name__ result : &amp;gt;call now(): &amp;gt;('log pass paramter1 to log', 'log pass paramter1 to log', ('now pass parameter to wrapper',)) &amp;gt;2013-12-25 &amp;gt;now 说明对于需要使用语法糖 传参的时候需要返回一个函数real_decorator，再在内部定义具体调用的函数wrapper这里相当于：log(&quot;log pass paramter1 to log&quot;,&quot;log pass paramter2 to log&quot;)((now()) ####使用多个decorator: from functools import wraps def log(args1,args2): def real_decorator(func): @wraps(func) def wrapper(*args, **kw): print 'call %s():' % func.__name__ func(args1, args1,args) return wrapper return real_decorator def another_log(func): def wrapper(pams): print &quot;another wrapper of %s():\n&quot; % func.__name__+pams return wrapper @another_log @log(&quot;log pass paramter1 to log&quot;,&quot;log pass paramter2 to log&quot;) def now(*args): print args print '2013-12-25' now(&quot;now pass parameter to wrapper&quot;) print now.__name__ results: &amp;gt;another wrapper of now(): &amp;gt;now pass parameter to wrapper &amp;gt;wrapper 说明：结果是 输出了 another_log 的内容，那么它是将log decrator 过后的方法再次 decorator，即如下形式：another_log(log(param1,param2)(now)),也就是两层包装 ####类式的 Decorator class TestDecorator(object): def __init__(self,func): self.decorator_fn = func def __call__(self): print self.decorator_fn.__name__ self.decorator_fn() print &quot;inside myDecorator.__call__()&quot; @TestDecorator def now(): print &quot;2014-01-01&quot; now() 基本的实例如上，在这个类中必须要有__call__方法，而所有关于修饰的内容都应当从__call__方法里面去定义 输出： now 2014-01-01 inside class call() 一个好的完整例子： class MyApp(): def __init__(self): self.func_map = {} def register(self, name): def func_wrapper(func): self.func_map[name] = func return func return func_wrapper def call_method(self, name=None): func = self.func_map.get(name, None) if func is None: raise Exception(&quot;No function registered against - &quot; + str(name)) return func() app = MyApp() @app.register('/') def main_page_func(): return &quot;This is the main page.&quot; @app.register('/next_page') def next_page_func(): return &quot;This is the next page.&quot; print app.call_method('/') print app.call_method('/next_page') 1）上面这个示例中，用类的实例来做decorator。 2）decorator类中没有__call__()，但是wrapper返回了原函数。所以，原函数没有发生任何变化。 更多例子：https://wiki.python.org/moin/PythonDecoratorLibrary</summary></entry><entry><title type="html">十位用户唯一ID生成策略</title><link href="http://localhost:4000/php/2014/07/07/decade-user_id-strategy.html" rel="alternate" type="text/html" title="十位用户唯一ID生成策略" /><published>2014-07-07T00:00:00+08:00</published><updated>2014-07-07T00:00:00+08:00</updated><id>http://localhost:4000/php/2014/07/07/decade-user_id-strategy</id><content type="html" xml:base="http://localhost:4000/php/2014/07/07/decade-user_id-strategy.html">&lt;p&gt;新浪微博和twitter 等系统都有一窜数字ID来标示一个唯一的用户,这篇文章就是记录如何实现这种唯一数字ID&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;原理：使用MYSQL 自增ID 拼接任意字符..然后使用进制转换打乱规则
@@ -508,7 +554,7 @@ inside class &lt;strong&gt;call&lt;/strong&gt;()&lt;/p&gt;
 
 &lt;p&gt;考虑到可能会有主从需求,id生成应该去取同一个数据表的数据，或者设置好自增id，如主服务器1357，从服务器2468&lt;/p&gt;
 
-&lt;p&gt;参考：&lt;a href=&quot;http://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/&quot;&gt;http://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="php" /><summary type="html">新浪微博和twitter 等系统都有一窜数字ID来标示一个唯一的用户,这篇文章就是记录如何实现这种唯一数字ID 原理：使用MYSQL 自增ID 拼接任意字符..然后使用进制转换打乱规则 一般来说实现唯一性可以使用uniqid 或者time之类的方式生成， 但是考虑到多台系统，也就是分布式系统。这种方式就不准确了。</summary></entry><entry><title type="html">Ubunto Deploy Jekyll</title><link href="/system/2014/06/27/Ubunto_Deploy_Jekyll.html" rel="alternate" type="text/html" title="Ubunto Deploy Jekyll" /><published>2014-06-27T00:00:00+08:00</published><updated>2014-06-27T00:00:00+08:00</updated><id>/system/2014/06/27/Ubunto_Deploy_Jekyll</id><content type="html" xml:base="/system/2014/06/27/Ubunto_Deploy_Jekyll.html">&lt;ol&gt;
+&lt;p&gt;参考：&lt;a href=&quot;http://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/&quot;&gt;http://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="php" /><summary type="html">新浪微博和twitter 等系统都有一窜数字ID来标示一个唯一的用户,这篇文章就是记录如何实现这种唯一数字ID 原理：使用MYSQL 自增ID 拼接任意字符..然后使用进制转换打乱规则 一般来说实现唯一性可以使用uniqid 或者time之类的方式生成， 但是考虑到多台系统，也就是分布式系统。这种方式就不准确了。</summary></entry><entry><title type="html">Ubunto Deploy Jekyll</title><link href="http://localhost:4000/system/2014/06/27/Ubunto_Deploy_Jekyll.html" rel="alternate" type="text/html" title="Ubunto Deploy Jekyll" /><published>2014-06-27T00:00:00+08:00</published><updated>2014-06-27T00:00:00+08:00</updated><id>http://localhost:4000/system/2014/06/27/Ubunto_Deploy_Jekyll</id><content type="html" xml:base="http://localhost:4000/system/2014/06/27/Ubunto_Deploy_Jekyll.html">&lt;ol&gt;
   &lt;li&gt;
     &lt;p&gt;Download and install ruby&lt;/p&gt;
 
@@ -617,7 +663,7 @@ sudo restart ssh
 login system or filezila login&lt;/p&gt;
 
   &lt;/li&gt;
-&lt;/ol&gt;</content><author><name></name></author><category term="system" /><summary type="html">Download and install ruby sudo mkdir Downloads curl -O http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz tar -zxvf ruby-2.1.2.tar.gz -C ../ cd .. sudo chown -R ray ruby-2.1.2 sudo chgrp -R ray ruby-2.1.2 cd ruby-2.1.2</summary></entry><entry><title type="html">Mysql 存储过程举例</title><link href="/mysql/2014/05/12/MYsql_procedure.html" rel="alternate" type="text/html" title="Mysql 存储过程举例" /><published>2014-05-12T00:00:00+08:00</published><updated>2014-05-12T00:00:00+08:00</updated><id>/mysql/2014/05/12/MYsql_procedure</id><content type="html" xml:base="/mysql/2014/05/12/MYsql_procedure.html">&lt;ol&gt;
+&lt;/ol&gt;</content><author><name></name></author><category term="system" /><summary type="html">Download and install ruby sudo mkdir Downloads curl -O http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz tar -zxvf ruby-2.1.2.tar.gz -C ../ cd .. sudo chown -R ray ruby-2.1.2 sudo chgrp -R ray ruby-2.1.2 cd ruby-2.1.2</summary></entry><entry><title type="html">Mysql 存储过程举例</title><link href="http://localhost:4000/mysql/2014/05/12/MYsql_procedure.html" rel="alternate" type="text/html" title="Mysql 存储过程举例" /><published>2014-05-12T00:00:00+08:00</published><updated>2014-05-12T00:00:00+08:00</updated><id>http://localhost:4000/mysql/2014/05/12/MYsql_procedure</id><content type="html" xml:base="http://localhost:4000/mysql/2014/05/12/MYsql_procedure.html">&lt;ol&gt;
   &lt;li&gt;
     &lt;p&gt;创建过程：&lt;/p&gt;
 
@@ -792,7 +838,7 @@ login system or filezila login&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;官方文档：&lt;a href=&quot;http://dev.mysql.com/doc/refman/5.1/zh/stored-procedures.html&quot;&gt;http://dev.mysql.com/doc/refman/5.1/zh/stored-procedures.html&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="mysql" /><summary type="html">创建过程： 必须具有CREATE ROUTINE权限，并且ALTER ROUTINE和EXECUTE权限被自动授予它的创建者。 两种方式，及参数语法说明：</summary></entry><entry><title type="html">php 添加mogodb扩展+PHP点击图片上传并实现预览效果</title><link href="/php/2014/05/06/click_image_upload_&_php_mongodb_extension.html" rel="alternate" type="text/html" title="php 添加mogodb扩展+PHP点击图片上传并实现预览效果" /><published>2014-05-06T00:00:00+08:00</published><updated>2014-05-06T00:00:00+08:00</updated><id>/php/2014/05/06/click_image_upload_&amp;_php_mongodb_extension</id><content type="html" xml:base="/php/2014/05/06/click_image_upload_&amp;_php_mongodb_extension.html">&lt;p&gt;####PHP添加扩展MongoDB
+&lt;p&gt;官方文档：&lt;a href=&quot;http://dev.mysql.com/doc/refman/5.1/zh/stored-procedures.html&quot;&gt;http://dev.mysql.com/doc/refman/5.1/zh/stored-procedures.html&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="mysql" /><summary type="html">创建过程： 必须具有CREATE ROUTINE权限，并且ALTER ROUTINE和EXECUTE权限被自动授予它的创建者。 两种方式，及参数语法说明：</summary></entry><entry><title type="html">php 添加mogodb扩展+PHP点击图片上传并实现预览效果</title><link href="http://localhost:4000/php/2014/05/06/click_image_upload_&_php_mongodb_extension.html" rel="alternate" type="text/html" title="php 添加mogodb扩展+PHP点击图片上传并实现预览效果" /><published>2014-05-06T00:00:00+08:00</published><updated>2014-05-06T00:00:00+08:00</updated><id>http://localhost:4000/php/2014/05/06/click_image_upload_&amp;_php_mongodb_extension</id><content type="html" xml:base="http://localhost:4000/php/2014/05/06/click_image_upload_&amp;_php_mongodb_extension.html">&lt;p&gt;####PHP添加扩展MongoDB
 PHP添加扩展的方式大致都是一致的，这里记录下今天安的这个，免得改天又忘了。&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;	tar zxvf mongo-1.5.1.tgz -C ../
@@ -857,7 +903,7 @@ PHP添加扩展的方式大致都是一致的，这里记录下今天安的这�
     --&amp;gt;注意ie8以下不支持data:image/png;base64这样的数据，所以如果需要IE8以下浏览器，请直接使用图片地址
     echo '&amp;lt;script&amp;gt;window.top.document.getElementById(&quot;images&quot;).src=&quot;'.$src.'&quot;;&amp;lt;/script&amp;gt;';
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name></name></author><category term="php" /><summary type="html">####PHP添加扩展MongoDB PHP添加扩展的方式大致都是一致的，这里记录下今天安的这个，免得改天又忘了。</summary></entry><entry><title type="html">Mongodb 安装过程</title><link href="/mongodb/2014/04/22/Mongodb_Install.html" rel="alternate" type="text/html" title="Mongodb 安装过程" /><published>2014-04-22T00:00:00+08:00</published><updated>2014-04-22T00:00:00+08:00</updated><id>/mongodb/2014/04/22/Mongodb_Install</id><content type="html" xml:base="/mongodb/2014/04/22/Mongodb_Install.html">&lt;p&gt;官方文档在这里：http://docs.mongodb.org/manual/tutorial/install-mongodb-on-linux/&lt;/p&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="php" /><summary type="html">####PHP添加扩展MongoDB PHP添加扩展的方式大致都是一致的，这里记录下今天安的这个，免得改天又忘了。</summary></entry><entry><title type="html">Mongodb 安装过程</title><link href="http://localhost:4000/mongodb/2014/04/22/Mongodb_Install.html" rel="alternate" type="text/html" title="Mongodb 安装过程" /><published>2014-04-22T00:00:00+08:00</published><updated>2014-04-22T00:00:00+08:00</updated><id>http://localhost:4000/mongodb/2014/04/22/Mongodb_Install</id><content type="html" xml:base="http://localhost:4000/mongodb/2014/04/22/Mongodb_Install.html">&lt;p&gt;官方文档在这里：http://docs.mongodb.org/manual/tutorial/install-mongodb-on-linux/&lt;/p&gt;
 
 &lt;p&gt;首先需要知道,mongod是服务进程,mongo是客户端进程&lt;/p&gt;
 
@@ -901,7 +947,7 @@ export PATH=$PATH:/usr/local/mongod/bin&lt;/p&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mongo
 db.version();
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name></name></author><category term="mongodb" /><summary type="html">官方文档在这里：http://docs.mongodb.org/manual/tutorial/install-mongodb-on-linux/</summary></entry><entry><title type="html">Laravel 框架开发配置概述</title><link href="/php/2014/04/21/Laravel_details.html" rel="alternate" type="text/html" title="Laravel 框架开发配置概述" /><published>2014-04-21T00:00:00+08:00</published><updated>2014-04-21T00:00:00+08:00</updated><id>/php/2014/04/21/Laravel_details</id><content type="html" xml:base="/php/2014/04/21/Laravel_details.html">&lt;p&gt;使用框架的好处简直太多了，便于管理，加速开发，使用新理念新技术。Laravel 4基于PHP 5.3以上开始的。&lt;/p&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="mongodb" /><summary type="html">官方文档在这里：http://docs.mongodb.org/manual/tutorial/install-mongodb-on-linux/</summary></entry><entry><title type="html">Laravel 框架开发配置概述</title><link href="http://localhost:4000/php/2014/04/21/Laravel_details.html" rel="alternate" type="text/html" title="Laravel 框架开发配置概述" /><published>2014-04-21T00:00:00+08:00</published><updated>2014-04-21T00:00:00+08:00</updated><id>http://localhost:4000/php/2014/04/21/Laravel_details</id><content type="html" xml:base="http://localhost:4000/php/2014/04/21/Laravel_details.html">&lt;p&gt;使用框架的好处简直太多了，便于管理，加速开发，使用新理念新技术。Laravel 4基于PHP 5.3以上开始的。&lt;/p&gt;
 
 &lt;p&gt;###1.命名空间:namespace&lt;/p&gt;
 
@@ -1286,133 +1332,4 @@ Library下面有个CustomFacade ，说到这个就引出一个Laravel非常重�
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;        $this-&amp;gt;beforeFilter(&quot;open_ip:$open_ip&quot;);
     &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;就先这些吧…后面空了 再写Model和View..Eloquent active Record 好东东啊…&lt;/p&gt;</content><author><name></name></author><category term="php" /><summary type="html">使用框架的好处简直太多了，便于管理，加速开发，使用新理念新技术。Laravel 4基于PHP 5.3以上开始的。</summary></entry><entry><title type="html">PHP上传shell注入(一)</title><link href="/php/2014/04/19/PHP-image-way-web-shell_1.html" rel="alternate" type="text/html" title="PHP上传shell注入(一)" /><published>2014-04-19T00:00:00+08:00</published><updated>2014-04-19T00:00:00+08:00</updated><id>/php/2014/04/19/PHP-image-way-web-shell_1</id><content type="html" xml:base="/php/2014/04/19/PHP-image-way-web-shell_1.html">&lt;ol&gt;
-  &lt;li&gt;首先准备上传文件phpinfo.php&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;phpinfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;上传文件脚本fileup.php&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;        &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;                                                                
-         &lt;span class=&quot;nv&quot;&gt;$valid_types&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'image/jpeg'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'image/jpg'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'image/gif'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'image/png'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;isset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_FILES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'filedata'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt;
-         &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-           &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;is_uploaded_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_FILES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'filedata'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tmp_name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;in_array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_FILES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'filedata'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'type'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$valid_types&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-          &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-           &lt;span class=&quot;nv&quot;&gt;$new_filename&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/var/www/test/f_image_&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_FILES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'filedata'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-          &lt;span class=&quot;nv&quot;&gt;$uploaded&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;move_uploaded_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_FILES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'filedata'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'tmp_name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$new_filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-                  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$uploaded&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-                  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                          &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$image&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;getimagesize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$new_filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-                          &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                                  &lt;span class=&quot;nb&quot;&gt;print_r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-                          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-                          &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
-                          &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                                  &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Bad image resource&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-                          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-                 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
-                &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                          &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;not uploaded!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-                  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;CURL命令行上传（方便操作）&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;        curl \ 
-        --form 'any_post_data=value' \ 
-        --form 'filedata=@phpinfo.php;filename=phpinfo.php; type=image/gif' 
-        'http://localhost/test/fileup.php' &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl 模拟一个post请求，具体看man curl
-
-经过上面的准备工作，及第三步请求，我们得到一个反馈：
-
-![enter image description here](http://akulubala.github.io/public/images/2014/web_shell_1.png)
-
-说上传的文件不是image
-
-
-
-接下来关键点来了.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;修改phpinfo.php 让它变成image&lt;/p&gt;
-
-    &lt;p&gt;首先需要一个可以查看2进制(16进制)文件的工具。linux 下面 vim可以直接使用系统的xxd(
-也可以下载hexedit来查看)：&lt;/p&gt;
-
-    &lt;p&gt;首先使用file phpinfo.php  得到结果&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;        ray@ubuntu:/var/www/test$ file phpinfo.php 
-        phpinfo.php: PHP script, ASCII text-&amp;gt;这里是命令行结果,太小不截图了&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;使用vim 查看一个gif文件：
-
-    vim -b filename.gif //-b选项不加查看的时候会自动加上0x0a回城符
-    :%!xxd
-    //查看完了需要使用%！xxd -r 是还原二进制文件到文本模式
-
-执行完上面两步后：
-
-![enter image description here](http://akulubala.github.io/public/images/2014/web_shell_2.png)
-
-看到最后一栏有GIF89a的字样，这个就是gif标识文件格式的地方。  
-打开phpinfo.php
-再第一行加入GIF89a几个字符(也可以编辑头六个字节：47 49 46
-38 39 61，建议使用GHex)，注意这里使用编辑器编辑最好是替换，因为二进制文件排列是紧密的块形式    
-然后再使用file phpinfo.php命令查看得到： 
-
-    ray@ubuntu:/var/www/test$ file phpinfo.php 
-    phpinfo.php: GIF image data, version 89a, 15370 x 28735
-
-看来文件已经变成了GIF了但是文件大小却不对，从&amp;lt;a href=&quot;http://en.wikipedia.org/wiki/Graphics_Interchange_Format&quot;&amp;gt;gif wiki&amp;lt;/a&amp;gt;
-上看到头六个字节表示GIF89a，第7,8（000006-000007），9,10(000008,000009)个字节表示图片大小
-
-    6:     03 00        3            - logical screen width in pixels
-    8:     05 00        5            - logical screen height in pixels
-
-更改想要的大小如0001,0001，再使用file 查看文件大小就变成了&quot;1\*1&quot;了
-
-更改完成再次进行第三步中的curl操作，可以发现已经可以正常上传这个假的图片文件了。
-
-更改PNG文件类似，但是PNG的头信息和gif不同：  
-
-    文件头：由八个字节组成，0x89504e470d0a1a0a
-    数据块：每个数据块由四部分构成，他们的描述依次如下：
-    Length ：占四字节，表示数据块data域占多少个字节。（注意这里不包括length自身）
-    Type ：占四字节，表示当前块的类型。一般是英文大小写字母的ASCII码（65～9&amp;gt;0或者97～122）
-    Data：数据区。大小可以是0字节
-    CRC：占四个字节，整个chunk的CRC校验码（Length+Type+Data） 
-
-![enter image description here](http://akulubala.github.io/public/images/2014/web_shell_3.png)
-
-除去头文件信息是第一行前八个字节外，其他信息依次4个字节表示
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;上传真正的shell脚本&lt;/p&gt;
-
-    &lt;p&gt;出名的shell脚本从这里可以找到：&lt;br /&gt;
-http://www.r57shell.net/&lt;br /&gt;
-里面有个C999的源码翻译过来的&lt;br /&gt;
-http://mikeybeck.com/hacking/viewC999.php&lt;/p&gt;
-
-    &lt;p&gt;今天就到这里吧…好困了。。&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;</content><author><name></name></author><category term="php" /><summary type="html">首先准备上传文件phpinfo.php</summary></entry></feed>
+&lt;p&gt;就先这些吧…后面空了 再写Model和View..Eloquent active Record 好东东啊…&lt;/p&gt;</content><author><name></name></author><category term="php" /><summary type="html">使用框架的好处简直太多了，便于管理，加速开发，使用新理念新技术。Laravel 4基于PHP 5.3以上开始的。</summary></entry></feed>

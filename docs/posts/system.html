@@ -1,7 +1,7 @@
 	<!DOCTYPE html>
 <html>
   <head>
-    <link type="text/css" rel="stylesheet" href="/assets/dist/app.0eed6e1f6e88200b28c4.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="http://localhost:4000/assets/dist/app.0eed6e1f6e88200b28c4.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="/assets/dist/fullpagejs/dist/jquery.fullpage.min.css"  media="screen,projection"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
@@ -93,10 +93,10 @@
 					<div class="col s12">
 					  <div class="card">
 					    <div class="card-image">
-					        <img class="responsive-img" src="/assets/images/upsplash/image_1.jpeg">
+					        <img class="responsive-img" src="http://localhost:4000/assets/images/upsplash/image_1.jpeg">
 					      </div>
 					    <div class="card-content black-text">
-					      <span class="card-title"><a href="/system/2014/06/27/Ubunto_Deploy_Jekyll.html">Ubunto Deploy Jekyll</a></span>
+					      <span class="card-title"><a href="http://localhost:4000/system/2014/06/27/Ubunto_Deploy_Jekyll.html">Ubunto Deploy Jekyll</a></span>
 					      <div class="post-tags">
 					        <span><i class="fa fa-superpowers" aria-hidden="true"></i></span>
 					        <span>tags: system</span>
@@ -113,7 +113,7 @@
 					      <p>      Download and install ruby    sudo mkdir Downloadscurl -O http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz tar -zxvf ruby-2.1.2.tar.gz -C ../cd ..sudo chown -R ray ruby-2.1.2sudo chgr...</p>
 					    </div>
 					    <div class="card-action">
-				    		<a href="/system/2014/06/27/Ubunto_Deploy_Jekyll.html">Continue Reading</a>
+				    		<a href="http://localhost:4000/system/2014/06/27/Ubunto_Deploy_Jekyll.html">Continue Reading</a>
 				    		<a href="#" class="share-action"><i class="material-icons md-dark">share</i></a>
 					        <ul class="rrssb-buttons round-format fixed-size">
   <li class="rrssb-wechat">
@@ -180,10 +180,10 @@
 					<div class="col s12">
 					  <div class="card">
 					    <div class="card-image">
-					        <img class="responsive-img" src="/assets/images/upsplash/image_2.jpeg">
+					        <img class="responsive-img" src="http://localhost:4000/assets/images/upsplash/image_2.jpeg">
 					      </div>
 					    <div class="card-content black-text">
-					      <span class="card-title"><a href="/system/2013/12/08/install-lnmp.html">LNMP 编译安装</a></span>
+					      <span class="card-title"><a href="http://localhost:4000/system/2013/12/08/install-lnmp.html">LNMP 编译安装</a></span>
 					      <div class="post-tags">
 					        <span><i class="fa fa-superpowers" aria-hidden="true"></i></span>
 					        <span>tags: system</span>
@@ -200,7 +200,7 @@
 					      <p>首先安装PCRE 来支持rewrite  下载地址：ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/  解压缩：sudo tar -zxvf pcre-8.30.tar.gz  -C /usr/local/src  建立安装目录：cd /usr/local  &amp;&amp; sudo mkdir pcre  安装：./conf...</p>
 					    </div>
 					    <div class="card-action">
-				    		<a href="/system/2013/12/08/install-lnmp.html">Continue Reading</a>
+				    		<a href="http://localhost:4000/system/2013/12/08/install-lnmp.html">Continue Reading</a>
 				    		<a href="#" class="share-action"><i class="material-icons md-dark">share</i></a>
 					        <ul class="rrssb-buttons round-format fixed-size">
   <li class="rrssb-wechat">
@@ -304,8 +304,18 @@
 <script type="text/javascript">
 	window.store = {
 	    
-	      "vuejs-2017-08-05-a-vue-componet-for-cropping-image-html": {
+	      "php-2017-08-26-laravel-export-html-to-pdf-html": {
 	      	"imgSrc": "/assets/images/upsplash/image_1.jpeg",
+	        "title": "Laravel Export Html To PDF",
+	        "author": "",
+	        "category": "php",
+	        "content": "Export Datas To PDFThere have a package wkhtmltopdf using webkit(QTwebkit) convert html to pdf or image from commandline.For Laravel: laravel-snappyInstallation is same as all other laravel package (can check git repository docs).After installation, We need config the file config/snappy.php.My configuration:    return array(        'pdf' =&gt; array(            'enabled' =&gt; true,            'binary'  =&gt; env('WKHTMLTOPDF', storage_path('bin/wkhtmltox/bin/wkhtmltopdf')),            'timeout' =&gt; false,            'options' =&gt; array(),            'env'     =&gt; array(),        ),        'image' =&gt; array(            'enabled' =&gt; true,            'binary'  =&gt; env('WKHTMLTOIMAGE',storage_path('bin/wkhtmltox/bin/wkhtmltoimage')),            'timeout' =&gt; false,            'options' =&gt; array(),            'env'     =&gt; array(),        ),      );The parameter ‘binary’ is the excutable file which download from  https://wkhtmltopdf.org/downloads.htmlThere have three version of linux,mac,windows. for mac os it’s an installation package， we need install it to mac os.After the bin path is /usr/local/bin/wkhtmltopdf.Finally, the laravel code    $pdf = \\PDF::loadView('admin.pdf.document', compact('results'));    return $pdf-&gt;download(\"pdf-\".auth()-&gt;user()-&gt;name.\".pdf\");    Load view file load the laravel view file, and can pass data to the view.view file is a html file, we can add any style to the file, pdf view export as html file.Notice PDF won’t have much width. so if the cotent is to large. We need use small font-size, otherwisepage will not fully show in PDF",
+	        "url": "/php/2017/08/26/Laravel-export-html-to-pdf.html"
+	      }
+	      ,
+	    
+	      "vuejs-2017-08-05-a-vue-componet-for-cropping-image-html": {
+	      	"imgSrc": "/assets/images/upsplash/image_2.jpeg",
 	        "title": "A Nicely Vue Component For Cropping Image",
 	        "author": "",
 	        "category": "Vuejs",
@@ -315,7 +325,7 @@
 	      ,
 	    
 	      "docker-2017-07-20-docker-a-lemp-environment-with-ubuntu-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_2.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_3.jpeg",
 	        "title": "Docker A LEMP With Laravel In Ubuntu",
 	        "author": "",
 	        "category": "docker",
@@ -325,7 +335,7 @@
 	      ,
 	    
 	      "python-2014-11-24-python-decorator-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_3.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_4.jpeg",
 	        "title": "Python Decorator",
 	        "author": "",
 	        "category": "python",
@@ -335,7 +345,7 @@
 	      ,
 	    
 	      "php-2014-07-07-decade-user-id-strategy-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_4.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_5.jpeg",
 	        "title": "十位用户唯一ID生成策略",
 	        "author": "",
 	        "category": "php",
@@ -345,7 +355,7 @@
 	      ,
 	    
 	      "system-2014-06-27-ubunto-deploy-jekyll-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_5.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_6.jpeg",
 	        "title": "Ubunto Deploy Jekyll",
 	        "author": "",
 	        "category": "system",
@@ -355,7 +365,7 @@
 	      ,
 	    
 	      "mysql-2014-05-12-mysql-procedure-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_6.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_7.jpeg",
 	        "title": "Mysql 存储过程举例",
 	        "author": "",
 	        "category": "mysql",
@@ -365,7 +375,7 @@
 	      ,
 	    
 	      "php-2014-05-06-click-image-upload-php-mongodb-extension-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_7.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_8.jpeg",
 	        "title": "php 添加mogodb扩展+PHP点击图片上传并实现预览效果",
 	        "author": "",
 	        "category": "php",
@@ -375,7 +385,7 @@
 	      ,
 	    
 	      "mongodb-2014-04-22-mongodb-install-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_8.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_9.jpeg",
 	        "title": "Mongodb 安装过程",
 	        "author": "",
 	        "category": "mongodb",
@@ -385,7 +395,7 @@
 	      ,
 	    
 	      "php-2014-04-21-laravel-details-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_9.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_10.jpeg",
 	        "title": "Laravel 框架开发配置概述",
 	        "author": "",
 	        "category": "php",
@@ -395,7 +405,7 @@
 	      ,
 	    
 	      "php-2014-04-19-php-image-way-web-shell-1-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_10.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_11.jpeg",
 	        "title": "PHP上传shell注入(一)",
 	        "author": "",
 	        "category": "php",
@@ -405,7 +415,7 @@
 	      ,
 	    
 	      "linux-2014-04-11-how-to-set-up-ssh-publick-key-authentication-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_11.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_12.jpeg",
 	        "title": "如何设置SSH的公钥授权",
 	        "author": "",
 	        "category": "linux",
@@ -415,7 +425,7 @@
 	      ,
 	    
 	      "php-2014-03-11-php-oauth2-0-douban-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_12.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_13.jpeg",
 	        "title": "PHP OAuth 2.0 认证流程..",
 	        "author": "",
 	        "category": "php",
@@ -425,7 +435,7 @@
 	      ,
 	    
 	      "php-2014-03-04-php-upload-progress-bar-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_13.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_14.jpeg",
 	        "title": "PHP 上传进度条..",
 	        "author": "",
 	        "category": "php",
@@ -435,7 +445,7 @@
 	      ,
 	    
 	      "php-2014-01-21-php-string-len-count-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_14.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_15.jpeg",
 	        "title": "PHP 获取字符串长度，字节数...",
 	        "author": "",
 	        "category": "php",
@@ -445,7 +455,7 @@
 	      ,
 	    
 	      "zf2-2013-12-27-zend-framework2-intergrate-mustache-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_15.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_16.jpeg",
 	        "title": "Zend Framework 2 集成mustache",
 	        "author": "",
 	        "category": "zf2",
@@ -455,7 +465,7 @@
 	      ,
 	    
 	      "zf2-2013-12-20-zf2-install-firephp-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_16.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_17.jpeg",
 	        "title": "Zend Framework 2 安装使用Firephp",
 	        "author": "",
 	        "category": "zf2",
@@ -465,7 +475,7 @@
 	      ,
 	    
 	      "system-2013-12-08-install-lnmp-html": {
-	      	"imgSrc": "/assets/images/upsplash/image_17.jpeg",
+	      	"imgSrc": "/assets/images/upsplash/image_18.jpeg",
 	        "title": "LNMP 编译安装",
 	        "author": "",
 	        "category": "system",
